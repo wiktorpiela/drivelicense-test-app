@@ -1,0 +1,7 @@
+db.sqlite3
+__pycache__/
+.env
+*.csv
+*.exe
+csv_files/
+*.ipynb
