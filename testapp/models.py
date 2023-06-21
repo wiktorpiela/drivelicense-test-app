@@ -20,6 +20,9 @@ class QuestionMedia(models.Model):
 class QuestionText(models.Model):
     content = models.TextField()
 
+    def __str__(self):
+        return self.content
+
 class QuestionSafety(models.Model):
     desc = models.TextField()
 
@@ -52,7 +55,7 @@ class Question(models.Model):
     quest_correct_answer = models.CharField(max_length=1, choices=possible_answers)
     score = models.IntegerField(choices=scores)
     type = models.CharField(max_length=1, choices=types)
-    abc_answers = models.ForeignKey(QuestionPossibleAnswers, on_delete=models.DO_NOTHING, related_name="abc_answers", blank=True, null=True)
+    abc_answers = models.ForeignKey(QuestionPossibleAnswers, on_delete=models.DO_NOTHING, related_name="abc_answers", blank=True, null=True) #answer description if exists
     legal_source = models.ForeignKey(QuestionLegalSource, on_delete=models.DO_NOTHING, related_name="legal_source")
     media = models.ForeignKey(QuestionMedia, on_delete=models.DO_NOTHING, related_name="media", blank=True, null=True)
     quest_category = models.ForeignKey(QuestionCategory, on_delete=models.DO_NOTHING, related_name="quest_category")
