@@ -11,11 +11,17 @@ class QuestionPossibleAnswers(models.Model):
     B = models.TextField()
     C = models.TextField()
 
+    def __str__(self) -> str:
+        return f"A. {self.A} B. {self.B} C. {self.C}"
+
 class QuestionPurpose(models.Model):
     purpose = models.TextField()
 
 class QuestionMedia(models.Model):
-    path = models.CharField(max_length=255)
+    path = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.path
 
 class QuestionText(models.Model):
     content = models.TextField()
@@ -55,9 +61,9 @@ class Question(models.Model):
     quest_correct_answer = models.CharField(max_length=1, choices=possible_answers)
     score = models.IntegerField(choices=scores)
     type = models.CharField(max_length=1, choices=types)
-    abc_answers = models.ForeignKey(QuestionPossibleAnswers, on_delete=models.DO_NOTHING, related_name="abc_answers", blank=True, null=True) #answer description if exists
+    abc_answers = models.ForeignKey(QuestionPossibleAnswers, on_delete=models.DO_NOTHING, related_name="abc_answers") #answer description if exists
     legal_source = models.ForeignKey(QuestionLegalSource, on_delete=models.DO_NOTHING, related_name="legal_source")
-    media = models.ForeignKey(QuestionMedia, on_delete=models.DO_NOTHING, related_name="media", blank=True, null=True)
+    media = models.ForeignKey(QuestionMedia, on_delete=models.DO_NOTHING, related_name="media")
     quest_category = models.ForeignKey(QuestionCategory, on_delete=models.DO_NOTHING, related_name="quest_category")
     quest_purpose = models.ForeignKey(QuestionPurpose, on_delete=models.DO_NOTHING, related_name="quest_purpose")
     quest_txt = models.ForeignKey(QuestionText, on_delete=models.DO_NOTHING, related_name="quest_txt")

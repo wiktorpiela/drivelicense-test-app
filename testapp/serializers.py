@@ -4,9 +4,9 @@ from .  import models
 class QuestionSerializer(serializers.ModelSerializer):
     quest_category = serializers.PrimaryKeyRelatedField(queryset=models.QuestionCategory.objects.all())
     legal_source = serializers.PrimaryKeyRelatedField(queryset=models.QuestionLegalSource.objects.all())
-    abc_answers = serializers.PrimaryKeyRelatedField(queryset=models.QuestionPossibleAnswers.objects.all())
+    abc_answers = serializers.StringRelatedField()
     quest_purpose = serializers.PrimaryKeyRelatedField(queryset=models.QuestionPurpose.objects.all())
-    media = serializers.PrimaryKeyRelatedField(queryset=models.QuestionMedia.objects.all())
+    media = serializers.StringRelatedField()
     quest_txt = serializers.StringRelatedField()
     safety_relation = serializers.PrimaryKeyRelatedField(queryset=models.QuestionSafety.objects.all())
     subject = serializers.PrimaryKeyRelatedField(queryset=models.QuestionSubject.objects.all())

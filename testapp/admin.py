@@ -1,10 +1,12 @@
-# from django.contrib import admin
-# from .models import Question, QuestionMedia, QuestionScores, QuestionType, QuestionSubject, QuestionPossibleAnswers, QuestionCorrectAnswer
+from django.contrib import admin
+from . import models
 
-# admin.site.register(Question)
-# admin.site.register(QuestionMedia)
-# admin.site.register(QuestionScores)
-# admin.site.register(QuestionType)
-# admin.site.register(QuestionSubject)
-# admin.site.register(QuestionPossibleAnswers)
-# admin.site.register(QuestionCorrectAnswer)
+admin.site.register(models.QuestionCategory)
+admin.site.register(models.QuestionLegalSource)
+admin.site.register(models.QuestionPossibleAnswers)
+admin.site.register(models.QuestionPurpose)
+admin.site.register(models.QuestionMedia)
+admin.site.register(models.QuestionText)
+admin.site.register(models.QuestionSafety)
+admin.site.register(models.QuestionSubject)
+admin.site.register(models.Question)
