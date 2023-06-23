@@ -12,7 +12,10 @@ class QuestionPossibleAnswers(models.Model):
     C = models.TextField()
 
     def __str__(self) -> str:
-        return f"A. {self.A} B. {self.B} C. {self.C}"
+        if self.A != "":
+            return f"A. {self.A} - B. {self.B} - C. {self.C}"
+        else:
+            return "YN"
 
 class QuestionPurpose(models.Model):
     purpose = models.TextField()
