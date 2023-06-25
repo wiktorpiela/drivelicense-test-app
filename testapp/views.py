@@ -4,18 +4,38 @@ from .serializers import QuestionSerializer
 from .models import Question
 import random
 from rest_framework.response import Response
+from django.db.models import Q
 
 class GetExamQuestions(APIView):
-
-    serializer_class = QuestionSerializer
+    criteria = [
+            #type, score, sample size
+            ("P", "3", 10),
+            ("P", "2", 6),
+            ("P", "1", 4),
+            ("S", "3", 6),
+            ("S", "2", 4),
+            ("S", "1", 2),
+        ]
 
     def get_queryset(self):
-        all_questions = Question.objects.all()
-        max_index = len(all_questions)
-        indexes_chosen = random.sample(range(max_index+1), 30)
-        return Question.objects.filter(pk__in = indexes_chosen)
+        chosen_indexes = []
 
+        for type, score, sampleSize in self.criteria:
 
+            currentIdxs = list(
+                Question.objects.filter(
+                Q(type__icontains = type) & Q(score__icontains = score)
+                ).values_list("pk", flat=True)
+            )
+
+            randomIdxs = random.sample(currentIdxs, sampleSize)
+            chosen_indexes.append(randomIdxs)
+
+        chosen_indexes = [item for sublist in chosen_indexes for item in sublist]
+        queryset = Question.objects.filter(pk__in = chosen_indexes)
+
+        return queryset
+    
     def get(self, request, format=None):
         exam_questions = self.get_queryset()
         serializer = QuestionSerializer(exam_questions, many=True)
