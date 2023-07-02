@@ -2,3 +2,7 @@
 .js-answers-abc{
     display: none;
 }
+
+.js-answers-abc{
+    flex-direction: column;
+}
