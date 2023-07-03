@@ -4,9 +4,6 @@ const mediaPath = document.querySelector('.mediaPath')
 const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
 const labels = answersABC.querySelectorAll('label')
-const answerA = answersABC.querySelector(".A")
-const answerB = answersABC.querySelector(".B")
-const answerC = answersABC.querySelector(".C")
 const myUrl = "http://127.0.0.1:8000/exam-questions/"
 let questions
 let question
@@ -20,10 +17,18 @@ async function getQuestions(url) {
     return jsonData
   }
 
-function displayData(question){
+function displayData(question, i){
     questTxt.innerHTML = question.quest_txt
     answersResponse = question.abc_answers
     answers = answersResponse.split(" - ")
+
+    for(let index = 0; index < answers.length; index++){
+
+      if(question.abc_answers !== "YN"){
+        let ansText = document.createTextNode(answers[index])
+        labels[index].appendChild(ansText)
+      }
+    }
 
     if (question.abc_answers === "YN") { //YN empty record in possibleanswers table (Y/N question)
         answersYN.style.display = "flex"
@@ -31,9 +36,6 @@ function displayData(question){
     }  else {
         answersYN.style.display = 'none'
         answersABC.style.display = "flex"
-        answerA.innerHTML = answers[0]
-        answerB.innerHTML = answers[1]
-        answerC.innerHTML = answers[2]
     }
 }
 
@@ -44,9 +46,9 @@ getQuestions(myUrl)
     let i = 0
     btn.addEventListener("click", () => {
         question = questions[i]
-        displayData(question)
+        displayData(question, i)
         console.log(question)
         i++
-    })
   })
+})
 
