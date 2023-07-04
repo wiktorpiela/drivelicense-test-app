@@ -6,3 +6,7 @@
 .js-answers-abc{
     flex-direction: column;
 }
+
+.answerQuestion{
+    display: none;
+}
