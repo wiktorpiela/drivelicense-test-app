@@ -57,19 +57,23 @@ window.onload = (event) => {
             let radios;
             let userAnswer;
             let i = 0;
-            let answersYNarray = Array.from(document.getElementsByName("answerYN"))
-            let answersABCarray = Array.from(document.getElementsByName("answerABC"))
-            let allArrays = answersYNarray.concat(answersABCarray)
+            let answersYNarray = Array.from(document.getElementsByName("answerYN"));
+            let answersABCarray = Array.from(document.getElementsByName("answerABC"));
+            let allArrays = answersYNarray.concat(answersABCarray);
+            let userScore = 0;
+            let questionScore;
             
+            //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
+
+            //get and display questions data
             questions = data;
             quest_count = questions.length;
             question = questions[i]
-
+            correctAnswer = question.quest_correct_answer;
+            questionScore = question.score
             displayData(question)
 
-            correctAnswer = question.quest_correct_answer
-            
             //get current radios
             if(question.abc_answers==="YN"){
                 radios = document.getElementsByName("answerYN")
@@ -77,34 +81,46 @@ window.onload = (event) => {
                 radios = document.getElementsByName("answerABC")
             }
 
-            console.log(correctAnswer)
-
             //get user answer on radio button click
             for(let index=0; index<allArrays.length;index++){
                 allArrays[index].addEventListener("click", () =>{
 
+                //enable next question button when user selected answer for current question
                 nextQuestion.disabled = false
 
-                  for(let index=0; index < radios.length; index++){
+                //get user answer
+                for(let index=0; index < radios.length; index++){
                     if(radios[index].checked){
-                      userAnswer = radios[index].value
+                        userAnswer = radios[index].value
                     }
                   }
 
                 })
             }
-
-            console.log(i)
+            
             i++;
 
         nextQuestion.addEventListener("click", () => {
 
+            //check if previous user answer is correct or not -------------- to uncomment
+            // console.log("previously user answer: " + userAnswer)
+            // console.log("previously correct: " + correctAnswer)
+            // console.log(correctAnswer===userAnswer)
+
+            //add scores in case of correct answer
+            if(userAnswer===correctAnswer){
+                userScore += questionScore
+            }
+
+            console.log(userScore)
+
+            //disable next question button on next question and radio button in not selected yet
             nextQuestion.disabled = true
 
-            console.log("previous correct answer is: " + correctAnswer + "previous user answer is:" + userAnswer)
-
+            //get and display next question
             question = questions[i]
             correctAnswer = question.quest_correct_answer
+            questionScore = question.score
             displayData(question)
 
             //get current radios
@@ -114,14 +130,14 @@ window.onload = (event) => {
                 radios = document.getElementsByName("answerABC")
             }
 
-            console.log(correctAnswer)
-
             //get user answer on radio button click
             for(let index=0; index<allArrays.length;index++){
                 allArrays[index].addEventListener("click", () =>{
 
+                    //enable next button on select answer
                     nextQuestion.disabled = false
 
+                    //get user answer
                     for(let index=0; index < radios.length; index++){
                         if(radios[index].checked){
                             userAnswer = radios[index].value
@@ -134,8 +150,7 @@ window.onload = (event) => {
             //uncheck radio buttons
             uncheckSelection(radios)
 
-            console.log(i)
-
+            //next question
             i++;
         })
 
