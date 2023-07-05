@@ -16,8 +16,8 @@ async function getQuestions(url) {
     return jsonData
   }
 
-function displayData(question){
-    questTxt.innerHTML = question.quest_txt
+function displayData(question, i){
+    questTxt.innerHTML = `Pytanie ${i+1} ${question.quest_txt}`
 
     if(question.abc_answers !== "YN"){
       answersResponse = question.abc_answers
@@ -51,17 +51,19 @@ window.onload = (event) => {
     getQuestions(examUrl)
         .then((data) => {
 
-            let questions;
-            let question;
-            let correctAnswer;
-            let radios;
-            let userAnswer;
-            let i = 0;
-            let answersYNarray = Array.from(document.getElementsByName("answerYN"));
-            let answersABCarray = Array.from(document.getElementsByName("answerABC"));
-            let allArrays = answersYNarray.concat(answersABCarray);
-            let userScore = 0;
-            let questionScore;
+            let questions; //all exam question from server response
+            let question; //single question with all attributes through iteration
+            let correctAnswer; //correct answer for current question
+            let radios; //all current radiobuttons
+            let userAnswer; //answer selected by user
+            let i = 0; //iterator
+            let answersYNarray = Array.from(document.getElementsByName("answerYN")); //for radios
+            let answersABCarray = Array.from(document.getElementsByName("answerABC")); //for radios
+            let allArrays = answersYNarray.concat(answersABCarray); //for radios
+            let userScore = 0; //initial scoring
+            let questionScore; //score of current question
+            let wrongAnswers = new Array(); //wrong answer array initialized
+            let correctAnswers = new Array(); //correct answer array initialized
             
             //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
@@ -72,7 +74,7 @@ window.onload = (event) => {
             question = questions[i]
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
-            displayData(question)
+            displayData(question, i)
 
             //get current radios
             if(question.abc_answers==="YN"){
@@ -110,18 +112,33 @@ window.onload = (event) => {
             //add scores in case of correct answer
             if(userAnswer===correctAnswer){
                 userScore += questionScore
+                correctAnswers.push(question)
+            } else{
+                wrongAnswers.push(question)
             }
 
             console.log(userScore)
+            console.log(correctAnswers)
+            console.log(wrongAnswers)
 
             //disable next question button on next question and radio button in not selected yet
             nextQuestion.disabled = true
 
-            //get and display next question
-            question = questions[i]
-            correctAnswer = question.quest_correct_answer
-            questionScore = question.score
-            displayData(question)
+            //if last question go to results page
+            //collect viarables to pass on the next page
+            if(i>=quest_count){
+                sessionStorage.setItem("userScore", userScore);
+                window.location.href = "resultsPage.html";
+            }
+
+            //get and display next question if it is any next question
+            if(i < quest_count){
+                question = questions[i]
+                correctAnswer = question.quest_correct_answer
+                questionScore = question.score
+                displayData(question, i)
+            }
+
 
             //get current radios
             if(question.abc_answers==="YN"){
