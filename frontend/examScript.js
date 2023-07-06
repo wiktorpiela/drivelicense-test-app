@@ -79,6 +79,7 @@ window.onload = (event) => {
             let questionScore; //score of current question
             let wrongAnswers = new Array(); //wrong answer array initialized
             let correctAnswers = new Array(); //correct answer array initialized
+            let wrongUserAnswer = new Array(); // array of wrong user answers
             
             //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
@@ -130,19 +131,25 @@ window.onload = (event) => {
                 correctAnswers.push(question)
             } else{
                 wrongAnswers.push(question)
+                wrongUserAnswer.push(userAnswer)
             }
 
             console.log(userScore)
             console.log(correctAnswers)
             console.log(wrongAnswers)
+            console.log(wrongUserAnswer)
 
             //disable next question button on next question and radio button in not selected yet
             nextQuestion.disabled = true
 
             //if last question go to results page
-            //collect viarables to pass on the next page
-            if(i>=quest_count){
+            //pass variables on the next page
+            if(i>=3){
                 sessionStorage.setItem("userScore", userScore);
+                sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
+                sessionStorage.setItem("wrongAnswers", JSON.stringify(wrongAnswers));
+                sessionStorage.setItem("correctAnswers", JSON.stringify(correctAnswers));
+
                 window.location.href = "resultsPage.html";
             }
 
