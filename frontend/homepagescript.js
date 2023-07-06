@@ -1,16 +1,14 @@
 const confirmStartExam = document.querySelector(".confirmStartExam")
-const beforeExamInfo = document.querySelector(".popup")
+const beforeExamInfo = document.querySelector(".popup-info")
 
-function openPopup(){
-    beforeExamInfo.classList.add("open-popup");
+function openInfoPopup(){
+    beforeExamInfo.classList.add("open-info-popup");
 }
 
-function closePopup(){
-    beforeExamInfo.classList.remove("open-popup");
+function closeInfoPopup(){
+    beforeExamInfo.classList.remove("open-info-popup");
 }
 
 confirmStartExam.addEventListener("click", () =>{
-
     window.location.href = "examPage.html";
-
 })

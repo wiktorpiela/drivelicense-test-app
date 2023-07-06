@@ -21,7 +21,7 @@
 } */
 
 /* HOME PAGE */
-.popup{
+.popup-info{
     width: 40rem;
     background: #fff;
     border-radius: 6rem;
@@ -36,19 +36,23 @@
 }
 
 /* js auto class */
-.open-popup{
+.open-info-popup{
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
 /* --- */
 
-.popup p{
-    font-size: 3.8rem;
+.popup-info h4{
+    font-size: 3rem;
     margin: 3rem 0 1rem ;
 }
 
-.popup button{
+.popup-info p{
+    font-size: 1.75rem;
+}
+
+.popup-info button{
     width: 100%;
     margin-top: 5rem;
     padding: 1rem 0;
@@ -58,6 +62,5 @@
     outline: none;
     font-size: 1.8rem;
     cursor: pointer;
-
 
 }
