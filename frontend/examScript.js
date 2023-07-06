@@ -1,5 +1,6 @@
 const examUrl = "http://127.0.0.1:8000/exam-questions/"
 const nextQuestion = document.querySelector(".nextQuestion")
+const exitExam = document.querySelector(".exitExam")
 const answerA = document.querySelector(".A")
 const answerB = document.querySelector(".B")
 const answerC = document.querySelector(".C")
@@ -45,6 +46,12 @@ function uncheckSelection(radios){
 }
 
 
+//exit exam on click
+exitExam.addEventListener("click", () => {
+    if(confirm("Czy na pewno chcesz zakończyć egzamin? \nPostęp nie zostanie zapisany.") === true){
+        window.location.href = "homePage.html"
+    }
+})
 
 window.onload = (event) => {
     console.log("page is fully loaded");

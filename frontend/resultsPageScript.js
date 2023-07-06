@@ -1,4 +1,7 @@
 const score = document.querySelector("p")
+const backTohomePage = document.querySelector(".backTohomePage")
+const examTryAgain = document.querySelector(".examTryAgain")
+
 
 window.onload = (event) => {
     let userScore = sessionStorage.getItem("userScore");
@@ -13,3 +16,10 @@ window.onload = (event) => {
     score.innerHTML = message
 }
 
+backTohomePage.addEventListener("click", () => {
+    window.location.href = "homePage.html"
+})
+
+examTryAgain.addEventListener("click", () => {
+    window.location.href = "examPage.html"
+})
