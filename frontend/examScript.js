@@ -1,6 +1,7 @@
 const examUrl = "http://127.0.0.1:8000/exam-questions/"
 const nextQuestion = document.querySelector(".nextQuestion")
-const exitExam = document.querySelector(".exitExam")
+const closeExamConfirm = document.querySelector(".closeExamConfirm")
+const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".A")
 const answerB = document.querySelector(".B")
 const answerC = document.querySelector(".C")
@@ -45,13 +46,20 @@ function uncheckSelection(radios){
     }
 }
 
+function openInfoPopup(){
+    popupExam.classList.add("open-info-popup");
+}
+
+function closeInfoPopup(){
+    popupExam.classList.remove("open-info-popup");
+}
 
 //exit exam on click
-exitExam.addEventListener("click", () => {
-    if(confirm("Czy na pewno chcesz zakończyć egzamin? \nPostęp nie zostanie zapisany.") === true){
-        window.location.href = "homePage.html"
-    }
+closeExamConfirm.addEventListener("click", () => {
+    window.location.href = "homePage.html"
 })
+
+
 
 window.onload = (event) => {
     console.log("page is fully loaded");
@@ -177,8 +185,6 @@ window.onload = (event) => {
             //next question
             i++;
         })
-
-
 
     })
     

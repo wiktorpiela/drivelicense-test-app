@@ -7,14 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>home page</h1>
 
     <button class="startExam" onclick="openInfoPopup()">Start exam</button>
 
     <div class="popup-info">
+
         <h4>Informacja</h4>
-        <p>no ciekawe czy to zadziala</p>
+
+        <p>Egzamin teoretyczny składa się z 32 pytań:</p>
+        <ul>
+            <li>20 pytań z wiedzy podstawowej, na które odpowiadasz <strong>TAK</strong> lub <strong>NIE</strong></li>
+            <li>12 pytań z wiedzy specjalistycznej dotyczącej zdawanej kategorii prawa jazdy, na które odpowiadasz wybierając odpowiedź <strong>A</strong>, <strong>B</strong> lub <strong>C</strong></li>
+        </ul>
+                
+        <p>Poszczególne pytania posiadają wartość punktową uzależnioną od ich stopnia trudności. Część podstawowa zawiera:</p>
+        <ul>
+            <li>10 pytań za 3 punkty</li>
+            <li>6 pytań za 2 punkty</li>
+            <li>4 pytania za 1 punkt</li>
+        </ul>
+
+        <p>Część specjalistyczna (na poszczególne kategorie) zawiera:</p>
+        <ul>
+            <li>6 pytań za 3 punkty</li>
+            <li>4 pytania za 2 punkty</li>
+            <li>2 pytania za 1 punkt</li>
+        </ul>
+
+        <p>Ile masz czasu na udzielenie odpowiedzi?</p>
+        <ul>
+            <li>część podstawowa: 20 sekund na zapoznanie się z treścią pytania i 15 sekund na udzielenie odpowiedzi</li>
+            <li>część specjalistyczna: 50 sekund na zapoznanie się z pytaniem i udzielenie odpowiedzi</li>
+        </ul>
+
+        <p>
+            Nieudzielenie odpowiedzi w wymaganym czasie lub udzielenie błędnej odpowiedzi, skutkuje nieotrzymaniem punktów za dane pytanie. 
+            Twoim zadaniem jest zdobycie co najmniej 68 z 74 możliwych do uzyskania punktów za poprawnie udzielone odpowiedzi.
+        </p>
+
+        <a href="https://info-car.pl/new/prawo-jazdy/informacje-o-egzaminie-teoretycznym" target="_blank">Źródło i więcej informacji</a>
+            
         <button class="confirmStartExam">Rozpocznij</button>
         <button class="confirmStartExamExit" onclick="closeInfoPopup()">Wyjdź</button>
+
     </div>
 
 

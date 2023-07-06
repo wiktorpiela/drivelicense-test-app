@@ -1,3 +1,0 @@
-1. dostajemy z api 32 pytania na raz i je zapisujemy do tablicy pytan
-2. z tablicy losujemy po 1 elemencie - wyswietlamy go i usuwamy z tablicy pytan, 
-    postujemy do api odpowiedz usera
