@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <button class="startExam">Start exam</button>
+    <button class="startExam" onclick="openPopup()">Start exam</button>
+
+    <div class="popup">
+        <p>no ciekawe czy to zadziala</p>
+        <button class="confirmStartExam">Rozpocznij</button>
+        <button class="confirmStartExamExit" onclick="closePopup()">Wyjdź</button>
+    </div>
+
+
+
+
     <script src="homePageScript.js"></script>
 </body>
 </html>

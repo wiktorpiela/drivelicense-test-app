@@ -1,3 +1,12 @@
+/* REUSABLE */
+*{
+    font-size: 10px;
+}
+
+
+
+/* EXAM PAGE */
+
 .js-answers-yn,
 .js-answers-abc{
     display: none;
@@ -7,6 +16,48 @@
     flex-direction: column;
 }
 
-.answerQuestion{
+/* .answerQuestion{
     display: none;
+} */
+
+/* HOME PAGE */
+.popup{
+    width: 40rem;
+    background: #fff;
+    border-radius: 6rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 3rem 3rem;
+    visibility: hidden;
+    transition: trasform 0.4s, top 0.4s ;
+}
+
+/* js auto class */
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+/* --- */
+
+.popup p{
+    font-size: 3.8rem;
+    margin: 3rem 0 1rem ;
+}
+
+.popup button{
+    width: 100%;
+    margin-top: 5rem;
+    padding: 1rem 0;
+    background: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+
+
 }
