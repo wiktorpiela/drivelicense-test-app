@@ -5,6 +5,8 @@ from .models import Question
 import random
 from rest_framework.response import Response
 from django.db.models import Q
+import operator
+from functools import reduce
 
 class GetExamQuestions(APIView):
     criteria = [
@@ -18,14 +20,14 @@ class GetExamQuestions(APIView):
         ]
 
     def get_queryset(self):
-        chosen_indexes = []
+        chosen_indexes = [] 
 
         for type, score, sampleSize in self.criteria:
 
+            q_list = [Q(type__icontains = type), Q(score__icontains = score), Q(quest_category__category__icontains = "B")] #questionModelForeignkeyfield__fieldnameFromrelatedModel__icontains
+
             currentIdxs = list(
-                Question.objects.filter(
-                Q(type__icontains = type) & Q(score__icontains = score)
-                ).values_list("pk", flat=True)
+                Question.objects.filter(reduce(operator.and_, q_list)).values_list("pk", flat=True)
             )
 
             randomIdxs = random.sample(currentIdxs, sampleSize)

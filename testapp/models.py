@@ -3,6 +3,9 @@ from django.db import models
 class QuestionCategory(models.Model):
     category= models.CharField(max_length=50)
 
+    def __str__(self) -> str:
+        return self.category
+
 class QuestionLegalSource(models.Model):
     legal = models.TextField()
 

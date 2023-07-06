@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .  import models
 
 class QuestionSerializer(serializers.ModelSerializer):
-    quest_category = serializers.PrimaryKeyRelatedField(queryset=models.QuestionCategory.objects.all())
+    quest_category = serializers.StringRelatedField()
     legal_source = serializers.PrimaryKeyRelatedField(queryset=models.QuestionLegalSource.objects.all())
     abc_answers = serializers.StringRelatedField()
     quest_purpose = serializers.PrimaryKeyRelatedField(queryset=models.QuestionPurpose.objects.all())
