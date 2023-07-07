@@ -3,7 +3,7 @@ from .  import models
 
 class QuestionSerializer(serializers.ModelSerializer):
     quest_category = serializers.StringRelatedField()
-    legal_source = serializers.PrimaryKeyRelatedField(queryset=models.QuestionLegalSource.objects.all())
+    legal_source = serializers.StringRelatedField()
     abc_answers = serializers.StringRelatedField()
     quest_purpose = serializers.PrimaryKeyRelatedField(queryset=models.QuestionPurpose.objects.all())
     media = serializers.StringRelatedField()

@@ -1,4 +1,4 @@
-const confirmStartExam = document.querySelector(".confirmStartExam")
+const confirmStartExam = document.querySelector(".confirm-start-exam")
 const beforeExamInfo = document.querySelector(".popup-info")
 
 function openInfoPopup(){

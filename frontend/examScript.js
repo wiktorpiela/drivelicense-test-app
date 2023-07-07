@@ -1,10 +1,11 @@
 const examUrl = "http://127.0.0.1:8000/exam-questions/"
-const nextQuestion = document.querySelector(".nextQuestion")
-const closeExamConfirm = document.querySelector(".closeExamConfirm")
+const nextQuestion = document.querySelector(".next-question")
+const questionMedia = document.querySelector(".question-media")
+const closeExamConfirm = document.querySelector(".close-exam-confirm")
 const popupExam = document.querySelector(".popup-info")
-const answerA = document.querySelector(".A")
-const answerB = document.querySelector(".B")
-const answerC = document.querySelector(".C")
+const answerA = document.querySelector(".a")
+const answerB = document.querySelector(".b")
+const answerC = document.querySelector(".c")
 const questTxt = document.querySelector("h4")
 const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
@@ -20,6 +21,7 @@ async function getQuestions(url) {
 
 function displayData(question, i){
     questTxt.innerHTML = `Pytanie ${i+1} ${question.quest_txt}`
+    questionMedia.src = "static/"+question.media
 
     if(question.abc_answers !== "YN"){
       answersResponse = question.abc_answers
@@ -59,8 +61,6 @@ closeExamConfirm.addEventListener("click", () => {
     window.location.href = "homePage.html"
 })
 
-
-
 window.onload = (event) => {
     console.log("page is fully loaded");
     getQuestions(examUrl)
@@ -72,31 +72,39 @@ window.onload = (event) => {
             let radios; //all current radiobuttons
             let userAnswer; //answer selected by user
             let i = 0; //iterator
-            let answersYNarray = Array.from(document.getElementsByName("answerYN")); //for radios
-            let answersABCarray = Array.from(document.getElementsByName("answerABC")); //for radios
+            let questCount; //how many questions in response
+            let questMedia;
+
+            let answersYNarray = Array.from(document.getElementsByName("answer-yn")); //for radios
+            let answersABCarray = Array.from(document.getElementsByName("answer-abc")); //for radios
             let allArrays = answersYNarray.concat(answersABCarray); //for radios
+            
             let userScore = 0; //initial scoring
             let questionScore; //score of current question
-            let wrongAnswers = new Array(); //wrong answer array initialized
-            let correctAnswers = new Array(); //correct answer array initialized
+            let wrongQuestionArray = new Array(); //wrong answer array initialized
+            let correctQuestionArray = new Array(); //correct answer array initialized
             let wrongUserAnswer = new Array(); // array of wrong user answers
+            let wrongUserAnswerIndex = new Array(); // array of wrong user answers
             
             //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
 
             //get and display questions data
             questions = data;
-            quest_count = questions.length;
+            questCount = questions.length;
             question = questions[i]
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
+            questMedia = question.media
             displayData(question, i)
+
+            console.log(questMedia)
 
             //get current radios
             if(question.abc_answers==="YN"){
-                radios = document.getElementsByName("answerYN")
+                radios = document.getElementsByName("answer-yn")
             } else{
-                radios = document.getElementsByName("answerABC")
+                radios = document.getElementsByName("answer-abc")
             }
 
             //get user answer on radio button click
@@ -128,45 +136,50 @@ window.onload = (event) => {
             //add scores in case of correct answer
             if(userAnswer===correctAnswer){
                 userScore += questionScore
-                correctAnswers.push(question)
+                correctQuestionArray.push(question)
             } else{
-                wrongAnswers.push(question)
+                wrongQuestionArray.push(question)
                 wrongUserAnswer.push(userAnswer)
+                wrongUserAnswerIndex.push(i)
             }
 
             console.log(userScore)
-            console.log(correctAnswers)
-            console.log(wrongAnswers)
+            console.log(correctQuestionArray)
+            console.log(wrongQuestionArray)
             console.log(wrongUserAnswer)
+            console.log(wrongUserAnswerIndex)
 
             //disable next question button on next question and radio button in not selected yet
             nextQuestion.disabled = true
 
             //if last question go to results page
             //pass variables on the next page
-            if(i>=3){
+            if(i>=questCount){
                 sessionStorage.setItem("userScore", userScore);
                 sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
-                sessionStorage.setItem("wrongAnswers", JSON.stringify(wrongAnswers));
-                sessionStorage.setItem("correctAnswers", JSON.stringify(correctAnswers));
+                sessionStorage.setItem("wrongQuestionArray", JSON.stringify(wrongQuestionArray));
+                // sessionStorage.setItem("correctQuestionArray", JSON.stringify(correctQuestionArray));
+                sessionStorage.setItem("wrongUserAnswerIndex", JSON.stringify(wrongUserAnswerIndex));
 
                 window.location.href = "resultsPage.html";
             }
 
             //get and display next question if it is any next question
-            if(i < quest_count){
+            if(i < questCount){
                 question = questions[i]
                 correctAnswer = question.quest_correct_answer
                 questionScore = question.score
+                questMedia = question.media
                 displayData(question, i)
             }
 
+            console.log(questMedia)
 
             //get current radios
             if(question.abc_answers==="YN"){
-                radios = document.getElementsByName("answerYN")
+                radios = document.getElementsByName("answer-yn")
             } else{
-                radios = document.getElementsByName("answerABC")
+                radios = document.getElementsByName("answer-abc")
             }
 
             //get user answer on radio button click

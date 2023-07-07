@@ -9,6 +9,9 @@ class QuestionCategory(models.Model):
 class QuestionLegalSource(models.Model):
     legal = models.TextField()
 
+    def __str__(self) -> str:
+        return self.legal
+
 class QuestionPossibleAnswers(models.Model):
     A = models.TextField()
     B = models.TextField()

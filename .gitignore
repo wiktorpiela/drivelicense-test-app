@@ -5,4 +5,5 @@ __pycache__/
 *.exe
 csv_files/
 xlsx_files/
+frontend/static
 # *.ipynb
