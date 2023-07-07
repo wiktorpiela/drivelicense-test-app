@@ -10,8 +10,8 @@ window.onload = (event) => {
     let userScore = sessionStorage.getItem("userScore");
     let message;
     let correctAnswers = JSON.parse(sessionStorage.getItem("correctAnswers"));
-    let wrongAnswers = JSON.parse(sessionStorage.getItem("correctAnswers"));
-    let wrongUserAnswer = JSON.parse(sessionStorage.getItem("correctAnswers"));
+    let wrongAnswers = JSON.parse(sessionStorage.getItem("wrongAnswers"));
+    let wrongUserAnswer = JSON.parse(sessionStorage.getItem("wrongUserAnswer"));
 
     if(userScore>=68){
         message = `Gratulacje, zdałeś egzamin! Suma zdobytych punktów: ${userScore}`
@@ -20,9 +20,27 @@ window.onload = (event) => {
     }
 
     score.innerHTML = message
-    wrongUserAnswersPrint.innerHTML = wrongUserAnswer
-    wrongAnswersPrint.innerHTML = wrongAnswers
-    correctAnswersPrint.innerHTML = correctAnswers
+
+    const examSummary = document.querySelector(".exam-summary")
+    for(let index = 0; index < wrongAnswers.length; index++){
+
+        //text złej odp
+        const wrongAnswerDetails = document.createElement("div");
+        const para = document.createElement("p");
+        const node = document.createTextNode(wrongAnswers[index].quest_txt);
+        para.appendChild(node);
+        wrongAnswerDetails.appendChild(para)
+        examSummary.appendChild(wrongAnswerDetails)
+
+    }
+
+
+
+
+
+    // wrongUserAnswersPrint.innerHTML = wrongUserAnswer
+    // wrongAnswersPrint.innerHTML = wrongAnswers
+    // correctAnswersPrint.innerHTML = correctAnswers
 
 }
 
