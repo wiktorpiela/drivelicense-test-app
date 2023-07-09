@@ -6,4 +6,5 @@ __pycache__/
 csv_files/
 xlsx_files/
 frontend/static
+timerTest/
 # *.ipynb

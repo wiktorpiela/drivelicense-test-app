@@ -10,6 +10,7 @@ const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
 const mediaImg = document.querySelector('.question-media-img')
 const mediaVideo = document.querySelector('.question-media-video')
+
 let answersResponse
 let answers
 
@@ -26,13 +27,15 @@ function displayData(question, i){
     //display img or video
     if(question.media.toLowerCase().slice(-4) === ".jpg"){
         mediaImg.style.display = "flex"
-        mediaImg.src = "static/"+question.media
+        mediaImg.src = "static/img/"+question.media
         mediaVideo.style.display = "none"
-        console.log(question.media)
     } else{
         mediaImg.style.display = "none"
         mediaVideo.style.display = "flex"
-        console.log(question.media)
+        //mediaVideo.src = "static/fakevid.mp4"
+        mediaVideo.controlsList = "noplaybackrate nofullscreen";
+        mediaVideo.disablePictureInPicture = true;
+        
     }
 
     if(question.abc_answers !== "YN"){
@@ -60,6 +63,23 @@ function uncheckSelection(radios){
     }
 }
 
+//set main exam countdown
+const mainExamTimeCountdown = document.querySelector(".main-exam-time-countdown")
+const mainExamTimeStartingMinutes = 25;
+let mainExamTimeTime = mainExamTimeStartingMinutes * 60;
+
+setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+    const mainExamTimeMinutes = Math.floor(mainExamTimeTime/60);
+    let mainExamTimeSeconds = mainExamTimeTime % 60;
+
+    mainExamTimeSeconds = mainExamTimeSeconds < 10 ? "0" + mainExamTimeSeconds : mainExamTimeSeconds;
+    mainExamTimeCountdown.innerHTML = `Czas do końca egzaminu ${mainExamTimeMinutes}:${mainExamTimeSeconds}`
+    mainExamTimeTime--;
+}
+
+//popup windows
 function openInfoPopup(){
     popupExam.classList.add("open-info-popup");
 }
@@ -213,5 +233,3 @@ window.onload = (event) => {
     })
     
 };
-
-

@@ -4,6 +4,7 @@ from .serializers import QuestionSerializer
 from .models import Question
 import random
 from rest_framework.response import Response
+from rest_framework import status
 from django.db.models import Q
 import operator
 from functools import reduce
@@ -34,13 +35,13 @@ class GetExamQuestions(APIView):
             chosen_indexes.append(randomIdxs)
 
         chosen_indexes = [item for sublist in chosen_indexes for item in sublist]
-        queryset = Question.objects.filter(pk__in = chosen_indexes)
+        queryset = Question.objects.filter(pk__in = chosen_indexes).order_by("type")
 
         return queryset
     
     def get(self, request, format=None):
         exam_questions = self.get_queryset()
         serializer = QuestionSerializer(exam_questions, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
