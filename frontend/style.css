@@ -17,6 +17,11 @@ h1{
     flex-direction: column;
 }
 
+.question-media-img,
+.question-media-video{
+    display: none;
+}
+
 /* .answerQuestion{
     display: none;
 } */

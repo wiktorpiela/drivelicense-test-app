@@ -1,6 +1,5 @@
 const examUrl = "http://127.0.0.1:8000/exam-questions/"
 const nextQuestion = document.querySelector(".next-question")
-const questionMedia = document.querySelector(".question-media")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
 const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
@@ -9,6 +8,8 @@ const answerC = document.querySelector(".c")
 const questTxt = document.querySelector("h4")
 const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
+const mediaImg = document.querySelector('.question-media-img')
+const mediaVideo = document.querySelector('.question-media-video')
 let answersResponse
 let answers
 
@@ -21,7 +22,18 @@ async function getQuestions(url) {
 
 function displayData(question, i){
     questTxt.innerHTML = `Pytanie ${i+1} ${question.quest_txt}`
-    questionMedia.src = "static/"+question.media
+
+    //display img or video
+    if(question.media.toLowerCase().slice(-4) === ".jpg"){
+        mediaImg.style.display = "flex"
+        mediaImg.src = "static/"+question.media
+        mediaVideo.style.display = "none"
+        console.log(question.media)
+    } else{
+        mediaImg.style.display = "none"
+        mediaVideo.style.display = "flex"
+        console.log(question.media)
+    }
 
     if(question.abc_answers !== "YN"){
       answersResponse = question.abc_answers
@@ -73,7 +85,6 @@ window.onload = (event) => {
             let userAnswer; //answer selected by user
             let i = 0; //iterator
             let questCount; //how many questions in response
-            let questMedia;
 
             let answersYNarray = Array.from(document.getElementsByName("answer-yn")); //for radios
             let answersABCarray = Array.from(document.getElementsByName("answer-abc")); //for radios
@@ -95,10 +106,8 @@ window.onload = (event) => {
             question = questions[i]
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
-            questMedia = question.media
-            displayData(question, i)
 
-            console.log(questMedia)
+            displayData(question, i)
 
             //get current radios
             if(question.abc_answers==="YN"){
@@ -158,9 +167,7 @@ window.onload = (event) => {
                 sessionStorage.setItem("userScore", userScore);
                 sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
                 sessionStorage.setItem("wrongQuestionArray", JSON.stringify(wrongQuestionArray));
-                // sessionStorage.setItem("correctQuestionArray", JSON.stringify(correctQuestionArray));
                 sessionStorage.setItem("wrongUserAnswerIndex", JSON.stringify(wrongUserAnswerIndex));
-
                 window.location.href = "resultsPage.html";
             }
 
@@ -169,11 +176,8 @@ window.onload = (event) => {
                 question = questions[i]
                 correctAnswer = question.quest_correct_answer
                 questionScore = question.score
-                questMedia = question.media
                 displayData(question, i)
             }
-
-            console.log(questMedia)
 
             //get current radios
             if(question.abc_answers==="YN"){
