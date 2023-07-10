@@ -13,8 +13,6 @@ function printOutWrongQuestionDetails(messageFromCurrentQuestObjectsAttribute, e
     examSummaryDiv.appendChild(wrongAnswerDetails)
 }
 
-
-
 window.onload = (event) => {
     let message;
     //access variables from previous page

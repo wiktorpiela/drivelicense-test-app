@@ -5,7 +5,7 @@ const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
 const answerB = document.querySelector(".b")
 const answerC = document.querySelector(".c")
-const questTxt = document.querySelector("h4")
+const questTxt = document.querySelector(".question-text")
 const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
 const mediaImg = document.querySelector('.question-media-img')
@@ -32,10 +32,9 @@ function displayData(question, i){
     } else{
         mediaImg.style.display = "none"
         mediaVideo.style.display = "flex"
-        //mediaVideo.src = "static/fakevid.mp4"
+        mediaVideo.src = "static/video/"+question.media.replace("wmv", "mp4")
         mediaVideo.controlsList = "noplaybackrate nofullscreen";
-        mediaVideo.disablePictureInPicture = true;
-        
+        mediaVideo.disablePictureInPicture = true; 
     }
 
     if(question.abc_answers !== "YN"){
@@ -52,6 +51,26 @@ function displayData(question, i){
         answerA.innerHTML = answers[0]
         answerB.innerHTML = answers[1]
         answerC.innerHTML = answers[2]
+    }
+
+    //display current question score
+    const currentQuestionScoreVal = document.querySelector(".score-value")
+    currentQuestionScoreVal.innerHTML = question.score
+
+    //specialist and basic questions count
+
+    let basicQuestCount = 0
+    let specQuestCount = 0
+    const basicQuestDisplay = document.querySelector(".basic-questions-count")
+    const specQuestDisplay = document.querySelector(".spec-questions-count")
+
+    
+    if(question.type === "PODSTAWOWY"){
+        basicQuestCount++;
+        basicQuestDisplay.innerHTML = `${basicQuestCount} z 20`
+    } else {
+        specQuestCount++;
+        specQuestDisplay.innerHTML = `${specQuestCount} z 12`
     }
 }
 
@@ -75,7 +94,7 @@ function updateCountdown() {
     let mainExamTimeSeconds = mainExamTimeTime % 60;
 
     mainExamTimeSeconds = mainExamTimeSeconds < 10 ? "0" + mainExamTimeSeconds : mainExamTimeSeconds;
-    mainExamTimeCountdown.innerHTML = `Czas do końca egzaminu ${mainExamTimeMinutes}:${mainExamTimeSeconds}`
+    mainExamTimeCountdown.innerHTML = `${mainExamTimeMinutes}:${mainExamTimeSeconds}`
     mainExamTimeTime--;
 }
 
@@ -94,7 +113,6 @@ closeExamConfirm.addEventListener("click", () => {
 })
 
 window.onload = (event) => {
-    console.log("page is fully loaded");
     getQuestions(examUrl)
         .then((data) => {
 

@@ -4,47 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Exam page</h1>
-    <h1 class="main-exam-time-countdown" onmousedown='return false;' onselectstart='return false;'></h1>
-    <button class="next-question">Odpowiedz i przejdź dalej</button>
+    <div class="row">
 
-    <h4></h4>
+        <div class="exam-panels">
 
-    <img src="" alt="pic" class="question-media-img">
+            <div class="main-panel">
+                <div class="exam-header">
+                    <p class="blue-box-txt">Wartość punktowa</p>
+                    <p class="blue-box score-value"></p>
+                    <p class="blue-box-txt">Aktualna kategoria</p>
+                    <p class="blue-box">B</p>
+                    <p class="blue-box-txt">Czas do końca egzaminu</p>
+                    <p class="blue-box main-exam-time-countdown" onmousedown='return false;' onselectstart='return false;'></p>
+                </div>
 
-    <video controls class="question-media-video">
-        <source src="static/video/1_1201ztV.mp4" type="video/mp4">
-    </video>
+                <img src="" alt="pic" class="question-media-img">
 
-    <div class="js-answers-yn">
-        <label><input type="radio" name="answer-yn" value="T">TAK</label>
-        <label><input type="radio" name="answer-yn" value="N">NIE</label>
-    </div>
+                <video controls class="question-media-video">
+                    <source src="" type="video/mp4">
+                </video>
 
-    <div class="js-answers-abc">
-        <input type="radio" name="answer-abc" value="A"><label class="a"></label>
-        <input type="radio" name="answer-abc" value="B"><label class="b"></label>
-        <input type="radio" name="answer-abc" value="C"><label class="c"></label>
-    </div>
+                <h4 class="question-text"></h4>
 
-    <!-- popup -->
-    <button onclick="openInfoPopup()">Zakończ</button>
-    <div class="popup-info">
-
-        <h4>Uwaga!!!</h4>
-
-        <p>Czy na pewno chcesz zakończyć egzamin?</p>
-        <p>Postęp zostanie utracony.</p>
-
+                <div class="js-answers-yn">
+                    <label><input type="radio" name="answer-yn" value="T">TAK</label>
+                    <label><input type="radio" name="answer-yn" value="N">NIE</label>
+                </div>
             
-        <button class="close-exam-confirm">Zakończ</button>
-        <button onclick="closeInfoPopup()">Wróć do egzaminu</button>
+                <div class="js-answers-abc">
+                    <input type="radio" name="answer-abc" value="A"><label class="a"></label>
+                    <input type="radio" name="answer-abc" value="B"><label class="b"></label>
+                    <input type="radio" name="answer-abc" value="C"><label class="c"></label>
+                </div>
+    
+            </div>
+    
+            <div class="sidebar-panel">
+                <button onclick="openInfoPopup()">Zakończ egzamin</button>
+                <div class="exam-header">
+                    <p class="blue-box-txt">Pytania podstawowe</p>
+                    <p class="blue-box basic-questions-count"></p>
+                    <p class="blue-box-txt">Pytania specjalistyczne</p>
+                    <p class="blue-box spec-questions-count"></p>
+                </div>
+                <button class="next-question">Następne pytanie</button>
+            </div>
+
+        </div>
+
+        <!-- popup -->
+        
+        <div class="popup-info">
+    
+            <h4>Uwaga!!!</h4>
+    
+            <p>Czy na pewno chcesz zakończyć egzamin?</p>
+            <p>Postęp zostanie utracony.</p>
+    
+                
+            <button class="close-exam-confirm">Zakończ</button>
+            <button onclick="closeInfoPopup()">Wróć do egzaminu</button>
+    
+        </div>
 
     </div>
 
     <script src="examScript.js"></script>
+
 </body>
 </html>
