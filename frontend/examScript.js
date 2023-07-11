@@ -21,7 +21,7 @@ async function getQuestions(url) {
     return jsonData
   }
 
-function displayData(question, i){
+function displayData(question, i, basicQuestCount, specQuestCount){
     questTxt.innerHTML = `Pytanie ${i+1} ${question.quest_txt}`
 
     //display img or video
@@ -57,19 +57,13 @@ function displayData(question, i){
     const currentQuestionScoreVal = document.querySelector(".score-value")
     currentQuestionScoreVal.innerHTML = question.score
 
-    //specialist and basic questions count
-
-    let basicQuestCount = 0
-    let specQuestCount = 0
+    //counter spec/basic quest display
     const basicQuestDisplay = document.querySelector(".basic-questions-count")
     const specQuestDisplay = document.querySelector(".spec-questions-count")
 
-    
     if(question.type === "PODSTAWOWY"){
-        basicQuestCount++;
         basicQuestDisplay.innerHTML = `${basicQuestCount} z 20`
     } else {
-        specQuestCount++;
         specQuestDisplay.innerHTML = `${specQuestCount} z 12`
     }
 }
@@ -134,6 +128,10 @@ window.onload = (event) => {
             let correctQuestionArray = new Array(); //correct answer array initialized
             let wrongUserAnswer = new Array(); // array of wrong user answers
             let wrongUserAnswerIndex = new Array(); // array of wrong user answers
+
+            //specialist and basic questions count
+            let basicQuestCount = 0
+            let specQuestCount = 0
             
             //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
@@ -145,7 +143,13 @@ window.onload = (event) => {
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
 
-            displayData(question, i)
+            if(question.type === "PODSTAWOWY"){
+                basicQuestCount++;
+            } else {
+                specQuestCount++;
+            }
+
+            displayData(question, i, basicQuestCount, specQuestCount)
 
             //get current radios
             if(question.abc_answers==="YN"){
@@ -214,7 +218,15 @@ window.onload = (event) => {
                 question = questions[i]
                 correctAnswer = question.quest_correct_answer
                 questionScore = question.score
-                displayData(question, i)
+
+                if(question.type === "PODSTAWOWY"){
+                    basicQuestCount++;
+                } else {
+                    specQuestCount++;
+                }
+
+                displayData(question, i, basicQuestCount, specQuestCount)
+                console.log(question.type)
             }
 
             //get current radios

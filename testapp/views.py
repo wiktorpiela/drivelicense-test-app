@@ -10,14 +10,16 @@ import operator
 from functools import reduce
 
 class GetExamQuestions(APIView):
+    b = "PODSTAWOWY"
+    s = "SPECJALISTYCZNY"
     criteria = [
             #type, score, sample size
-            ("P", "3", 10),
-            ("P", "2", 6),
-            ("P", "1", 4),
-            ("S", "3", 6),
-            ("S", "2", 4),
-            ("S", "1", 2),
+            (b, "3", 10),
+            (b, "2", 6),
+            (b, "1", 4),
+            (s, "3", 6),
+            (s, "2", 4),
+            (s, "1", 2),
         ]
 
     def get_queryset(self):
@@ -36,7 +38,7 @@ class GetExamQuestions(APIView):
 
         chosen_indexes = [item for sublist in chosen_indexes for item in sublist]
         queryset = Question.objects.filter(pk__in = chosen_indexes).order_by("type")
-
+        
         return queryset
     
     def get(self, request, format=None):

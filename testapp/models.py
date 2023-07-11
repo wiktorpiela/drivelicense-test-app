@@ -79,5 +79,5 @@ class Question(models.Model):
     safety_relation = models.ForeignKey(QuestionSafety, on_delete=models.DO_NOTHING, related_name="safety")
     subject = models.ForeignKey(QuestionSubject, on_delete=models.DO_NOTHING, related_name="subject")
 
-    def __str__(self) -> str:
-        return f"question: {self.quest_txt[:100]}"
+    # def __str__(self) -> str:
+    #     return f"question: {self.quest_txt[:100]}"
