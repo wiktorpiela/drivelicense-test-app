@@ -22,19 +22,22 @@ async function getQuestions(url) {
   }
 
 function displayData(question, i, basicQuestCount, specQuestCount){
-    questTxt.innerHTML = `Pytanie ${i+1} ${question.quest_txt}`
+    questTxt.innerHTML = question.quest_txt
 
     //display img or video
     if(question.media.toLowerCase().slice(-4) === ".jpg"){
         mediaImg.style.display = "flex"
         mediaImg.src = "static/img/"+question.media
         mediaVideo.style.display = "none"
-    } else{
+    } else if(question.media.toLowerCase().slice(-4) === ".wmv"){
         mediaImg.style.display = "none"
         mediaVideo.style.display = "flex"
         mediaVideo.src = "static/video/"+question.media.replace("wmv", "mp4")
         mediaVideo.controlsList = "noplaybackrate nofullscreen";
         mediaVideo.disablePictureInPicture = true; 
+    } else{
+        mediaImg.style.display = "none"
+        mediaVideo.style.display = "none"
     }
 
     if(question.abc_answers !== "YN"){
@@ -63,6 +66,7 @@ function displayData(question, i, basicQuestCount, specQuestCount){
 
     if(question.type === "PODSTAWOWY"){
         basicQuestDisplay.innerHTML = `${basicQuestCount} z 20`
+        specQuestDisplay.innerHTML = "0 z 12"
     } else {
         specQuestDisplay.innerHTML = `${specQuestCount} z 12`
     }
@@ -194,12 +198,6 @@ window.onload = (event) => {
                 wrongUserAnswerIndex.push(i)
             }
 
-            console.log(userScore)
-            console.log(correctQuestionArray)
-            console.log(wrongQuestionArray)
-            console.log(wrongUserAnswer)
-            console.log(wrongUserAnswerIndex)
-
             //disable next question button on next question and radio button in not selected yet
             nextQuestion.disabled = true
 
@@ -226,7 +224,7 @@ window.onload = (event) => {
                 }
 
                 displayData(question, i, basicQuestCount, specQuestCount)
-                console.log(question.type)
+                console.log(question.media)
             }
 
             //get current radios

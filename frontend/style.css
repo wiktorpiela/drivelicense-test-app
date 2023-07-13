@@ -41,7 +41,7 @@ video::-webkit-media-controls-time-remaining-display{
 
 
 .main-panel{
-    width: 65%;
+    width: 70%;
     font-size: 1.5rem;
 }
 
@@ -51,7 +51,7 @@ video::-webkit-media-controls-time-remaining-display{
 }
 
 .sidebar-panel{
-    width: 30%;
+    width: 25%;
     text-align: center;
 }
 
