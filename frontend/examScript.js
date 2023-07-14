@@ -136,6 +136,9 @@ window.onload = (event) => {
             //specialist and basic questions count
             let basicQuestCount = 0
             let specQuestCount = 0
+
+
+            let specCounter;
             
             //disable next question button on start and answers is not selected yet
             nextQuestion.disabled = true
@@ -147,20 +150,50 @@ window.onload = (event) => {
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
 
-            if(question.type === "PODSTAWOWY"){
-                basicQuestCount++;
-            } else {
-                specQuestCount++;
-            }
-
-            displayData(question, i, basicQuestCount, specQuestCount)
-
             //get current radios
             if(question.abc_answers==="YN"){
                 radios = document.getElementsByName("answer-yn")
             } else{
                 radios = document.getElementsByName("answer-abc")
             }
+
+
+            if(question.type === "PODSTAWOWY"){
+                basicQuestCount++;
+
+
+
+
+
+            } else {
+                specQuestCount++;
+
+                let specQuestTime = 10;
+                specCounter = setInterval(() => {
+                    specQuestTime--;
+                    console.log(specQuestTime)
+
+                    if(specQuestTime < 0){
+
+                        let anyChecked=0;
+                        for(let index=0; index<radios.length; index++){
+                            if(radios[index].checked){
+                                anyChecked++;
+                            }
+                        }
+
+                        if(anyChecked===0){
+                            userAnswer = undefined
+                        }
+
+                        nextQuestion.dispatchEvent(new Event("click")) 
+                            
+                    }
+
+                } , 1000)
+            }
+
+            displayData(question, i, basicQuestCount, specQuestCount)
 
             //get user answer on radio button click
             for(let index=0; index<allArrays.length;index++){
@@ -174,10 +207,9 @@ window.onload = (event) => {
                     if(radios[index].checked){
                         userAnswer = radios[index].value
                     }
-                  }
-
-                })
-            }
+                }
+            })
+        }
             
             i++;
 
@@ -187,6 +219,9 @@ window.onload = (event) => {
             // console.log("previously user answer: " + userAnswer)
             // console.log("previously correct: " + correctAnswer)
             // console.log(correctAnswer===userAnswer)
+
+            //clear spec interval value
+            clearInterval(specCounter)
 
             //add scores in case of correct answer
             if(userAnswer===correctAnswer){
@@ -211,6 +246,13 @@ window.onload = (event) => {
                 window.location.href = "resultsPage.html";
             }
 
+            //get current radios
+            if(question.abc_answers==="YN"){
+                radios = document.getElementsByName("answer-yn")
+            } else{
+                radios = document.getElementsByName("answer-abc")
+            }
+
             //get and display next question if it is any next question
             if(i < questCount){
                 question = questions[i]
@@ -221,17 +263,38 @@ window.onload = (event) => {
                     basicQuestCount++;
                 } else {
                     specQuestCount++;
+
+                    let specQuestTime = 10;
+                    specCounter = setInterval(() => {
+    
+                        specQuestTime--;
+                        console.log(specQuestTime)
+
+                        if(specQuestTime < 0){
+
+                            //on time stop - check if any answer has been selected by user
+                            let anyChecked=0;
+                            for(let index=0; index<radios.length; index++){
+                                if(radios[index].checked){
+                                    anyChecked++;
+                                }
+                            }
+
+                            //if not - current userAnswer is undefined
+                            if(anyChecked===0){
+                                userAnswer = undefined
+                            }
+
+                            //on time stop - go to the next question
+                            nextQuestion.dispatchEvent(new Event("click"))      
+                        }
+    
+                    } , 1000)
+
                 }
 
                 displayData(question, i, basicQuestCount, specQuestCount)
-                console.log(question.media)
-            }
 
-            //get current radios
-            if(question.abc_answers==="YN"){
-                radios = document.getElementsByName("answer-yn")
-            } else{
-                radios = document.getElementsByName("answer-abc")
             }
 
             //get user answer on radio button click
