@@ -216,9 +216,9 @@ window.onload = (event) => {
         nextQuestion.addEventListener("click", () => {
 
             //check if previous user answer is correct or not -------------- to uncomment
-            // console.log("previously user answer: " + userAnswer)
-            // console.log("previously correct: " + correctAnswer)
-            // console.log(correctAnswer===userAnswer)
+            console.log("previously user answer: " + userAnswer)
+            console.log("previously correct: " + correctAnswer)
+            console.log(correctAnswer===userAnswer)
 
             //clear spec interval value
             clearInterval(specCounter)
