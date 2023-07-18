@@ -18,7 +18,8 @@ html, body{
 
 /* EXAM PAGE */
 .js-answers-yn,
-.js-answers-abc{
+.js-answers-abc,
+.start-basic-quest{
     display: none;
 }
 
