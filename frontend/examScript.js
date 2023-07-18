@@ -212,6 +212,17 @@ window.onload = (event) => {
 
                         } else {
                             mediaVideo.style.display = "flex"
+                            mediaVideo.src = "static/video/"+question.media.replace("wmv", "mp4")
+                            mediaVideo.controlsList = "noplaybackrate nofullscreen";
+                            mediaVideo.disablePictureInPicture = true; 
+                            mediaVideo.play()
+
+                            mediaVideo.addEventListener("ended", () => {
+                                console.log("video ended")
+                            })
+
+
+
                         }
                     }
 
