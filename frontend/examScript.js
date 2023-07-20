@@ -2,6 +2,8 @@ const examUrl = "http://127.0.0.1:8000/exam-questions/"
 const nextQuestion = document.querySelector(".next-question")
 const startBasicQuestion = document.querySelector(".start-basic-quest")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
+const timeRead = document.querySelector(".time-read")
+const timeAnswer = document.querySelector(".time-answer")
 const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
 const answerB = document.querySelector(".b")
@@ -160,39 +162,80 @@ window.onload = (event) => {
             }
 
 
-            if (question.type === "PODSTAWOWY") {
-                basicQuestCount++;
+            //only basic question here is possible ----
+            basicQuestCount++;
 
-                startBasicQuestion.style.display = "flex"
+            startBasicQuestion.style.display = "flex"
 
-                startBasicQuestion.addEventListener("click", () =>{
-                    basicReadQuestTime=-1;
-                })
+            startBasicQuestion.addEventListener("click", () => {
+                basicReadQuestTime = -1;
+            })
 
-                //read quest interval
-                let basicReadQuestTime = 5;
-                basicCounterReadQuest = setInterval(() => {
-                    basicReadQuestTime--;
-                    console.log("basicCounterReadQuest" + basicReadQuestTime)
+            //read quest interval
+            let basicReadQuestTime = 5;
+            basicCounterReadQuest = setInterval(() => {
 
-                    mediaImg.style.display = "none"
-                    mediaVideo.style.display = "none"
+                basicReadQuestTime--;
+                console.log("basicCounterReadQuest" + basicReadQuestTime)
+                timeRead.innerHTML = basicReadQuestTime
 
-                    if (basicReadQuestTime < 0) {
-                        startBasicQuestion.style.display = "none"
-                        clearInterval(basicCounterReadQuest)
+                mediaImg.style.display = "none"
+                mediaVideo.style.display = "none"
 
-                        if (question.media.toLowerCase().slice(-4) === ".jpg") {
-                            mediaImg.style.display = "flex"
-                            mediaImg.src = "static/img/" + question.media
+                if (basicReadQuestTime < 0) {
+                    startBasicQuestion.style.display = "none"
+                    timeRead.innerHTML = ""
+                    clearInterval(basicCounterReadQuest)
+
+                    if (question.media.toLowerCase().slice(-4) === ".jpg") {
+                        mediaImg.style.display = "flex"
+                        mediaImg.src = "static/img/" + question.media
+
+                        //answer interval
+                        let basicAnswerTime = 3;
+                        basicCounterAnswer = setInterval(() => {
+                            basicAnswerTime--;
+                            console.log("basicCounterAnswer" + basicAnswerTime)
+
+                            if (basicAnswerTime < 0) {
+                                clearInterval(basicCounterAnswer)
+
+                                let anyChecked = 0;
+                                for (let index = 0; index < radios.length; index++) {
+                                    if (radios[index].checked) {
+                                        anyChecked++;
+                                    }
+                                }
+
+                                if (anyChecked === 0) {
+                                    userAnswer = undefined
+                                }
+
+                                nextQuestion.dispatchEvent(new Event("click"))
+                            }
+
+                        }, 1000)
+
+                    } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
+                        mediaVideo.style.display = "flex"
+                        mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
+                        mediaVideo.controlsList = "noplaybackrate nofullscreen";
+                        mediaVideo.disablePictureInPicture = true;
+                        mediaVideo.muted = true;
+                        mediaVideo.play()
+
+                        mediaVideo.addEventListener("ended", () => {
+                            console.log("video ended")
 
                             //answer interval
                             let basicAnswerTime = 3;
                             basicCounterAnswer = setInterval(() => {
+
                                 basicAnswerTime--;
                                 console.log("basicCounterAnswer" + basicAnswerTime)
 
                                 if (basicAnswerTime < 0) {
+                                    clearInterval(basicCounterAnswer)
 
                                     let anyChecked = 0;
                                     for (let index = 0; index < radios.length; index++) {
@@ -210,53 +253,16 @@ window.onload = (event) => {
 
                             }, 1000)
 
-                        } else {
-                            mediaVideo.style.display = "flex"
-                            mediaVideo.src = "static/video/"+question.media.replace("wmv", "mp4")
-                            mediaVideo.controlsList = "noplaybackrate nofullscreen";
-                            mediaVideo.disablePictureInPicture = true; 
-                            mediaVideo.play()
+                        })
 
-                            mediaVideo.addEventListener("ended", () => {
-                                console.log("video ended")
-                            })
-
-
-
-                        }
                     }
+                }
 
 
 
 
-                }, 1000)
+            }, 1000)
 
-            } else {
-                specQuestCount++;
-
-                let specQuestTime = 10;
-                specCounter = setInterval(() => {
-                    specQuestTime--;
-                    console.log(specQuestTime)
-
-                    if (specQuestTime < 0) {
-
-                        let anyChecked = 0;
-                        for (let index = 0; index < radios.length; index++) {
-                            if (radios[index].checked) {
-                                anyChecked++;
-                            }
-                        }
-
-                        if (anyChecked === 0) {
-                            userAnswer = undefined
-                        }
-
-                        nextQuestion.dispatchEvent(new Event("click"))
-                    }
-
-                }, 1000)
-            }
 
             displayData(question, i, basicQuestCount, specQuestCount)
 
@@ -331,8 +337,8 @@ window.onload = (event) => {
 
                         startBasicQuestion.style.display = "flex"
 
-                        startBasicQuestion.addEventListener("click", () =>{
-                            basicReadQuestTime=-1;
+                        startBasicQuestion.addEventListener("click", () => {
+                            basicReadQuestTime = -1;
                         })
 
                         //read quest interval
@@ -359,6 +365,7 @@ window.onload = (event) => {
                                         console.log("basicCounterAnswer" + basicAnswerTime)
 
                                         if (basicAnswerTime < 0) {
+                                            clearInterval(basicCounterAnswer)
 
                                             let anyChecked = 0;
                                             for (let index = 0; index < radios.length; index++) {
@@ -376,8 +383,46 @@ window.onload = (event) => {
 
                                     }, 1000)
 
-                                } else {
+
+                                } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
                                     mediaVideo.style.display = "flex"
+                                    mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
+                                    mediaVideo.controlsList = "noplaybackrate nofullscreen";
+                                    mediaVideo.disablePictureInPicture = true;
+                                    mediaVideo.muted = true;
+                                    mediaVideo.play()
+
+                                    mediaVideo.addEventListener("ended", () => {
+                                        console.log("video ended")
+                                        clearInterval(basicCounterAnswer)
+
+                                        //answer interval
+                                        let basicAnswerTime = 3;
+                                        basicCounterAnswer = setInterval(() => {
+                                            basicAnswerTime--;
+                                            console.log("basicCounterAnswer" + basicAnswerTime)
+
+                                            if (basicAnswerTime < 0) {
+
+                                                let anyChecked = 0;
+                                                for (let index = 0; index < radios.length; index++) {
+                                                    if (radios[index].checked) {
+                                                        anyChecked++;
+                                                    }
+                                                }
+
+                                                if (anyChecked === 0) {
+                                                    userAnswer = undefined
+                                                }
+
+                                                nextQuestion.dispatchEvent(new Event("click"))
+                                            }
+
+                                        }, 1000)
+
+
+
+                                    })
                                 }
                             }
 

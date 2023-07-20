@@ -14,9 +14,9 @@ class GetExamQuestions(APIView):
     s = "SPECJALISTYCZNY"
     criteria = [
             #type, score, sample size
-            (b, "3", 10), #b
-            (b, "2", 6), #b
-            (b, "1", 4), #b
+            (b, "3", 10), 
+            (b, "2", 6), 
+            (b, "1", 4), 
             (s, "3", 6),
             (s, "2", 4),
             (s, "1", 2),
