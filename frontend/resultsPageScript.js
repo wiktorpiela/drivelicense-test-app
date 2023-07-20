@@ -98,6 +98,10 @@ window.onload = (event) => {
 
 }
 
+
+
+
+
 backToHomePage.addEventListener("click", () => {
     window.location.href = "homePage.html"
 })
