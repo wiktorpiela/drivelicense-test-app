@@ -1,4 +1,5 @@
-const examUrl = "http://127.0.0.1:8000/exam-questions/"
+const categoryName = sessionStorage.getItem("categoryName");
+const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
 const startBasicQuestion = document.querySelector(".start-basic-quest")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
@@ -63,6 +64,16 @@ function displayData(question, i, basicQuestCount, specQuestCount) {
     const currentQuestionScoreVal = document.querySelector(".score-value")
     currentQuestionScoreVal.innerHTML = question.score
 
+    //display current category
+    const categoryNameDisplay = document.querySelector(".category-value")
+
+    // const categoryNameArray = question.category.split(",")
+    // for(let index = 0; index < categoryNameArray.length, index++){
+
+    // }
+
+    categoryNameDisplay.innerHTML =  categoryName
+
     //counter spec/basic quest display
     const basicQuestDisplay = document.querySelector(".basic-questions-count")
     const specQuestDisplay = document.querySelector(".spec-questions-count")
@@ -112,6 +123,7 @@ function closeInfoPopup() {
 closeExamConfirm.addEventListener("click", () => {
     window.location.href = "homePage.html"
 })
+
 
 window.onload = (event) => {
     getQuestions(examUrl)
