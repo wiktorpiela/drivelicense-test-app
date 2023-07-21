@@ -3,9 +3,6 @@ const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
 const startBasicQuestion = document.querySelector(".start-basic-quest")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
-const readTimeBar = document.querySelector(".read-time-bar")
-const videoClipPlaying = document.querySelector(".video-clip-playing")
-const answerTimeBar = document.querySelector(".answer-time-bar")
 const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
 const answerB = document.querySelector(".b")
@@ -15,6 +12,11 @@ const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
 const mediaImg = document.querySelector('.question-media-img')
 const mediaVideo = document.querySelector('.question-media-video')
+
+//time bar elements
+const readTimeProgressBar = document.querySelector(".progress-inner")
+const readTimeBar = document.querySelector(".time-read-progress")
+const videoClipPlaying = document.querySelector(".video-clip-playing")
 
 let answersResponse
 let answers
@@ -171,15 +173,18 @@ window.onload = (event) => {
             basicCounterReadQuest = setInterval(() => {
 
                 basicReadQuestTime--;
-                //console.log("basicCounterReadQuest" + basicReadQuestTime)
+                let progressWidth = basicReadQuestTime / 20 * 100
 
                 mediaImg.style.display = "none"
                 mediaVideo.style.display = "none"
 
                 if (basicReadQuestTime < 0) {
                     startBasicQuestion.style.display = "none"
+                    readTimeBar.style.display = "none"
+                    readTimeProgressBar.style.display = "none"
 
                     clearInterval(basicCounterReadQuest)
+                    readTimeProgressBar.style.width = "0%"
 
                     if (question.media.toLowerCase().slice(-4) === ".jpg") {
                         mediaImg.style.display = "flex"
@@ -189,7 +194,11 @@ window.onload = (event) => {
                         let basicAnswerTime = 15;
                         basicCounterAnswer = setInterval(() => {
                             basicAnswerTime--;
+                            let progressWidth = basicAnswerTime / 15 * 100
                             //console.log("basicCounterAnswer" + basicAnswerTime)
+                            readTimeBar.style.display = "flex"
+                            readTimeBar.style.width = "100%"
+                            readTimeProgressBar.style.display = "flex"
 
                             if (basicAnswerTime < 0) {
                                 clearInterval(basicCounterAnswer)
@@ -206,6 +215,8 @@ window.onload = (event) => {
                                 }
 
                                 nextQuestion.dispatchEvent(new Event("click"))
+                            } else {
+                                readTimeProgressBar.style.width = progressWidth + "%"
                             }
 
                         }, 1000)
@@ -218,8 +229,15 @@ window.onload = (event) => {
                         mediaVideo.muted = true;
                         mediaVideo.play()
 
+                        videoClipPlaying.style.display = "flex"
+
                         mediaVideo.addEventListener("ended", () => {
                             console.log("video ended")
+
+                            videoClipPlaying.style.display = "none"
+                            readTimeBar.style.display = "flex"
+                            readTimeBar.style.width = "100%"
+                            readTimeProgressBar.style.display = "flex"
 
                             //answer interval
                             let basicAnswerTime = 15;
@@ -227,9 +245,12 @@ window.onload = (event) => {
 
                                 basicAnswerTime--;
                                 //console.log("basicCounterAnswer" + basicAnswerTime)
+                                let progressWidth = basicAnswerTime / 15 * 100
 
                                 if (basicAnswerTime < 0) {
+
                                     clearInterval(basicCounterAnswer)
+                                    readTimeProgressBar.style.width = "0%"
 
                                     let anyChecked = 0;
                                     for (let index = 0; index < radios.length; index++) {
@@ -243,6 +264,8 @@ window.onload = (event) => {
                                     }
 
                                     nextQuestion.dispatchEvent(new Event("click"))
+                                } else {
+                                    readTimeProgressBar.style.width = progressWidth + "%"
                                 }
 
                             }, 1000)
@@ -250,6 +273,8 @@ window.onload = (event) => {
                         })
 
                     }
+                } else {
+                    readTimeProgressBar.style.width = progressWidth + "%"
                 }
 
 
