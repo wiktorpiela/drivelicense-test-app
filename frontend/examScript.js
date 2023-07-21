@@ -28,22 +28,6 @@ async function getQuestions(url) {
 function displayData(question, i, basicQuestCount, specQuestCount) {
     questTxt.innerHTML = question.quest_txt
 
-    //display img or video
-    // if(question.media.toLowerCase().slice(-4) === ".jpg"){
-    //     mediaImg.style.display = "flex"
-    //     mediaImg.src = "static/img/"+question.media
-    //     mediaVideo.style.display = "none"
-    // } else if(question.media.toLowerCase().slice(-4) === ".wmv"){
-    //     mediaImg.style.display = "none"
-    //     mediaVideo.style.display = "flex"
-    //     mediaVideo.src = "static/video/"+question.media.replace("wmv", "mp4")
-    //     mediaVideo.controlsList = "noplaybackrate nofullscreen";
-    //     mediaVideo.disablePictureInPicture = true; 
-    // } else{
-    //     mediaImg.style.display = "none"
-    //     mediaVideo.style.display = "none"
-    // }
-
     if (question.abc_answers !== "YN") {
         answersResponse = question.abc_answers
         answers = answersResponse.split(" - ")
@@ -66,12 +50,6 @@ function displayData(question, i, basicQuestCount, specQuestCount) {
 
     //display current category
     const categoryNameDisplay = document.querySelector(".category-value")
-
-    // const categoryNameArray = question.category.split(",")
-    // for(let index = 0; index < categoryNameArray.length, index++){
-
-    // }
-
     categoryNameDisplay.innerHTML =  categoryName
 
     //counter spec/basic quest display
@@ -143,10 +121,14 @@ window.onload = (event) => {
 
             let userScore = 0; //initial scoring
             let questionScore; //score of current question
-            let wrongQuestionArray = new Array(); //wrong answer array initialized
-            let correctQuestionArray = new Array(); //correct answer array initialized
-            let wrongUserAnswer = new Array(); // array of wrong user answers
-            let wrongUserAnswerIndex = new Array(); // array of wrong user answers
+
+            // let wrongQuestionArray = new Array(); //wrong answer array initialized
+            // let correctQuestionArray = new Array(); //correct answer array initialized
+            // let wrongUserAnswer = new Array(); // array of wrong user answers
+            // let wrongUserAnswerIndex = new Array(); // array of wrong user answers
+
+            //store all questions to map with question number and results
+            let summaryQuestions = new Map();
 
             //specialist and basic questions count
             let basicQuestCount = 0
@@ -308,14 +290,21 @@ window.onload = (event) => {
                 clearInterval(basicCounterReadQuest)
                 clearInterval(basicCounterAnswer)
 
+                console.log(summaryQuestions)
+
                 //add scores in case of correct answer
                 if (userAnswer === correctAnswer) {
                     userScore += questionScore
-                    correctQuestionArray.push(question)
+                    // correctQuestionArray.push(question)
+                    question.ifCorrect = true
+                    summaryQuestions.set(i, question)
                 } else {
-                    wrongQuestionArray.push(question)
-                    wrongUserAnswer.push(userAnswer)
-                    wrongUserAnswerIndex.push(i)
+                    // wrongQuestionArray.push(question)
+                    // wrongUserAnswer.push(userAnswer)
+                    // wrongUserAnswerIndex.push(i)
+
+                    question.ifCorrect = false
+                    summaryQuestions.set(i, question)
                 }
 
                 //disable next question button on next question and radio button in not selected yet
@@ -325,9 +314,12 @@ window.onload = (event) => {
                 //pass variables on the next page
                 if (i >= questCount) {
                     sessionStorage.setItem("userScore", userScore);
-                    sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
-                    sessionStorage.setItem("wrongQuestionArray", JSON.stringify(wrongQuestionArray));
-                    sessionStorage.setItem("wrongUserAnswerIndex", JSON.stringify(wrongUserAnswerIndex));
+                    // sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
+                    // sessionStorage.setItem("wrongQuestionArray", JSON.stringify(wrongQuestionArray));
+                    // sessionStorage.setItem("wrongUserAnswerIndex", JSON.stringify(wrongUserAnswerIndex));
+
+                    sessionStorage.setItem("summaryQuestions", JSON.stringify(summaryQuestions));
+
                     window.location.href = "resultsPage.html";
                 }
 
