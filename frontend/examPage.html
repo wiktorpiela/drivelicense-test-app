@@ -46,7 +46,9 @@
             </div>
     
             <div class="sidebar-panel">
+
                 <button onclick="openInfoPopup()">Zakończ egzamin</button>
+
                 <div class="exam-header">
                     <div>
                         <p class="blue-box-txt">Pytanie podstawowe</p>
@@ -57,12 +59,25 @@
                         <p class="blue-box spec-questions-count"></p>
                     </div>
                 </div>
-                <div class="exam-header">
-                    <button class="start-basic-quest">Start</button>
+
+                <!-- czas na zapoznanie się z  pytaniem -->
+                <div class="exam-header read-time-bar">
+                    <button class="start-basic-quest"> Start</button>
                     <p class="time-read"></p>
+                </div>
+
+                <!-- gdy film się odtwarza -->
+                <div class="video-clip-playing">
+
+                </div>
+
+                <!-- czas na odpowiedz -->
+                <div class="answer-time-bar">
                     <p class="time-answer"></p>
                 </div>
+
                 <button class="next-question">Następne pytanie</button>
+
             </div>
 
         </div>

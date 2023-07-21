@@ -19,7 +19,11 @@ html, body{
 /* EXAM PAGE */
 .js-answers-yn,
 .js-answers-abc,
-.start-basic-quest{
+.read-quest-time-bar,
+.video-clip-playing,
+.answer-time-bar,
+.question-media-img,
+.question-media-video{
     display: none;
 }
 
@@ -27,10 +31,6 @@ html, body{
     flex-direction: column;
 }
 
-.question-media-img,
-.question-media-video{
-    display: none;
-}
 
 /* hiding video seekbar and other attributes*/
 video::-webkit-media-controls-timeline,

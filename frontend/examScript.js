@@ -3,8 +3,9 @@ const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
 const startBasicQuestion = document.querySelector(".start-basic-quest")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
-const timeRead = document.querySelector(".time-read")
-const timeAnswer = document.querySelector(".time-answer")
+const readTimeBar = document.querySelector(".read-time-bar")
+const videoClipPlaying = document.querySelector(".video-clip-playing")
+const answerTimeBar = document.querySelector(".answer-time-bar")
 const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
 const answerB = document.querySelector(".b")
@@ -166,19 +167,18 @@ window.onload = (event) => {
             })
 
             //read quest interval
-            let basicReadQuestTime = 5;
+            let basicReadQuestTime = 20;
             basicCounterReadQuest = setInterval(() => {
 
                 basicReadQuestTime--;
-                console.log("basicCounterReadQuest" + basicReadQuestTime)
-                timeRead.innerHTML = basicReadQuestTime
+                //console.log("basicCounterReadQuest" + basicReadQuestTime)
 
                 mediaImg.style.display = "none"
                 mediaVideo.style.display = "none"
 
                 if (basicReadQuestTime < 0) {
                     startBasicQuestion.style.display = "none"
-                    timeRead.innerHTML = ""
+
                     clearInterval(basicCounterReadQuest)
 
                     if (question.media.toLowerCase().slice(-4) === ".jpg") {
@@ -186,10 +186,10 @@ window.onload = (event) => {
                         mediaImg.src = "static/img/" + question.media
 
                         //answer interval
-                        let basicAnswerTime = 3;
+                        let basicAnswerTime = 15;
                         basicCounterAnswer = setInterval(() => {
                             basicAnswerTime--;
-                            console.log("basicCounterAnswer" + basicAnswerTime)
+                            //console.log("basicCounterAnswer" + basicAnswerTime)
 
                             if (basicAnswerTime < 0) {
                                 clearInterval(basicCounterAnswer)
@@ -222,11 +222,11 @@ window.onload = (event) => {
                             console.log("video ended")
 
                             //answer interval
-                            let basicAnswerTime = 3;
+                            let basicAnswerTime = 15;
                             basicCounterAnswer = setInterval(() => {
 
                                 basicAnswerTime--;
-                                console.log("basicCounterAnswer" + basicAnswerTime)
+                                //console.log("basicCounterAnswer" + basicAnswerTime)
 
                                 if (basicAnswerTime < 0) {
                                     clearInterval(basicCounterAnswer)
@@ -281,9 +281,9 @@ window.onload = (event) => {
             nextQuestion.addEventListener("click", () => {
 
                 //check if previous user answer is correct or not -------------- to uncomment
-                console.log("previously user answer: " + userAnswer)
-                console.log("previously correct: " + correctAnswer)
-                console.log(correctAnswer === userAnswer)
+                // console.log("previously user answer: " + userAnswer)
+                // console.log("previously correct: " + correctAnswer)
+                // console.log(correctAnswer === userAnswer)
 
                 //clear spec interval value
                 clearInterval(specCounter)
@@ -346,7 +346,7 @@ window.onload = (event) => {
                         })
 
                         //read quest interval
-                        let basicReadQuestTime = 5;
+                        let basicReadQuestTime = 20;
                         basicCounterReadQuest = setInterval(() => {
                             basicReadQuestTime--;
                             console.log("basicCounterReadQuest" + basicReadQuestTime)
@@ -363,7 +363,7 @@ window.onload = (event) => {
                                     mediaImg.src = "static/img/" + question.media
 
                                     //answer interval
-                                    let basicAnswerTime = 3;
+                                    let basicAnswerTime = 15;
                                     basicCounterAnswer = setInterval(() => {
                                         basicAnswerTime--;
                                         console.log("basicCounterAnswer" + basicAnswerTime)
@@ -401,7 +401,7 @@ window.onload = (event) => {
                                         clearInterval(basicCounterAnswer)
 
                                         //answer interval
-                                        let basicAnswerTime = 3;
+                                        let basicAnswerTime = 15;
                                         basicCounterAnswer = setInterval(() => {
                                             basicAnswerTime--;
                                             console.log("basicCounterAnswer" + basicAnswerTime)
@@ -435,7 +435,7 @@ window.onload = (event) => {
                     } else {
                         specQuestCount++;
 
-                        let specQuestTime = 10;
+                        let specQuestTime = 50;
                         specCounter = setInterval(() => {
 
                             specQuestTime--;
