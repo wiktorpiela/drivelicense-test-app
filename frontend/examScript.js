@@ -1,7 +1,7 @@
 const categoryName = sessionStorage.getItem("categoryName");
 const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
-const startBasicQuestion = document.querySelector(".start-basic-quest")
+const skipReading = document.querySelector(".skip-reading")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
 const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
@@ -15,8 +15,8 @@ const mediaVideo = document.querySelector('.question-media-video')
 
 //time bar elements
 const readTimeProgressBar = document.querySelector(".progress-inner")
-const readTimeBar = document.querySelector(".time-read-progress")
-const videoClipPlaying = document.querySelector(".video-clip-playing")
+const readTimeBar = document.querySelector(".time-progress")
+const countdownValue = document.querySelector(".countdown-value")
 
 let answersResponse
 let answers
@@ -107,6 +107,10 @@ closeExamConfirm.addEventListener("click", () => {
 
 
 window.onload = (event) => {
+
+    //display defualt picture at the beginning
+    mediaImg.src = "static/img/start.jpg"
+
     getQuestions(examUrl)
         .then((data) => {
 
@@ -124,11 +128,6 @@ window.onload = (event) => {
 
             let userScore = 0; //initial scoring
             let questionScore; //score of current question
-
-            // let wrongQuestionArray = new Array(); //wrong answer array initialized
-            // let correctQuestionArray = new Array(); //correct answer array initialized
-            // let wrongUserAnswer = new Array(); // array of wrong user answers
-            // let wrongUserAnswerIndex = new Array(); // array of wrong user answers
 
             //store all questions to map with question number and results
             let summaryQuestions = new Map();
@@ -162,9 +161,9 @@ window.onload = (event) => {
             //only basic question here is possible ----
             basicQuestCount++;
 
-            startBasicQuestion.style.display = "flex"
+            skipReading.style.display = "flex"
 
-            startBasicQuestion.addEventListener("click", () => {
+            skipReading.addEventListener("click", () => {
                 basicReadQuestTime = -1;
             })
 
@@ -175,11 +174,10 @@ window.onload = (event) => {
                 basicReadQuestTime--;
                 let progressWidth = basicReadQuestTime / 20 * 100
 
-                mediaImg.style.display = "none"
-                mediaVideo.style.display = "none"
+                mediaImg.src = "static/img/start.jpg"
 
                 if (basicReadQuestTime < 0) {
-                    startBasicQuestion.style.display = "none"
+                    skipReading.style.display = "none"
                     readTimeBar.style.display = "none"
                     readTimeProgressBar.style.display = "none"
 
@@ -187,7 +185,7 @@ window.onload = (event) => {
                     readTimeProgressBar.style.width = "0%"
 
                     if (question.media.toLowerCase().slice(-4) === ".jpg") {
-                        mediaImg.style.display = "flex"
+
                         mediaImg.src = "static/img/" + question.media
 
                         //answer interval
@@ -195,7 +193,7 @@ window.onload = (event) => {
                         basicCounterAnswer = setInterval(() => {
                             basicAnswerTime--;
                             let progressWidth = basicAnswerTime / 15 * 100
-                            //console.log("basicCounterAnswer" + basicAnswerTime)
+
                             readTimeBar.style.display = "flex"
                             readTimeBar.style.width = "100%"
                             readTimeProgressBar.style.display = "flex"
@@ -217,11 +215,14 @@ window.onload = (event) => {
                                 nextQuestion.dispatchEvent(new Event("click"))
                             } else {
                                 readTimeProgressBar.style.width = progressWidth + "%"
+                                countdownValue.innerHTML = basicAnswerTime
                             }
 
                         }, 1000)
 
                     } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
+
+                        mediaImg.style.display = "none"
                         mediaVideo.style.display = "flex"
                         mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                         mediaVideo.controlsList = "noplaybackrate nofullscreen";
@@ -229,23 +230,27 @@ window.onload = (event) => {
                         mediaVideo.muted = true;
                         mediaVideo.play()
 
-                        videoClipPlaying.style.display = "flex"
+                        readTimeBar.style.display = "flex"
+                        readTimeBar.style.width = "100%"
+
+                        const playingVideoInfo = document.createElement("p");
+                        playingVideoInfo.innerHTML = "Video is playing..."
+                        readTimeBar.appendChild(playingVideoInfo)
 
                         mediaVideo.addEventListener("ended", () => {
                             console.log("video ended")
-
-                            videoClipPlaying.style.display = "none"
-                            readTimeBar.style.display = "flex"
-                            readTimeBar.style.width = "100%"
-                            readTimeProgressBar.style.display = "flex"
 
                             //answer interval
                             let basicAnswerTime = 15;
                             basicCounterAnswer = setInterval(() => {
 
                                 basicAnswerTime--;
-                                //console.log("basicCounterAnswer" + basicAnswerTime)
                                 let progressWidth = basicAnswerTime / 15 * 100
+
+                                playingVideoInfo.innerHTML = ""
+                                readTimeBar.style.display = "flex"
+                                readTimeBar.style.width = "100%"
+                                readTimeProgressBar.style.display = "flex"
 
                                 if (basicAnswerTime < 0) {
 
@@ -265,23 +270,25 @@ window.onload = (event) => {
 
                                     nextQuestion.dispatchEvent(new Event("click"))
                                 } else {
-                                    readTimeProgressBar.style.width = progressWidth + "%"
+                                    readTimeProgressBar.style.width = progressWidth + "%" 
+                                    countdownValue.innerHTML = basicAnswerTime
                                 }
 
                             }, 1000)
 
                         })
 
+                    } else if(question.media === ""){
+
+                        mediaImg.src = "no_media.jpg"
                     }
                 } else {
+                    
                     readTimeProgressBar.style.width = progressWidth + "%"
+                    countdownValue.innerHTML = basicReadQuestTime
                 }
 
-
-
-
             }, 1000)
-
 
             displayData(question, i, basicQuestCount, specQuestCount)
 
@@ -320,15 +327,10 @@ window.onload = (event) => {
                 //add scores in case of correct answer
                 if (userAnswer === correctAnswer) {
                     userScore += questionScore
-                    // correctQuestionArray.push(question)
-                    question.ifCorrect = true
+                    question.isCorrect = true
                     summaryQuestions.set(i, question)
                 } else {
-                    // wrongQuestionArray.push(question)
-                    // wrongUserAnswer.push(userAnswer)
-                    // wrongUserAnswerIndex.push(i)
-
-                    question.ifCorrect = false
+                    question.isCorrect = false
                     summaryQuestions.set(i, question)
                 }
 
@@ -339,12 +341,7 @@ window.onload = (event) => {
                 //pass variables on the next page
                 if (i >= questCount) {
                     sessionStorage.setItem("userScore", userScore);
-                    // sessionStorage.setItem("wrongUserAnswer", JSON.stringify(wrongUserAnswer));
-                    // sessionStorage.setItem("wrongQuestionArray", JSON.stringify(wrongQuestionArray));
-                    // sessionStorage.setItem("wrongUserAnswerIndex", JSON.stringify(wrongUserAnswerIndex));
-
                     sessionStorage.setItem("summaryQuestions", JSON.stringify(summaryQuestions));
-
                     window.location.href = "resultsPage.html";
                 }
 
@@ -364,9 +361,12 @@ window.onload = (event) => {
                     if (question.type === "PODSTAWOWY") {
                         basicQuestCount++;
 
-                        startBasicQuestion.style.display = "flex"
+                        skipReading.style.display = "flex"
+                        readTimeBar.style.width = "80%"
+                        mediaVideo.style.display = "none"
+                        
 
-                        startBasicQuestion.addEventListener("click", () => {
+                        skipReading.addEventListener("click", () => {
                             basicReadQuestTime = -1;
                         })
 
@@ -374,13 +374,15 @@ window.onload = (event) => {
                         let basicReadQuestTime = 20;
                         basicCounterReadQuest = setInterval(() => {
                             basicReadQuestTime--;
-                            console.log("basicCounterReadQuest" + basicReadQuestTime)
 
-                            mediaImg.style.display = "none"
-                            mediaVideo.style.display = "none"
+                            let progressWidth = basicReadQuestTime/20 * 100
+
+                            mediaImg.style.display = "flex"
+                            mediaImg.src = "static/img/start.jpg"
+
 
                             if (basicReadQuestTime < 0) {
-                                startBasicQuestion.style.display = "none"
+                                skipReading.style.display = "none"
                                 clearInterval(basicCounterReadQuest)
 
                                 if (question.media.toLowerCase().slice(-4) === ".jpg") {
@@ -391,7 +393,11 @@ window.onload = (event) => {
                                     let basicAnswerTime = 15;
                                     basicCounterAnswer = setInterval(() => {
                                         basicAnswerTime--;
-                                        console.log("basicCounterAnswer" + basicAnswerTime)
+                                        let progressWidth = basicAnswerTime / 15 * 100
+
+                                        readTimeBar.style.display = "flex"
+                                        readTimeBar.style.width = "100%"
+                                        readTimeProgressBar.style.display = "flex"
 
                                         if (basicAnswerTime < 0) {
                                             clearInterval(basicCounterAnswer)
@@ -408,18 +414,28 @@ window.onload = (event) => {
                                             }
 
                                             nextQuestion.dispatchEvent(new Event("click"))
+                                        } else {
+                                            readTimeProgressBar.style.width = progressWidth + "%"
+                                            countdownValue.innerHTML = basicAnswerTime
                                         }
 
                                     }, 1000)
 
 
                                 } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
+                                    mediaImg.style.display = "none"
+                                    
                                     mediaVideo.style.display = "flex"
                                     mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                                     mediaVideo.controlsList = "noplaybackrate nofullscreen";
                                     mediaVideo.disablePictureInPicture = true;
                                     mediaVideo.muted = true;
                                     mediaVideo.play()
+
+                                    readTimeBar.style.display = "flex"
+                                    readTimeBar.style.width = "100%"
+            
+                                    playingVideoInfo.innerHTML = "Video is playing..."
 
                                     mediaVideo.addEventListener("ended", () => {
                                         console.log("video ended")
@@ -429,9 +445,16 @@ window.onload = (event) => {
                                         let basicAnswerTime = 15;
                                         basicCounterAnswer = setInterval(() => {
                                             basicAnswerTime--;
-                                            console.log("basicCounterAnswer" + basicAnswerTime)
+                                            let progressWidth = basicAnswerTime/15*100
 
                                             if (basicAnswerTime < 0) {
+
+                                                readTimeBar.style.display = "flex"
+                                                readTimeBar.style.width = "100%"
+                                                readTimeProgressBar.style.display = "flex"
+
+                                                clearInterval(basicCounterAnswer)
+                                                readTimeProgressBar.style.width = "0%"
 
                                                 let anyChecked = 0;
                                                 for (let index = 0; index < radios.length; index++) {
@@ -445,14 +468,18 @@ window.onload = (event) => {
                                                 }
 
                                                 nextQuestion.dispatchEvent(new Event("click"))
+                                            } else {
+                                                readTimeProgressBar.style.width = progressWidth + "%" 
+                                                countdownValue.innerHTML = basicAnswerTime
                                             }
 
                                         }, 1000)
 
-
-
                                     })
                                 }
+                            } else {
+                                readTimeProgressBar.style.width = progressWidth + "%"
+                                countdownValue.innerHTML = basicReadQuestTime
                             }
 
                         }, 1000)
