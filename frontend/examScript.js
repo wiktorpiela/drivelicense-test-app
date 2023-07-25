@@ -493,13 +493,21 @@ window.onload = (event) => {
                         }, 1000)
 
                     } else {
+
                         specQuestCount++;
 
+                        if(question.media===""){
+                            mediaImg.src = "static/img/no_media.jpg" 
+                        } else{
+                            mediaImg.src = "static/img/" + question.media
+                        }
+                        
                         let specQuestTime = 50;
                         specCounter = setInterval(() => {
 
                             specQuestTime--;
-                            console.log(specQuestTime)
+                            let progressWidth = specQuestTime/50 * 100
+                            console.log("spec answer time: " + specQuestTime)
 
                             if (specQuestTime < 0) {
 
@@ -518,14 +526,16 @@ window.onload = (event) => {
 
                                 //on time stop - go to the next question
                                 nextQuestion.dispatchEvent(new Event("click"))
+                            } else {
+                                readTimeProgressBar.style.width = progressWidth + "%" 
+                                countdownValue.innerHTML = specQuestTime
                             }
 
                         }, 1000)
 
                     }
-
+                    
                     displayData(question, i, basicQuestCount, specQuestCount)
-
                 }
 
                 //get user answer on radio button click
