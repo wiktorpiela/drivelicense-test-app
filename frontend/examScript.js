@@ -317,8 +317,14 @@ window.onload = (event) => {
                 // console.log("previously correct: " + correctAnswer)
                 // console.log(correctAnswer === userAnswer)
 
+                mediaVideo.pause()
+                mediaVideo.currentTime = 0;
+                mediaImg.style.display = "flex"
+                mediaImg.src = "static/img/start.jpg"
+                mediaVideo.style.display = "none"
                 playingVideoInfo.innerHTML = ""
-
+                readTimeProgressBar.style.display = "flex"
+                
                 //clear spec interval value
                 clearInterval(specCounter)
                 clearInterval(basicCounterReadQuest)
@@ -365,7 +371,6 @@ window.onload = (event) => {
 
                         skipReading.style.display = "flex"
                         readTimeBar.style.width = "80%"
-                        mediaVideo.style.display = "none"
                         
                         skipReading.addEventListener("click", () => {
                             basicReadQuestTime = -1;
@@ -375,25 +380,23 @@ window.onload = (event) => {
                         let basicReadQuestTime = 20;
                         basicCounterReadQuest = setInterval(() => {
                             basicReadQuestTime--;
+                            console.log("read time: " + basicReadQuestTime)
 
                             let progressWidth = basicReadQuestTime/20 * 100
-
-                            mediaImg.style.display = "flex"
-                            mediaImg.src = "static/img/start.jpg"
-
 
                             if (basicReadQuestTime < 0) {
                                 skipReading.style.display = "none"
                                 clearInterval(basicCounterReadQuest)
 
                                 if (question.media.toLowerCase().slice(-4) === ".jpg") {
-                                    mediaImg.style.display = "flex"
+
                                     mediaImg.src = "static/img/" + question.media
 
                                     //answer interval
                                     let basicAnswerTime = 15;
                                     basicCounterAnswer = setInterval(() => {
                                         basicAnswerTime--;
+                                        console.log("answer time: " + basicAnswerTime)
                                         let progressWidth = basicAnswerTime / 15 * 100
 
                                         readTimeBar.style.display = "flex"
@@ -435,8 +438,10 @@ window.onload = (event) => {
 
                                     readTimeBar.style.display = "flex"
                                     readTimeBar.style.width = "100%"
+                                    readTimeProgressBar.style.display = "none"
             
                                     playingVideoInfo.innerHTML = "Video is playing..."
+                                    readTimeBar.appendChild(playingVideoInfo)
 
                                     mediaVideo.addEventListener("ended", () => {
                                         console.log("video ended")
@@ -446,13 +451,15 @@ window.onload = (event) => {
                                         let basicAnswerTime = 15;
                                         basicCounterAnswer = setInterval(() => {
                                             basicAnswerTime--;
+                                            console.log("answer time: " + basicAnswerTime)
                                             let progressWidth = basicAnswerTime / 15 * 100
 
-                                            if (basicAnswerTime < 0) {
+                                            readTimeBar.style.display = "flex"
+                                            readTimeBar.style.width = "100%"
+                                            readTimeProgressBar.style.display = "flex"
+                                            playingVideoInfo.innerHTML = ""
 
-                                                readTimeBar.style.display = "flex"
-                                                readTimeBar.style.width = "100%"
-                                                readTimeProgressBar.style.display = "flex"
+                                            if (basicAnswerTime < 0) {
 
                                                 clearInterval(basicCounterAnswer)
                                                 readTimeProgressBar.style.width = "0%"
