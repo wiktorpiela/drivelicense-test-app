@@ -158,7 +158,6 @@ window.onload = (event) => {
                 radios = document.getElementsByName("answer-abc")
             }
 
-
             //only basic question here is possible ----
             basicQuestCount++;
 
@@ -235,6 +234,8 @@ window.onload = (event) => {
                         readTimeBar.style.width = "100%"
 
                         playingVideoInfo.innerHTML = "Video is playing..."
+                        playingVideoInfo.style.color = "white"
+                        playingVideoInfo.style.fontSize = "1.5rem"
                         readTimeBar.appendChild(playingVideoInfo)
 
                         mediaVideo.addEventListener("ended", () => {
@@ -332,6 +333,7 @@ window.onload = (event) => {
 
                 console.log(summaryQuestions)
 
+                question.userAnswer = userAnswer
                 //add scores in case of correct answer
                 if (userAnswer === correctAnswer) {
                     userScore += questionScore
@@ -534,7 +536,7 @@ window.onload = (event) => {
                         }, 1000)
 
                     }
-                    
+
                     displayData(question, i, basicQuestCount, specQuestCount)
                 }
 
