@@ -351,7 +351,8 @@ window.onload = (event) => {
                 //pass variables on the next page
                 if (i >= questCount) {
                     sessionStorage.setItem("userScore", userScore);
-                    sessionStorage.setItem("summaryQuestions", JSON.stringify(summaryQuestions));
+                    //sessionStorage.setItem("summaryQuestions", JSON.stringify(summaryQuestions));
+                    localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
                     window.location.href = "resultsPage.html";
                 }
 
@@ -497,6 +498,9 @@ window.onload = (event) => {
                     } else {
 
                         specQuestCount++;
+
+                        skipReading.style.display = "none"
+                        readTimeBar.style.width = "100%"
 
                         if(question.media===""){
                             mediaImg.src = "static/img/no_media.jpg" 
