@@ -367,7 +367,6 @@ window.onload = (event) => {
                         readTimeBar.style.width = "80%"
                         mediaVideo.style.display = "none"
                         
-
                         skipReading.addEventListener("click", () => {
                             basicReadQuestTime = -1;
                         })
@@ -447,7 +446,7 @@ window.onload = (event) => {
                                         let basicAnswerTime = 15;
                                         basicCounterAnswer = setInterval(() => {
                                             basicAnswerTime--;
-                                            let progressWidth = basicAnswerTime/15*100
+                                            let progressWidth = basicAnswerTime / 15 * 100
 
                                             if (basicAnswerTime < 0) {
 
