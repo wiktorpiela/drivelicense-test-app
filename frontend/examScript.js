@@ -17,6 +17,7 @@ const mediaVideo = document.querySelector('.question-media-video')
 const readTimeProgressBar = document.querySelector(".progress-inner")
 const readTimeBar = document.querySelector(".time-progress")
 const countdownValue = document.querySelector(".countdown-value")
+const playingVideoInfo = document.createElement("p");
 
 let answersResponse
 let answers
@@ -177,9 +178,10 @@ window.onload = (event) => {
                 mediaImg.src = "static/img/start.jpg"
 
                 if (basicReadQuestTime < 0) {
+
                     skipReading.style.display = "none"
-                    readTimeBar.style.display = "none"
-                    readTimeProgressBar.style.display = "none"
+                    readTimeBar.style.width = "100%"
+                    countdownValue.innerHTML = ""
 
                     clearInterval(basicCounterReadQuest)
                     readTimeProgressBar.style.width = "0%"
@@ -192,11 +194,10 @@ window.onload = (event) => {
                         let basicAnswerTime = 15;
                         basicCounterAnswer = setInterval(() => {
                             basicAnswerTime--;
-                            let progressWidth = basicAnswerTime / 15 * 100
 
-                            readTimeBar.style.display = "flex"
-                            readTimeBar.style.width = "100%"
+                            readTimeProgressBar.style.width = "100%"
                             readTimeProgressBar.style.display = "flex"
+                            let progressWidth = basicAnswerTime / 15 * 100
 
                             if (basicAnswerTime < 0) {
                                 clearInterval(basicCounterAnswer)
@@ -233,7 +234,6 @@ window.onload = (event) => {
                         readTimeBar.style.display = "flex"
                         readTimeBar.style.width = "100%"
 
-                        const playingVideoInfo = document.createElement("p");
                         playingVideoInfo.innerHTML = "Video is playing..."
                         readTimeBar.appendChild(playingVideoInfo)
 
@@ -316,6 +316,8 @@ window.onload = (event) => {
                 // console.log("previously user answer: " + userAnswer)
                 // console.log("previously correct: " + correctAnswer)
                 // console.log(correctAnswer === userAnswer)
+
+                playingVideoInfo.innerHTML = ""
 
                 //clear spec interval value
                 clearInterval(specCounter)
