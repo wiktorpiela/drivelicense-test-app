@@ -11,6 +11,12 @@ html, body{
     font-weight: 400;
 }
 
+hr {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 .row{
     margin: 0 auto;
     max-width: 150rem;
@@ -77,6 +83,7 @@ video::-webkit-media-controls-panel {
 .sidebar-panel{
     width: 25%;
     text-align: center;
+    margin-top: 1.55rem;
 }
 
 .exam-panels{
@@ -100,6 +107,10 @@ video::-webkit-media-controls-panel {
 
 .question-media-img,
 .question-media-video{
+    width: 100%;
+}
+
+.question-text{
     width: 100%;
 }
 
@@ -143,12 +154,25 @@ video::-webkit-media-controls-panel {
     text-align: center;
 }
 
-
-
 /* HOME PAGE */
+.select-category{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    background-color: #f0ad4e;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.3rem;
+}
+
 .popup-info{
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid #b3b3b3;
     width: 60rem;
-    background: grey;
+    background: white;
     border-radius: 0.3rem;
     position: absolute;
     top: 0;
@@ -178,10 +202,11 @@ video::-webkit-media-controls-panel {
 .popup-info a,
 .popup-info strong{
     font-size: 1.5rem;
+    text-decoration: none;
 }
 
 .popup-info button{
-    width: 50%;
+    width: 40%;
     margin-top: 5rem;
     padding: 1rem 0;
     border: 0;
@@ -215,7 +240,8 @@ video::-webkit-media-controls-panel {
 
 .summary-boxes{
     flex-wrap: wrap;
-    margin: 0 30rem;
+    margin: 0 auto;
+    width: 70rem;
 }
 
 .summary-box{
@@ -223,7 +249,9 @@ video::-webkit-media-controls-panel {
     padding: 1rem;
     text-align: center;
     border-radius: 0.5rem;
-    flex: 0 1 10%;
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
 }
 
 .sb-red{

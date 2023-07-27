@@ -1,5 +1,6 @@
 const score = document.querySelector(".score")
 const summaryBoxes = document.querySelector(".summary-boxes")
+const questionContentText = document.querySelector(".question-content-txt")
 const examResultVerbatim = document.querySelector(".exam-result-verbatim")
 const correctCountVerbatim = document.querySelector(".correct-count-verbatim")
 const wrongCountVerbatim = document.querySelector(".wrong-count-verbatim")
@@ -10,10 +11,15 @@ const backToHomePage = document.querySelector(".back-to-home-page")
 const examTryAgain = document.querySelector(".exam-try-again")
 
 //function
-function createSummaryBoxes(parentDiv, isCorrect, i){
+function createSummaryBoxes(parentDiv, questTxt, questObject, i){
     const box = document.createElement("p");
+
+    box.addEventListener("click", () => {
+        questTxt.innerHTML = questObject.quest_txt
+    })
+
     box.classList.add("summary-box")
-    if(isCorrect){
+    if(questObject.isCorrect){
         box.classList.add("sb-green")
     } else{
         box.classList.add("sb-red")
@@ -35,7 +41,7 @@ window.onload = (event) => {
 
     for(let [key, value] of summaryQuestions){
 
-        createSummaryBoxes(summaryBoxes, value.isCorrect, key)
+        createSummaryBoxes(summaryBoxes, questionContentText, value, key)
 
         if(value.isCorrect){
             correctCount++;
@@ -62,8 +68,8 @@ window.onload = (event) => {
         examResultVerbatim.innerHTML = "NEGATYWNY"
     }
 
-    
 
 
 }
+
 

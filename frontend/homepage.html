@@ -48,21 +48,23 @@
                 Twoim zadaniem jest zdobycie co najmniej 68 z 74 możliwych do uzyskania punktów za poprawnie udzielone odpowiedzi.
             </p>
     
-            <a href="https://info-car.pl/new/prawo-jazdy/informacje-o-egzaminie-teoretycznym" target="_blank">Źródło i więcej informacji</a>
-                
-            <button class="confirm-start-exam btn">Rozpocznij</button>
-            <button onclick="closeInfoPopup()" class="btn">Wyjdź</button>
-
+            <a href="https://info-car.pl/new/prawo-jazdy/informacje-o-egzaminie-teoretycznym" target="_blank"><ion-icon name="globe-outline"></ion-icon>Źródło i więcej informacji</a>
+            
             <select class="select-category" required>
-                <option value="" selected disabled>Select category</option>
+                <option value="" selected disabled>Wybierz kategorię</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
             </select>
-    
-        </div>
 
+            <div class="exam-header">
+                <button class="confirm-start-exam btn">Rozpocznij</button>
+                <button onclick="closeInfoPopup()" class="btn">Wyjdź</button>
+            </div>
+        </div>
     </div>
 
     <script src="homePageScript.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
