@@ -1,10 +1,14 @@
 const score = document.querySelector(".score")
 const summaryBoxes = document.querySelector(".summary-boxes")
-const questionContentText = document.querySelector(".question-content-txt")
 const examResultVerbatim = document.querySelector(".exam-result-verbatim")
 const correctCountVerbatim = document.querySelector(".correct-count-verbatim")
 const wrongCountVerbatim = document.querySelector(".wrong-count-verbatim")
 const skipCountVerbatim = document.querySelector(".skip-count-verbatim")
+
+//question elements
+const questionContentText = document.querySelector(".question-content-txt")
+const mediaImg = document.querySelector(".question-media-img-result")
+const mediaVideo = document.querySelector(".question-media-video-result")
 
 //navi elements
 const backToHomePage = document.querySelector(".back-to-home-page")
@@ -14,8 +18,34 @@ const examTryAgain = document.querySelector(".exam-try-again")
 function createSummaryBoxes(parentDiv, questTxt, questObject, i){
     const box = document.createElement("p");
 
+    //on click show question details
     box.addEventListener("click", () => {
+
+        //question media handling
+        if(questObject.media.toLowerCase().slice(-4) === ".jpg"){
+
+            mediaImg.style.display = "flex"
+            mediaVideo.style.display = "none"
+            mediaImg.src = "static/img/" + questObject.media
+
+        } else if(questObject.media.toLowerCase().slice(-4) === ".wmv"){
+
+            mediaImg.style.display = "none"
+            mediaVideo.style.display = "flex"
+            mediaVideo.src = "static/video/" + questObject.media.replace("wmv", "mp4")
+            mediaVideo.controlsList = "noplaybackrate nodownload"
+
+        } else{
+
+            mediaImg.style.display = "flex"
+            mediaVideo.style.display = "none"
+            mediaImg.src = "static/img/no_media.jpg"
+
+        }
+
+
         questTxt.innerHTML = questObject.quest_txt
+
     })
 
     box.classList.add("summary-box")

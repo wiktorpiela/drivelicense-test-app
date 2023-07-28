@@ -100,7 +100,9 @@ hr {
 video::-webkit-media-controls-timeline,
 video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-current-time-display,
-video::-webkit-media-controls-time-remaining-display{
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-fullscreen-button{
     display: none;
 }
 
@@ -284,8 +286,23 @@ video::-webkit-media-controls-panel {
 /* RESULTS PAGE */
 .summary-info{
     text-align: center;
-    width: 20rem;
+    width: 25%;
     margin: 2rem auto;
+    background-color: #0275d8;
+    border-radius: 0.3rem;
+    padding: 1.5rem;
+    color: #f7f7f7;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    font-size: 2rem;
+}
+
+.summary-boxes-btns{
+    width: 70%;
+}
+
+.exam-result p{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .exam-result,
@@ -297,7 +314,7 @@ video::-webkit-media-controls-panel {
 .summary-boxes{
     flex-wrap: wrap;
     margin: 0 auto;
-    width: 70rem;
+    width: 80rem;
 }
 
 .summary-box{
@@ -307,7 +324,7 @@ video::-webkit-media-controls-panel {
     border-radius: 0.5rem;
     height: 2rem;
     width: 2rem;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 
 .sb-red{
@@ -316,6 +333,19 @@ video::-webkit-media-controls-panel {
 
 .sb-green{
     background-color: #5cb85c;
+}
+
+.question-media-img-result,
+.question-media-video-result{
+    display: none;
+}
+
+.exit-btn,
+.try-again-btn{
+    width: 40%;
+    margin-left: 13.2rem;
+    margin-right: 13.2rem;
+    margin-top: 3rem;
 }
 
 

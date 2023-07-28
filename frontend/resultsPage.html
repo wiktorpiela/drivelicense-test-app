@@ -8,48 +8,65 @@
 </head>
 <body>
 
-    <div class="summary-info">
+    <div class="row">
+        <div class="exam-header">
 
-        <div class="exam-result">
-            <p>Liczba uzyskanych punktów:</p>
-            <p class="score"></p>
+            <div class="summary-info">
+    
+                <div class="exam-result">
+                    <p>Liczba uzyskanych punktów:</p>
+                    <p class="score"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Wynik egzaminu:</p>
+                    <p class="exam-result-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba poprawnych odpowiedzi:</p>
+                    <p class="correct-count-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba błędnych odpowiedzi:</p>
+                    <p class="wrong-count-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba pominiętych odpowiedzi:</p>
+                    <p class="skip-count-verbatim"></p>
+                </div>
+        
+            </div>
+    
+            <div class="summary-boxes-btns">
+                <div class="summary-boxes"></div>
+                <div class="exam-header">
+                    <button class="btn exit-btn">Wyjdź</button>
+                    <button class="btn try-again-btn">Spróbuj ponownie</button>
+                </div>
+            </div>
+        
         </div>
-
-        <div class="exam-result">
-            <p>Wynik egzaminu:</p>
-            <p class="exam-result-verbatim"></p>
-        </div>
-
-        <div class="exam-result">
-            <p>Liczba poprawnych odpowiedzi:</p>
-            <p class="correct-count-verbatim"></p>
-        </div>
-
-        <div class="exam-result">
-            <p>Liczba błędnych odpowiedzi:</p>
-            <p class="wrong-count-verbatim"></p>
-        </div>
-
-        <div class="exam-result">
-            <p>Liczba pominiętych odpowiedzi:</p>
-            <p class="skip-count-verbatim"></p>
+    
+        <div class="question-content">
+    
+            <img src="" class="question-media-img-result">
+    
+            <video controls loop class="question-media-video-result" autoplay disablepictureinpicture controlslist="nodownload">
+                <source src="" type="video/mp4">
+            </video>
+    
+            <p class="question-content-txt"></p>
+            <p class="question-content-user-answer"></p>
+            <p class="question-content-quest-score"></p>
+    
         </div>
 
     </div>
 
-    <div class="summary-boxes"></div>
 
-    <div class="question-content">
-
-        <!-- <img src="" alt="">
-
-        <video controls class="question-media-video-result" autoplay>
-            <source src="" type="video/mp4">
-        </video> -->
-
-        <p class="question-content-txt"></p>
-
-    </div>
 
     <script src="resultsPageScript.js"></script>
 </body>
