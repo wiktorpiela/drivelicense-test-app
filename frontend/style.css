@@ -43,6 +43,50 @@ hr {
 
 
 /* EXAM PAGE */
+/* radiobuttons styling */
+.js-answers-yn{
+    width: 40rem;
+    justify-content: space-between;
+    margin-left: 50rem;
+}
+
+.js-answers-yn label{
+    background-color: #0275d8;
+    width: 10rem;
+    height: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    font-size: 2rem;
+    color: #f7f7f7; 
+}
+
+.js-answers-yn input:checked ~ label{
+    border-color: red;
+}
+
+.js-answers-yn label:hover{
+    border-color: green;
+}
+
+.js-answers-abc label{
+    background-color: #0275d8;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    font-size: 1.65rem;
+    color: #f7f7f7; 
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+}
+
+.js-answers-abc input,
+.js-answers-yn input{
+    display: none;
+}
+
+/* end radio buttons styling */
+
 .js-answers-yn,
 .js-answers-abc{
     display: none;
@@ -51,7 +95,6 @@ hr {
 .js-answers-abc{
     flex-direction: column;
 }
-
 
 /* hiding video seekbar and other attributes*/
 video::-webkit-media-controls-timeline,
@@ -73,11 +116,6 @@ video::-webkit-media-controls-panel {
 .main-panel{
     width: 70%;
     font-size: 1.5rem;
-}
-
-.main-panel h4{
-    width: 65%;
-    font-size: 1.75rem;
 }
 
 .sidebar-panel{
@@ -113,7 +151,6 @@ video::-webkit-media-controls-panel {
 .question-text{
     width: 100%;
 }
-
 
 /* time bar */
 .time-bar{
@@ -159,6 +196,17 @@ video::-webkit-media-controls-panel {
     height: 3rem;
     font-size: 1.5rem;
     text-align: center;
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+}
+
+.video-playing{
+    color: red;
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    bottom: -9px;
+    position: absolute;
 }
 
 

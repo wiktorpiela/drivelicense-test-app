@@ -18,6 +18,7 @@ const readTimeProgressBar = document.querySelector(".progress-inner")
 const readTimeBar = document.querySelector(".time-progress")
 const countdownValue = document.querySelector(".countdown-value")
 const playingVideoInfo = document.createElement("p");
+playingVideoInfo.classList.add("video-playing")
 
 let answersResponse
 let answers
@@ -234,8 +235,8 @@ window.onload = (event) => {
                         readTimeBar.style.width = "100%"
 
                         playingVideoInfo.innerHTML = "Video is playing..."
-                        playingVideoInfo.style.color = "white"
-                        playingVideoInfo.style.fontSize = "1.5rem"
+                        // playingVideoInfo.style.color = "white"
+                        // playingVideoInfo.style.fontSize = "1.5rem"
                         readTimeBar.appendChild(playingVideoInfo)
 
                         mediaVideo.addEventListener("ended", () => {
