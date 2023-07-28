@@ -325,6 +325,7 @@ video::-webkit-media-controls-panel {
     height: 2rem;
     width: 2rem;
     margin: 0.5rem;
+    cursor: pointer;
 }
 
 .sb-red{
@@ -338,6 +339,8 @@ video::-webkit-media-controls-panel {
 .question-media-img-result,
 .question-media-video-result{
     display: none;
+    height: 57.6rem;
+    width: 102.4rem;
 }
 
 .exit-btn,
@@ -346,6 +349,25 @@ video::-webkit-media-controls-panel {
     margin-left: 13.2rem;
     margin-right: 13.2rem;
     margin-top: 3rem;
+}
+
+.result-left{
+    width: 70%;
+}
+
+.result-right{
+    width: 30%;
+}
+
+
+.question-content-txt{
+    font-size: 2rem;
+}
+
+.question-content-quest-lglsource{
+    font-size: 1.7rem;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 

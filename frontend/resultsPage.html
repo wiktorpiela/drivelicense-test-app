@@ -11,7 +11,7 @@
     <div class="row">
         <div class="exam-header">
 
-            <div class="summary-info">
+            <div class="summary-info" onmousedown="return false" onselectstart="return false">
     
                 <div class="exam-result">
                     <p>Liczba uzyskanych punktów:</p>
@@ -41,7 +41,7 @@
             </div>
     
             <div class="summary-boxes-btns">
-                <div class="summary-boxes"></div>
+                <div class="summary-boxes" onmousedown="return false" onselectstart="return false"></div>
                 <div class="exam-header">
                     <button class="btn exit-btn">Wyjdź</button>
                     <button class="btn try-again-btn">Spróbuj ponownie</button>
@@ -50,18 +50,22 @@
         
         </div>
     
-        <div class="question-content">
+        <div class="exam-header">
     
-            <img src="" class="question-media-img-result">
+            <div class="result-left">
+                <img src="" class="question-media-img-result">
     
-            <video controls loop class="question-media-video-result" autoplay disablepictureinpicture controlslist="nodownload">
-                <source src="" type="video/mp4">
-            </video>
-    
-            <p class="question-content-txt"></p>
-            <p class="question-content-user-answer"></p>
-            <p class="question-content-quest-score"></p>
-    
+                <video controls loop class="question-media-video-result" autoplay disablepictureinpicture controlslist="nodownload">
+                    <source src="" type="video/mp4">
+                </video>
+        
+                <h4 class="question-content-txt" onmousedown="return false" onselectstart="return false"></h4>
+            </div>
+
+            <div class="result-right">
+                <p class="question-content-quest-lglsource"></p>
+            </div>
+
         </div>
 
     </div>

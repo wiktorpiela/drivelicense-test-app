@@ -7,6 +7,7 @@ const skipCountVerbatim = document.querySelector(".skip-count-verbatim")
 
 //question elements
 const questionContentText = document.querySelector(".question-content-txt")
+const questionLegalSource = document.querySelector(".question-content-quest-lglsource")
 const mediaImg = document.querySelector(".question-media-img-result")
 const mediaVideo = document.querySelector(".question-media-video-result")
 
@@ -15,7 +16,7 @@ const backToHomePage = document.querySelector(".back-to-home-page")
 const examTryAgain = document.querySelector(".exam-try-again")
 
 //function
-function createSummaryBoxes(parentDiv, questTxt, questObject, i){
+function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i){
     const box = document.createElement("p");
 
     //on click show question details
@@ -45,6 +46,7 @@ function createSummaryBoxes(parentDiv, questTxt, questObject, i){
 
 
         questTxt.innerHTML = questObject.quest_txt
+        questLgl.innerHTML = questObject.legal_source
 
     })
 
@@ -71,7 +73,7 @@ window.onload = (event) => {
 
     for(let [key, value] of summaryQuestions){
 
-        createSummaryBoxes(summaryBoxes, questionContentText, value, key)
+        createSummaryBoxes(summaryBoxes, questionContentText, questionLegalSource, value, key)
 
         if(value.isCorrect){
             correctCount++;
