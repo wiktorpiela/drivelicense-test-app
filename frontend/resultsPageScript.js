@@ -5,9 +5,7 @@ const correctCountVerbatim = document.querySelector(".correct-count-verbatim")
 const wrongCountVerbatim = document.querySelector(".wrong-count-verbatim")
 const skipCountVerbatim = document.querySelector(".skip-count-verbatim")
 
-//question elements
-const questionContentText = document.querySelector(".question-content-txt")
-const questionLegalSource = document.querySelector(".question-content-quest-lglsource")
+//question elements hoisting
 const mediaImg = document.querySelector(".question-media-img-result")
 const mediaVideo = document.querySelector(".question-media-video-result")
 const A = document.querySelector(".a")
@@ -21,7 +19,7 @@ const backToHomePage = document.querySelector(".back-to-home-page")
 const examTryAgain = document.querySelector(".exam-try-again")
 
 //function
-function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i) {
+function createSummaryBoxes(parentDiv, questObject, i) {
     const box = document.createElement("p");
 
     //on click show question details
@@ -117,8 +115,17 @@ function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i) {
             }
         }
 
-        questTxt.innerHTML = questObject.quest_txt
-        questLgl.innerHTML = questObject.legal_source
+        const questionContentText = document.querySelector(".question-content-txt")
+        const questionLegalSource = document.querySelector(".question-content-quest-lglsource")
+        const lglDiv = document.querySelector(".lgl-scource-div")
+        const questScoreDiv = document.querySelector(".quest-score")
+        const scoreValue = document.querySelector(".score-value")
+
+        questScoreDiv.style.display = "flex"
+        lglDiv.style.display = "block"
+        questionContentText.innerHTML = questObject.quest_txt
+        questionLegalSource.innerHTML = questObject.legal_source
+        scoreValue.innerHTML = questObject.score
 
     })
 
@@ -145,7 +152,7 @@ window.onload = (event) => {
 
     for (let [key, value] of summaryQuestions) {
 
-        createSummaryBoxes(summaryBoxes, questionContentText, questionLegalSource, value, key)
+        createSummaryBoxes(summaryBoxes, value, key)
 
         if (value.isCorrect) {
             correctCount++;
@@ -171,8 +178,6 @@ window.onload = (event) => {
         examResultVerbatim.style.color = "red"
         examResultVerbatim.innerHTML = "NEGATYWNY"
     }
-
-
 
 }
 
