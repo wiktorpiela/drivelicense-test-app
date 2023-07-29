@@ -10,33 +10,50 @@ const questionContentText = document.querySelector(".question-content-txt")
 const questionLegalSource = document.querySelector(".question-content-quest-lglsource")
 const mediaImg = document.querySelector(".question-media-img-result")
 const mediaVideo = document.querySelector(".question-media-video-result")
+const A = document.querySelector(".a")
+const B = document.querySelector(".b")
+const C = document.querySelector(".c")
+const YES = document.querySelector(".yes")
+const NO = document.querySelector(".no")
 
 //navi elements
 const backToHomePage = document.querySelector(".back-to-home-page")
 const examTryAgain = document.querySelector(".exam-try-again")
 
 //function
-function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i){
+function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i) {
     const box = document.createElement("p");
 
     //on click show question details
     box.addEventListener("click", () => {
 
+        //clear answer class list
+        A.classList.remove("sb-green")
+        A.classList.remove("sb-red")
+        B.classList.remove("sb-green")
+        B.classList.remove("sb-red")
+        C.classList.remove("sb-green")
+        C.classList.remove("sb-red")
+        YES.classList.remove("sb-green")
+        YES.classList.remove("sb-red")
+        NO.classList.remove("sb-green")
+        NO.classList.remove("sb-red")
+
         //question media handling
-        if(questObject.media.toLowerCase().slice(-4) === ".jpg"){
+        if (questObject.media.toLowerCase().slice(-4) === ".jpg") {
 
             mediaImg.style.display = "flex"
             mediaVideo.style.display = "none"
             mediaImg.src = "static/img/" + questObject.media
 
-        } else if(questObject.media.toLowerCase().slice(-4) === ".wmv"){
+        } else if (questObject.media.toLowerCase().slice(-4) === ".wmv") {
 
             mediaImg.style.display = "none"
             mediaVideo.style.display = "flex"
             mediaVideo.src = "static/video/" + questObject.media.replace("wmv", "mp4")
             mediaVideo.controlsList = "noplaybackrate nodownload"
 
-        } else{
+        } else {
 
             mediaImg.style.display = "flex"
             mediaVideo.style.display = "none"
@@ -44,6 +61,61 @@ function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i){
 
         }
 
+        const yesNo = document.querySelector(".yn")
+        const ABC = document.querySelector(".abc")
+        //questions type handling
+        if (questObject.type === "PODSTAWOWY") {
+            yesNo.style.display = "flex"
+            ABC.style.display = "none"
+        } else {
+            yesNo.style.display = "none"
+            ABC.style.display = "block"
+
+            //fill answers content dynamically
+            let abcAnswers = questObject.abc_answers.split(" - ")
+            A.innerHTML = abcAnswers[0]
+            B.innerHTML = abcAnswers[1]
+            C.innerHTML = abcAnswers[2]
+        }
+
+        //mark correct and user answer
+        switch (questObject.quest_correct_answer) {
+            case "A":
+                A.classList.add("sb-green")
+                break;
+            case "B":
+                B.classList.add("sb-green")
+                break;
+            case "C":
+                C.classList.add("sb-green")
+                break;
+            case "T":
+                YES.classList.add("sb-green")
+                break;
+            case "N":
+                NO.classList.add("sb-green")
+                break;
+        }
+
+        if (questObject.quest_correct_answer !== questObject.userAnswer) {
+            switch (questObject.userAnswer) {
+                case "A":
+                    A.classList.add("sb-red")
+                    break;
+                case "B":
+                    B.classList.add("sb-red")
+                    break;
+                case "C":
+                    C.classList.add("sb-red")
+                    break;
+                case "T":
+                    YES.classList.add("sb-red")
+                    break
+                case "N":
+                    NO.classList.add("sb-red")
+                    break
+            }
+        }
 
         questTxt.innerHTML = questObject.quest_txt
         questLgl.innerHTML = questObject.legal_source
@@ -51,13 +123,13 @@ function createSummaryBoxes(parentDiv, questTxt, questLgl, questObject, i){
     })
 
     box.classList.add("summary-box")
-    if(questObject.isCorrect){
+    if (questObject.isCorrect) {
         box.classList.add("sb-green")
-    } else{
+    } else {
         box.classList.add("sb-red")
     }
     box.innerHTML = i
-    parentDiv.appendChild(box) 
+    parentDiv.appendChild(box)
 }
 
 window.onload = (event) => {
@@ -71,19 +143,19 @@ window.onload = (event) => {
     let wrongCount = 0;
     let skipCount = 0;
 
-    for(let [key, value] of summaryQuestions){
+    for (let [key, value] of summaryQuestions) {
 
         createSummaryBoxes(summaryBoxes, questionContentText, questionLegalSource, value, key)
 
-        if(value.isCorrect){
+        if (value.isCorrect) {
             correctCount++;
-        } else{
-            if(value.userAnswer == undefined){
+        } else {
+            if (value.userAnswer == undefined) {
                 skipCount++;
-            } else{
+            } else {
                 wrongCount++;
             }
-        }  
+        }
     }
 
     score.innerHTML = userScore + "/74"
@@ -92,7 +164,7 @@ window.onload = (event) => {
     wrongCountVerbatim.innerHTML = wrongCount
     skipCountVerbatim.innerHTML = skipCount
 
-    if(userScore>=68){
+    if (userScore >= 68) {
         examResultVerbatim.style.color = "green"
         examResultVerbatim.innerHTML = "POZYTYWNY"
     } else {

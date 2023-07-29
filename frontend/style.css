@@ -361,13 +361,32 @@ video::-webkit-media-controls-panel {
 
 
 .question-content-txt{
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 .question-content-quest-lglsource{
     font-size: 1.7rem;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.yn,
+.abc{
+    display: none;
+}
+
+.yn{
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.yes,
+.no,
+.a,
+.b,
+.c{
+    border-radius: 0.3rem;
 }
 
 
