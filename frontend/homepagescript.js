@@ -13,7 +13,7 @@ function closeInfoPopup(){
 
 confirmStartExam.disabled = true
 
-selectCategory.addEventListener("click", () =>{
+selectCategory.addEventListener("input", () =>{
     confirmStartExam.disabled = false
     categoryName = selectCategory.value
 })
