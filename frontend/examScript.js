@@ -234,7 +234,7 @@ window.onload = (event) => {
                         readTimeBar.style.display = "flex"
                         readTimeBar.style.width = "100%"
 
-                        playingVideoInfo.innerHTML = "Video is playing..."
+                        playingVideoInfo.innerHTML = "Trwa odtwarzanie filmu ..."
                         // playingVideoInfo.style.color = "white"
                         // playingVideoInfo.style.fontSize = "1.5rem"
                         readTimeBar.appendChild(playingVideoInfo)
@@ -431,6 +431,9 @@ window.onload = (event) => {
 
 
                                 } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
+
+                                    countdownValue.innerHTML = ""
+
                                     mediaImg.style.display = "none"
                                     
                                     mediaVideo.style.display = "flex"
@@ -444,7 +447,7 @@ window.onload = (event) => {
                                     readTimeBar.style.width = "100%"
                                     readTimeProgressBar.style.display = "none"
             
-                                    playingVideoInfo.innerHTML = "Video is playing..."
+                                    playingVideoInfo.innerHTML = "Trwa odtwarzanie filmu..."
                                     readTimeBar.appendChild(playingVideoInfo)
 
                                     mediaVideo.addEventListener("ended", () => {
