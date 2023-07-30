@@ -360,6 +360,7 @@ video::-webkit-media-controls-panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 5rem;
 }
 
 
@@ -406,13 +407,20 @@ video::-webkit-media-controls-panel {
     font-size: 1.75rem;
 }
 
-.quest-score{
-    height: 5%;
-}
-
+.quest-score,
 .answers-content,
 .lgl-scource-div{
-    height: 45%;
+    margin-bottom: 5rem;
+}
+
+.answer-box{
+    color: black;
+    padding: 1.5rem;
+    border-radius: 0.3rem;
+}
+
+.marked{
+    color: white;
 }
 
 

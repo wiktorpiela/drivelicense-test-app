@@ -15,8 +15,8 @@ const YES = document.querySelector(".yes")
 const NO = document.querySelector(".no")
 
 //navi elements
-const backToHomePage = document.querySelector(".back-to-home-page")
-const examTryAgain = document.querySelector(".exam-try-again")
+const backToHomePage = document.querySelector(".exit-btn")
+const examTryAgain = document.querySelector(".try-again-btn")
 
 //function
 function createSummaryBoxes(parentDiv, questObject, i) {
@@ -28,14 +28,19 @@ function createSummaryBoxes(parentDiv, questObject, i) {
         //clear answer class list
         A.classList.remove("sb-green")
         A.classList.remove("sb-red")
+        A.classList.remove("marked")
         B.classList.remove("sb-green")
         B.classList.remove("sb-red")
+        B.classList.remove("marked")
         C.classList.remove("sb-green")
         C.classList.remove("sb-red")
+        C.classList.remove("marked")
         YES.classList.remove("sb-green")
         YES.classList.remove("sb-red")
+        YES.classList.remove("marked")
         NO.classList.remove("sb-green")
         NO.classList.remove("sb-red")
+        NO.classList.remove("marked")
 
         //question media handling
         if (questObject.media.toLowerCase().slice(-4) === ".jpg") {
@@ -80,18 +85,23 @@ function createSummaryBoxes(parentDiv, questObject, i) {
         switch (questObject.quest_correct_answer) {
             case "A":
                 A.classList.add("sb-green")
+                A.classList.add("marked")
                 break;
             case "B":
                 B.classList.add("sb-green")
+                B.classList.add("marked")
                 break;
             case "C":
                 C.classList.add("sb-green")
+                C.classList.add("marked")
                 break;
             case "T":
                 YES.classList.add("sb-green")
+                YES.classList.add("marked")
                 break;
             case "N":
                 NO.classList.add("sb-green")
+                NO.classList.add("marked")
                 break;
         }
 
@@ -99,18 +109,23 @@ function createSummaryBoxes(parentDiv, questObject, i) {
             switch (questObject.userAnswer) {
                 case "A":
                     A.classList.add("sb-red")
+                    A.classList.add("marked")
                     break;
                 case "B":
                     B.classList.add("sb-red")
+                    B.classList.add("marked")
                     break;
                 case "C":
                     C.classList.add("sb-red")
+                    C.classList.add("marked")
                     break;
                 case "T":
                     YES.classList.add("sb-red")
+                    YES.classList.add("marked")
                     break
                 case "N":
                     NO.classList.add("sb-red")
+                    NO.classList.add("marked")
                     break
             }
         }
@@ -178,7 +193,15 @@ window.onload = (event) => {
         examResultVerbatim.style.color = "red"
         examResultVerbatim.innerHTML = "NEGATYWNY"
     }
-
 }
+
+//navi buttons functionality
+backToHomePage.addEventListener("click", () => {
+    window.location.href = "homepage.html";
+})
+
+examTryAgain.addEventListener("click", () => {
+    window.location.href = "examPage.html";
+})
 
 
