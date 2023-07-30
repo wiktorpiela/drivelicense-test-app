@@ -44,6 +44,11 @@ hr {
 
 /* EXAM PAGE */
 /* radiobuttons styling */
+.js-answers-abc input,
+.js-answers-yn input{
+    display: none;
+}
+
 .js-answers-yn{
     width: 40rem;
     justify-content: space-between;
@@ -66,6 +71,8 @@ hr {
     border-color: red;
 }
 
+.js-answers-yn input:checked ~ label,
+.js-answers-yn label:hover ~ label,
 .js-answers-yn label:hover{
     border-color: green;
 }
@@ -80,10 +87,7 @@ hr {
     margin-bottom: 0.5rem;
 }
 
-.js-answers-abc input,
-.js-answers-yn input{
-    display: none;
-}
+
 
 /* end radio buttons styling */
 
@@ -203,7 +207,7 @@ video::-webkit-media-controls-panel {
 }
 
 .video-playing{
-    color: red;
+    color: white;
     font-size: 1.5rem;
     width: 100%;
     text-align: center;
@@ -276,6 +280,16 @@ video::-webkit-media-controls-panel {
     margin: 2rem auto;
 }
 
+.home-page-btns{
+    width: 50%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.exam-mode,
+.learning-mode{
+    width: 40%;
+}
 
 
 
