@@ -7,6 +7,8 @@ const popupExam = document.querySelector(".popup-info")
 const answerA = document.querySelector(".a")
 const answerB = document.querySelector(".b")
 const answerC = document.querySelector(".c")
+const labelY = document.querySelector(".lblY")
+const labelN = document.querySelector(".lblN")
 const questTxt = document.querySelector(".question-text")
 const answersYN = document.querySelector('.js-answers-yn')
 const answersABC = document.querySelector('.js-answers-abc')
@@ -151,6 +153,18 @@ window.onload = (event) => {
             question = questions[i]
             correctAnswer = question.quest_correct_answer;
             questionScore = question.score
+
+            //displaying radiobuttons color
+            // labelY.addEventListener("click", () =>{
+            //     labelY.style.backgroundColor = "red"
+            //     labelN.style.backgroundColor = "#0275d8"
+            // })
+
+            // labelN.addEventListener("click", () =>{
+            //     labelN.style.backgroundColor = "red"
+            //     labelY.style.backgroundColor = "#0275d8"
+            // })
+
 
             //get current radios
             if (question.abc_answers === "YN") {

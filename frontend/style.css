@@ -56,7 +56,6 @@ hr {
 }
 
 .js-answers-yn label{
-    /* background-color: #0275d8; */
     background-color: #0275d8;
     width: 10rem;
     height: 3rem;
@@ -68,7 +67,11 @@ hr {
     color: #f7f7f7; 
 }
 
-.js-answers-yn input:checked ~ label{
+.js-answers-yn label:hover{
+    background-color: green;
+}
+
+.js-answers-yn label:focus{
     background-color: red;
 }
 
