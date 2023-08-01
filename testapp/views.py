@@ -45,5 +45,3 @@ class GetExamQuestions(APIView):
         exam_questions = self.get_queryset(categoryName)
         serializer = QuestionSerializer(exam_questions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
