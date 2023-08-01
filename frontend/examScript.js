@@ -110,6 +110,11 @@ closeExamConfirm.addEventListener("click", () => {
 })
 
 
+//jeżeli nie ma danych
+if(categoryName === null){
+    console.log("handler")
+} 
+
 window.onload = (event) => {
 
     //display defualt picture at the beginning
