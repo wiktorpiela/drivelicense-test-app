@@ -69,7 +69,7 @@ class Question(models.Model):
     quest_num = models.IntegerField()
     quest_correct_answer = models.CharField(max_length=1, choices=possible_answers)
     score = models.IntegerField(choices=scores)
-    type = models.CharField(max_length=1, choices=types)
+    type = models.CharField(max_length=20, choices=types)
     abc_answers = models.ForeignKey(QuestionPossibleAnswers, on_delete=models.DO_NOTHING, related_name="abc_answers") #answer description if exists
     legal_source = models.ForeignKey(QuestionLegalSource, on_delete=models.DO_NOTHING, related_name="legal_source")
     media = models.ForeignKey(QuestionMedia, on_delete=models.DO_NOTHING, related_name="media")
@@ -78,6 +78,3 @@ class Question(models.Model):
     quest_txt = models.ForeignKey(QuestionText, on_delete=models.DO_NOTHING, related_name="quest_txt")
     safety_relation = models.ForeignKey(QuestionSafety, on_delete=models.DO_NOTHING, related_name="safety")
     subject = models.ForeignKey(QuestionSubject, on_delete=models.DO_NOTHING, related_name="subject")
-
-    # def __str__(self) -> str:
-    #     return f"question: {self.quest_txt[:100]}"

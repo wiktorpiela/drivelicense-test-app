@@ -8,3 +8,4 @@ xlsx_files/
 frontend/static
 timerTest/
 # *.ipynb
+data.json
