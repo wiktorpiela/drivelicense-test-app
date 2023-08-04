@@ -26,6 +26,12 @@ playingVideoInfo.classList.add("video-playing")
 let answersResponse
 let answers
 
+//jeżeli nie ma danych
+if(categoryName === null){
+    console.log("here" + categoryName)
+    window.location.href = "errorPage.html"
+} 
+
 //functions
 async function getQuestions(url) {
     const response = await fetch(url);
@@ -110,11 +116,6 @@ closeExamConfirm.addEventListener("click", () => {
     window.location.href = "homePage.html"
 })
 
-
-//jeżeli nie ma danych
-if(categoryName === null){
-    console.log("handler")
-} 
 
 window.onload = (event) => {
 
@@ -243,8 +244,6 @@ window.onload = (event) => {
                         readTimeBar.style.width = "100%"
 
                         playingVideoInfo.innerHTML = "Trwa odtwarzanie filmu ..."
-                        // playingVideoInfo.style.color = "white"
-                        // playingVideoInfo.style.fontSize = "1.5rem"
                         readTimeBar.appendChild(playingVideoInfo)
 
                         mediaVideo.addEventListener("ended", () => {
@@ -360,7 +359,6 @@ window.onload = (event) => {
                 //pass variables on the next page
                 if (i >= questCount) {
                     sessionStorage.setItem("userScore", userScore);
-                    //sessionStorage.setItem("summaryQuestions", JSON.stringify(summaryQuestions));
                     localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
                     window.location.href = "resultsPage.html";
                 }
@@ -441,9 +439,8 @@ window.onload = (event) => {
                                 } else if (question.media.toLowerCase().slice(-4) === ".wmv") {
 
                                     countdownValue.innerHTML = ""
-
                                     mediaImg.style.display = "none"
-                                    
+            
                                     mediaVideo.style.display = "flex"
                                     mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                                     mediaVideo.controlsList = "noplaybackrate nofullscreen";

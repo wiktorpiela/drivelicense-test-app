@@ -435,5 +435,13 @@ video::-webkit-media-controls-panel {
     color: white;
 }
 
+/* ERROR PAGE */
+.error-info{
+    text-align: center;
+    margin-top: 25rem;
+    font-size: 4rem;
+}
 
-
+.error-info button{
+    width: 50%;
+}
