@@ -67,18 +67,9 @@ hr {
     color: #f7f7f7; 
 }
 
+.js-answers-abc label:hover,
 .js-answers-yn label:hover{
-    background-color: green;
-}
-
-.js-answers-yn label:focus{
-    background-color: red;
-}
-
-.js-answers-yn input:checked ~ label,
-.js-answers-yn label:hover ~ label,
-.js-answers-yn label:hover{
-    border-color: green;
+    background-color: #329ffd;
 }
 
 .js-answers-abc label{
@@ -91,7 +82,10 @@ hr {
     margin-bottom: 0.5rem;
 }
 
-
+.js-answers-yn input[type="radio"]:checked+label,
+.js-answers-abc input[type="radio"]:checked+label{
+    background-color: #025aa5;
+}
 
 /* end radio buttons styling */
 
