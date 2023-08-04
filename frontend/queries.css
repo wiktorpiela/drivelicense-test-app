@@ -1,0 +1,32 @@
+/* 1200px - 1700px <=1700px */
+@media only screen and (max-width: 1700px) {
+    /* HOME PAGE */
+}
+
+/* nest hub small laptops big tablets */
+@media only screen and (max-width: 1200px) {
+    /* HOME PAGE */
+    
+}
+
+/* ipad mini */
+/* 768px - 1023px <=1023px */
+@media only screen and (max-width: 1023px) {
+    /* HOME PAGE */
+
+}
+
+/* phones (iphone SE) */
+/* 375px - 767px <=767px */
+@media only screen and (max-width: 767px) {
+    /* HOME PAGE */
+
+
+}
+
+/* small phones najmniejsze urzadzenie mobilne */ 
+/* 0px - 374px <=374px */
+@media only screen and (max-width: 374px) {
+    /* HOME PAGE */
+
+}

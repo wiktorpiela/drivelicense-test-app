@@ -27,10 +27,9 @@ let answersResponse
 let answers
 
 //jeżeli nie ma danych
-if(categoryName === null){
-    console.log("here" + categoryName)
+if (categoryName === null) {
     window.location.href = "errorPage.html"
-} 
+}
 
 //functions
 async function getQuestions(url) {
@@ -64,7 +63,7 @@ function displayData(question, i, basicQuestCount, specQuestCount) {
 
     //display current category
     const categoryNameDisplay = document.querySelector(".category-value")
-    categoryNameDisplay.innerHTML =  categoryName
+    categoryNameDisplay.innerHTML = categoryName
 
     //counter spec/basic quest display
     const basicQuestDisplay = document.querySelector(".basic-questions-count")
@@ -279,7 +278,7 @@ window.onload = (event) => {
 
                                     nextQuestion.dispatchEvent(new Event("click"))
                                 } else {
-                                    readTimeProgressBar.style.width = progressWidth + "%" 
+                                    readTimeProgressBar.style.width = progressWidth + "%"
                                     countdownValue.innerHTML = basicAnswerTime
                                 }
 
@@ -287,12 +286,12 @@ window.onload = (event) => {
 
                         })
 
-                    } else if(question.media === ""){
+                    } else if (question.media === "") {
 
                         mediaImg.src = "no_media.jpg"
                     }
                 } else {
-                    
+
                     readTimeProgressBar.style.width = progressWidth + "%"
                     countdownValue.innerHTML = basicReadQuestTime
                 }
@@ -333,7 +332,7 @@ window.onload = (event) => {
                 mediaVideo.style.display = "none"
                 playingVideoInfo.innerHTML = ""
                 readTimeProgressBar.style.display = "flex"
-                
+
                 //clear spec interval value
                 clearInterval(specCounter)
                 clearInterval(basicCounterReadQuest)
@@ -381,7 +380,7 @@ window.onload = (event) => {
 
                         skipReading.style.display = "flex"
                         readTimeBar.style.width = "80%"
-                        
+
                         skipReading.addEventListener("click", () => {
                             basicReadQuestTime = -1;
                         })
@@ -392,7 +391,7 @@ window.onload = (event) => {
                             basicReadQuestTime--;
                             console.log("read time: " + basicReadQuestTime)
 
-                            let progressWidth = basicReadQuestTime/20 * 100
+                            let progressWidth = basicReadQuestTime / 20 * 100
 
                             if (basicReadQuestTime < 0) {
                                 skipReading.style.display = "none"
@@ -440,7 +439,7 @@ window.onload = (event) => {
 
                                     countdownValue.innerHTML = ""
                                     mediaImg.style.display = "none"
-            
+
                                     mediaVideo.style.display = "flex"
                                     mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                                     mediaVideo.controlsList = "noplaybackrate nofullscreen";
@@ -451,7 +450,7 @@ window.onload = (event) => {
                                     readTimeBar.style.display = "flex"
                                     readTimeBar.style.width = "100%"
                                     readTimeProgressBar.style.display = "none"
-            
+
                                     playingVideoInfo.innerHTML = "Trwa odtwarzanie filmu..."
                                     readTimeBar.appendChild(playingVideoInfo)
 
@@ -489,7 +488,7 @@ window.onload = (event) => {
 
                                                 nextQuestion.dispatchEvent(new Event("click"))
                                             } else {
-                                                readTimeProgressBar.style.width = progressWidth + "%" 
+                                                readTimeProgressBar.style.width = progressWidth + "%"
                                                 countdownValue.innerHTML = basicAnswerTime
                                             }
 
@@ -511,17 +510,17 @@ window.onload = (event) => {
                         skipReading.style.display = "none"
                         readTimeBar.style.width = "100%"
 
-                        if(question.media===""){
-                            mediaImg.src = "static/img/no_media.jpg" 
-                        } else{
+                        if (question.media === "") {
+                            mediaImg.src = "static/img/no_media.jpg"
+                        } else {
                             mediaImg.src = "static/img/" + question.media
                         }
-                        
+
                         let specQuestTime = 50;
                         specCounter = setInterval(() => {
 
                             specQuestTime--;
-                            let progressWidth = specQuestTime/50 * 100
+                            let progressWidth = specQuestTime / 50 * 100
                             console.log("spec answer time: " + specQuestTime)
 
                             if (specQuestTime < 0) {
@@ -542,7 +541,7 @@ window.onload = (event) => {
                                 //on time stop - go to the next question
                                 nextQuestion.dispatchEvent(new Event("click"))
                             } else {
-                                readTimeProgressBar.style.width = progressWidth + "%" 
+                                readTimeProgressBar.style.width = progressWidth + "%"
                                 countdownValue.innerHTML = specQuestTime
                             }
 
