@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary_storage
 
 load_dotenv()
 
@@ -17,7 +19,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://myproject-production.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -30,6 +32,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "testapp",
     "corsheaders",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -131,3 +135,12 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+#cloudinary set up
+if not DEBUG: #use cloudinary only in production
+		CLOUDINARY_STORAGE = {
+		    'CLOUD_NAME': os.environ["CLOUD_NAME"],
+		    'API_KEY': os.environ["API_KEY"],
+		    'API_SECRET': os.environ["API_SECRET"],
+		}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
