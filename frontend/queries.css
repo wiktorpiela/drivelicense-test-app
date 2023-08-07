@@ -1,32 +1,53 @@
-/* 1200px - 1700px <=1700px */
-@media only screen and (max-width: 1700px) {
-    /* HOME PAGE */
-}
+@media only screen and (max-width: 700px) {
 
-/* nest hub small laptops big tablets */
-@media only screen and (max-width: 1200px) {
-    /* HOME PAGE */
-    
-}
-
-/* ipad mini */
-/* 768px - 1023px <=1023px */
-@media only screen and (max-width: 1023px) {
     /* HOME PAGE */
 
-}
+    .home-page-btns{
+        width: 100%;
+        flex-direction: column;
+    }
 
-/* phones (iphone SE) */
-/* 375px - 767px <=767px */
-@media only screen and (max-width: 767px) {
-    /* HOME PAGE */
+    .exam-mode,
+    .learning-mode{
+        width: 80%;
+        margin-bottom: 3rem;
+        height: 8rem;
+    }
 
+    .popup-info{
+        width: 30rem;
+        height: 45rem;
+        border: none;
+        padding: 0 0.5rem 0.5rem;
+    }
 
-}
+    .popup-info h4{
+        font-size: 1.3rem;
+    }
 
-/* small phones najmniejsze urzadzenie mobilne */ 
-/* 0px - 374px <=374px */
-@media only screen and (max-width: 374px) {
-    /* HOME PAGE */
+    .popup-info p,
+    .popup-info li,
+    .popup-info a,
+    .popup-info strong{
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+
+    .select-category{
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    /* EXAM PAGE */
+
+/* 
+    .exam-header,
+    .sidebar-panel{
+        display: none;
+    }
+
+    .exam-panels{
+        width: 100%;
+    } */
 
 }
