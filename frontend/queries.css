@@ -71,7 +71,7 @@
 
     .summary-box{
         font-size: 1.2rem;
-        padding: 0.5rem;
+        padding: 0.7rem;
         height: 1.5rem;
         width: 1.5rem;
         margin: 0.5rem;
@@ -101,6 +101,7 @@
 
     .question-content-txt{
         font-size: 1.3rem;
+        text-align: justify;
     }
 
     .quest-score p{
@@ -118,7 +119,8 @@
 
     .yes,
     .no{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        width: 100%;
     }
 
     .answer-box{
@@ -135,6 +137,19 @@
     .c{
         font-size: 1rem;
         width: 100%; 
+    }
+
+    .summary-info-popup{
+        width: 85%;
+        padding: 1rem;
+        color: white;
+        font-size: 1.5rem;
+    }
+    
+    .summary-info-popup button{
+        margin-top: 1rem;
+        height: 3rem;
+        font-size: 1.5rem;
     }
 
     /* EXAM PAGE */

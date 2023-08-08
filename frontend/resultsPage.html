@@ -44,12 +44,43 @@
         
             </div>
 
+            <div class="summary-info-popup" id="popupResults">
+
+                <div class="exam-result">
+                    <p>Liczba uzyskanych punktów:</p>
+                    <p class="score"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Wynik egzaminu:</p>
+                    <p class="exam-result-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba poprawnych odpowiedzi:</p>
+                    <p class="correct-count-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba błędnych odpowiedzi:</p>
+                    <p class="wrong-count-verbatim"></p>
+                </div>
+        
+                <div class="exam-result">
+                    <p>Liczba pominiętych odpowiedzi:</p>
+                    <p class="skip-count-verbatim"></p>
+                </div>
+
+                <button class="btn" type="button" onclick="closePopupResults()">Zamknij</button>
+
+            </div>
+
             <div class="summary-boxes-btns">
                 <div class="summary-boxes" onmousedown="return false" onselectstart="return false"></div>
                 <div class="exam-header">
                     <button class="btn exit-btn">Wyjdź</button>
                     <button class="btn try-again-btn">Spróbuj ponownie</button>
-                    <button class="btn display-summary-info-btn">Pokaż wynik</button>
+                    <button class="btn display-summary-info-btn" onclick="displayPopupResults()">Pokaż wynik</button>
                 </div>
             </div>
         

@@ -18,6 +18,18 @@ const NO = document.querySelector(".no")
 const backToHomePage = document.querySelector(".exit-btn")
 const examTryAgain = document.querySelector(".try-again-btn")
 
+//popup elements ----
+const popupModal = document.getElementById("popupResults")
+
+function displayPopupResults(){
+    popupModal.classList.add("display-results-popup")
+}
+
+function closePopupResults(){
+    popupModal.classList.remove("display-results-popup")
+}
+// -----
+
 //function
 function createSummaryBoxes(parentDiv, questObject, i) {
     const box = document.createElement("p");
