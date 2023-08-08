@@ -1,9 +1,14 @@
 const score = document.querySelector(".score")
+const score2 = document.querySelector(".score2")
 const summaryBoxes = document.querySelector(".summary-boxes")
 const examResultVerbatim = document.querySelector(".exam-result-verbatim")
+const examResultVerbatim2 = document.querySelector(".exam-result-verbatim2")
 const correctCountVerbatim = document.querySelector(".correct-count-verbatim")
+const correctCountVerbatim2 = document.querySelector(".correct-count-verbatim2")
 const wrongCountVerbatim = document.querySelector(".wrong-count-verbatim")
+const wrongCountVerbatim2 = document.querySelector(".wrong-count-verbatim2")
 const skipCountVerbatim = document.querySelector(".skip-count-verbatim")
+const skipCountVerbatim2 = document.querySelector(".skip-count-verbatim2")
 
 //question elements hoisting
 const mediaImg = document.querySelector(".question-media-img-result")
@@ -193,17 +198,28 @@ window.onload = (event) => {
     }
 
     score.innerHTML = userScore + "/74"
+    score2.innerHTML = userScore + "/74"
 
     correctCountVerbatim.innerHTML = correctCount
+    correctCountVerbatim2.innerHTML = correctCount
     wrongCountVerbatim.innerHTML = wrongCount
+    wrongCountVerbatim2.innerHTML = wrongCount
     skipCountVerbatim.innerHTML = skipCount
+    skipCountVerbatim2.innerHTML = skipCount
 
     if (userScore >= 68) {
         examResultVerbatim.style.color = "green"
         examResultVerbatim.innerHTML = "POZYTYWNY"
+
+        examResultVerbatim2.style.color = "green"
+        examResultVerbatim2.innerHTML = "POZYTYWNY"
+
     } else {
         examResultVerbatim.style.color = "red"
         examResultVerbatim.innerHTML = "NEGATYWNY"
+
+        examResultVerbatim2.style.color = "red"
+        examResultVerbatim2.innerHTML = "NEGATYWNY"
     }
 }
 
