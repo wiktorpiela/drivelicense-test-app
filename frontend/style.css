@@ -432,6 +432,10 @@ video::-webkit-media-controls-panel {
     color: white;
 }
 
+.display-summary-info-btn{
+    display: none;
+}
+
 /* ERROR PAGE */
 .error-info{
     text-align: center;
