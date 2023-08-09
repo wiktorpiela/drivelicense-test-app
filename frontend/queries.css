@@ -160,7 +160,18 @@
     .result-right{
         width: 100%;
     }
-    
+
     /* EXAM PAGE */
+
+    .exam-panels{
+        flex-direction: column-reverse;  
+    }
+
+    .question-text,
+    .question-media-img,
+    .question-media-video{
+        width: 37.5rem;
+    }
+
 
 }
