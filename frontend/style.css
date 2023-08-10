@@ -396,15 +396,8 @@ video::-webkit-media-controls-panel {
     font-size: 2.2rem;
 }
 
-.question-content-quest-lglsource{
-    font-size: 1.7rem;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
 .yn,
 .abc,
-.lgl-scource-div,
 .quest-score{
     display: none;
 }
@@ -426,18 +419,12 @@ video::-webkit-media-controls-panel {
     font-size: 1.75rem;
 }
 
-.lgl-scource-div{
-    width: 100%;
-    align-items: center;
-}
-
 .quest-score p{
     font-size: 1.75rem;
 }
 
 .quest-score,
-.answers-content,
-.lgl-scource-div{
+.answers-content{
     margin-bottom: 5rem;
 }
 
@@ -454,6 +441,66 @@ video::-webkit-media-controls-panel {
 .display-summary-info-btn{
     display: none;
 }
+
+
+
+.lgl-div{
+    text-align: center;
+}
+
+.lgl-info{
+    font-size: 2rem;
+    text-align: center;
+    visibility: hidden;
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    width: 70%;
+}
+
+.display-lgl-info{
+    visibility: visible;
+}
+
+.lgl-info-txt{
+    font-size: 1.5rem;
+    color: white;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.lgl-info-popup{
+    background-color: #0275d8;
+    border-radius: 0.3rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 2rem;
+    z-index: 3;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.lgl-info-popup button{
+    font-size: 1.75rem;
+    padding: 0.5rem;
+    width: 80%;
+    height: 4rem;
+}
+
+.open-lgl-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+
+
 
 /* ERROR PAGE */
 .error-info{

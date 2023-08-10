@@ -120,13 +120,22 @@
                     </div>
                 </div>
 
-                <div class="summary-info lgl-scource-div">
-                    <!-- 45% -->
-                    <p>Podstawa prawna</p>
-                    <p class="question-content-quest-lglsource"></p>
+                <!-- <div class="lgl-info">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span class="lgl-info-txt"></span>
+                </div> -->
+
+                <div class="lgl-div">
+                    <button class="btn lgl-info" onclick="openLglPopup()">
+                        Podstawa prawna
+                    </button>
                 </div>
 
-  
+                <div class="lgl-info-popup" id="lglPopup">
+                    <p class="lgl-info-txt"></p>
+                    <button class="btn" type="button" onclick="closeLglPopup()">Zamknij</button>
+                </div>
+
             </div>
 
         </div>

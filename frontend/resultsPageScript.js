@@ -35,6 +35,14 @@ function closePopupResults(){
 }
 // -----
 
+function openLglPopup(){
+    lglPopup.classList.add("open-lgl-popup")
+}
+
+function closeLglPopup(){
+    lglPopup.classList.remove("open-lgl-popup")
+}
+
 //function
 function createSummaryBoxes(parentDiv, questObject, i) {
     const box = document.createElement("p");
@@ -148,16 +156,19 @@ function createSummaryBoxes(parentDiv, questObject, i) {
         }
 
         const questionContentText = document.querySelector(".question-content-txt")
-        const questionLegalSource = document.querySelector(".question-content-quest-lglsource")
-        const lglDiv = document.querySelector(".lgl-scource-div")
+        const questionLegalSource = document.querySelector(".lgl-info-txt")
+        const lglDiv = document.querySelector(".lgl-info")
+        const lglPopup = document.querySelector(".lgl-info-popup")
         const questScoreDiv = document.querySelector(".quest-score")
         const scoreValue = document.querySelector(".score-value")
 
         questScoreDiv.style.display = "flex"
-        lglDiv.style.display = "block"
+        lglDiv.classList.add("display-lgl-info")
         questionContentText.innerHTML = questObject.quest_txt
         questionLegalSource.innerHTML = questObject.legal_source
         scoreValue.innerHTML = questObject.score
+
+
 
     })
 
