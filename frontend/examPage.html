@@ -13,55 +13,66 @@
 <body>
     <div class="row">
 
-        <div class="exam-panels">
+        <div class="main-container">
 
-            <div class="main-panel">
-                <div class="exam-header">
-                    <p class="blue-box-txt">Wartość punktowa</p>
-                    <p class="blue-box score-value"></p>
-                    <p class="blue-box-txt">Aktualna kategoria</p>
-                    <p class="blue-box category-value"></p>
-                    <p class="blue-box-txt">Czas do końca egzaminu</p>
-                    <p class="blue-box main-exam-time-countdown" onmousedown='return false;' onselectstart='return false;'>25:00</p>
+            <div class="primary-panel">
+
+                <div class="header-panel">
+                    <div>
+                        <p class="blue-box-txt">Wartość punktowa</p>
+                        <p class="blue-box score-value"></p>
+                    </div>
+                    <div>
+                        <p class="blue-box-txt">Aktualna kategoria</p>
+                        <p class="blue-box category-value"></p>
+                    </div>
+                    <div>
+                        <p class="blue-box-txt">Czas do końca egzaminu</p>
+                        <p class="blue-box main-exam-time-countdown" onmousedown='return false;' onselectstart='return false;'>25:00</p>
+                    </div>
                 </div>
 
-                <img src="" alt="pic" class="question-media-img">
+                <div class="question-panel">
 
-                <video controls class="question-media-video" autoplay>
-                    <source src="" type="video/mp4">
-                </video>
+                    <img src="" alt="pic" class="question-media-img">
 
-                <h4 class="question-text"></h4>
-
-                <div class="js-answers-yn">
-                    <input type="radio" name="answer-yn" value="T" id="idY"><label class="lblY" for="idY" onmousedown='return false;' onselectstart='return false;'>TAK</label>
-                    <input type="radio" name="answer-yn" value="N" id="idN"><label class="lblN" for="idN" onmousedown='return false;' onselectstart='return false;'>NIE</label>
-                </div>
-            
-                <div class="js-answers-abc">
-                    <input type="radio" name="answer-abc" value="A" id="idA"><label class="a" for="idA" onmousedown='return false;' onselectstart='return false;'></label>
-                    <input type="radio" name="answer-abc" value="B" id="idB"><label class="b" for="idB" onmousedown='return false;' onselectstart='return false;'></label>
-                    <input type="radio" name="answer-abc" value="C" id="idC"><label class="c" for="idC" onmousedown='return false;' onselectstart='return false;'></label>
-                </div>
+                    <video controls class="question-media-video" autoplay>
+                        <source src="" type="video/mp4">
+                    </video>
     
+                    <h4 class="question-text"></h4>
+    
+                    <div class="js-answers-yn">
+                        <input type="radio" name="answer-yn" value="T" id="idY"><label class="lblY" for="idY" onmousedown='return false;' onselectstart='return false;'>TAK</label>
+                        <input type="radio" name="answer-yn" value="N" id="idN"><label class="lblN" for="idN" onmousedown='return false;' onselectstart='return false;'>NIE</label>
+                    </div>
+                
+                    <div class="js-answers-abc">
+                        <input type="radio" name="answer-abc" value="A" id="idA"><label class="a" for="idA" onmousedown='return false;' onselectstart='return false;'></label>
+                        <input type="radio" name="answer-abc" value="B" id="idB"><label class="b" for="idB" onmousedown='return false;' onselectstart='return false;'></label>
+                        <input type="radio" name="answer-abc" value="C" id="idC"><label class="c" for="idC" onmousedown='return false;' onselectstart='return false;'></label>
+                    </div>
+
+                </div>
+
             </div>
-    
-            <div class="sidebar-panel">
+
+
+            <div class="navi-panel">
 
                 <button onclick="openInfoPopup()" class="btn">Zakończ egzamin</button>
 
                 <div class="exam-header">
-                    <div>
+                    <div class="exam-page-quest-counter">
                         <p class="blue-box-txt">Pytanie podstawowe</p>
                         <p class="blue-box basic-questions-count"></p>
                     </div>
-                    <div>
+                    <div class="exam-page-quest-counter">
                         <p class="blue-box-txt">Pytanie specjalistyczne</p>
                         <p class="blue-box spec-questions-count"></p>
                     </div>
                 </div>
 
-                <!-- czas na zapoznanie się z pytaniem/odpowiedz/info ze film sie odtwarza --> 
                 <div class="time-bar">
                     <button class="skip-reading btn">Start</button>
                     <div class="time-progress">
@@ -73,6 +84,7 @@
                 <button class="next-question btn">Następne pytanie</button>
 
             </div>
+
 
         </div>
 
