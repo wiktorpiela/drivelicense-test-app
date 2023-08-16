@@ -170,7 +170,7 @@ window.onload = (event) => {
             //only basic question here is possible ----
             basicQuestCount++;
 
-            skipReading.style.display = "flex"
+            skipReading.style.display = "block" //flex
 
             skipReading.addEventListener("click", () => {
                 basicReadQuestTime = -1;
@@ -378,7 +378,7 @@ window.onload = (event) => {
                     if (question.type === "PODSTAWOWY") {
                         basicQuestCount++;
 
-                        skipReading.style.display = "flex"
+                        skipReading.style.display = "block"
                         readTimeBar.style.width = "80%"
 
                         skipReading.addEventListener("click", () => {
