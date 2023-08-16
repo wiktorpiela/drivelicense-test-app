@@ -89,19 +89,72 @@
     }
 }
 
+/* EXAM PAGE */
+@media only screen and (max-width: 1235px){
+    .header-panel .blue-box-txt{
+        margin-right: 1rem;
+    }
+}
 
+@media only screen and (max-width: 1168px){
+    .header-panel .blue-box-txt{
+        text-align: right;
+    }
 
+    .exam-page-quest-count .blue-box-txt{
+        text-align: center;
 
+    }
+}
 
+@media only screen and (max-width: 1024px){
+    .main-container{
+        flex-direction: column;
+    }
 
+    .navi-panel{
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0 auto;
+        width: 85%;
+    }
 
-@media only screen and (max-width: 700px) {
+    .question-text,
+    .blue-box-txt,
+    .blue-box{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 
+    .next-question{
+        margin-top: 1rem;
+    }
 
+    .navi-panel .exam-header{
+        margin-top: 0.5rem;
+        justify-content: space-around;
+    }
 
+    .primary-panel,
+    .navi-panel{
+        width: 100%;
+    }
+}
 
-    /* RESULT PAGE */
+@media only screen and (max-width: 699px){
+    .question-text{
+        font-size: 1.5rem;
+    }
 
+    .blue-box-txt,
+    .blue-box{
+        font-size: 1.3rem;
+    }
+}
+
+/* RESULT PAGE */
+
+/* @media only screen and (max-width: 1530px) {
     .summary-info,
     .lgl-scource-div p,
     .lgl-scource-div{
@@ -118,24 +171,23 @@
     }
 
     .summary-boxes{
-        width: 100%;
+        width: 80%;
         color: white
     } 
 
     .summary-box{
-        font-size: 1.2rem;
-        padding: 0.7rem;
+        padding: 1.5rem;
         height: 1.5rem;
         width: 1.5rem;
-        margin: 0.5rem;
+        margin: 1.3rem;
     }
 
     .exit-btn,
     .try-again-btn,
     .display-summary-info-btn{
-        width: 30%;
-        margin-left: 1rem;
-        margin-right: 1rem;
+        width: 20%;
+        margin-left: 7rem;
+        margin-right: 7rem;
         margin-top: 1rem;
         font-size: 1.5rem;
         height: 4rem;
@@ -225,17 +277,8 @@
         text-align: center;
     }
 
-    /* EXAM PAGE */
 
-    .exam-panels{
-        flex-direction: column-reverse;  
-    }
-
-    .question-text,
-    .question-media-img,
-    .question-media-video{
-        width: 37.5rem;
-    }
+} */
 
 
-}
+
