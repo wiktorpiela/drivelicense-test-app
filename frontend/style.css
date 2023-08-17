@@ -5,6 +5,7 @@ html, body{
     font-weight: 400;
 }
 
+
 hr {
     width: 100%;
     margin-left: auto;
@@ -363,10 +364,16 @@ video::-webkit-media-controls-panel {
     color: #829695
 }
 
+/* ERROR PAGE */
+.error-info{
+    text-align: center;
+    margin-top: 25rem;
+    font-size: 4rem;
+}
 
-
-
-
+.error-info button{
+    width: 50%;
+}
 
 /* RESULTS PAGE */
 .dynamic-div-question-content{
@@ -403,7 +410,7 @@ video::-webkit-media-controls-panel {
 
 .summary-info{
     text-align: center;
-    width: 25%;
+    flex: 1;
     background-color: #0275d8;
     border-radius: 0.3rem;
     padding: 1rem;
@@ -413,7 +420,8 @@ video::-webkit-media-controls-panel {
 }
 
 .summary-boxes-btns{
-    width: 70%;
+    flex: 3;
+    margin-left: 2rem;
 }
 
 .exam-result p{
@@ -429,19 +437,19 @@ video::-webkit-media-controls-panel {
 
 .summary-boxes{
     flex-wrap: wrap;
-    margin: 0 auto;
-    width: 80rem;
 }
 
 .summary-box{
     font-size: 2rem;
-    padding: 1rem;
     text-align: center;
     border-radius: 0.5rem;
-    height: 2rem;
-    width: 2rem;
-    margin: 0.5rem;
+    height: 4rem;
     cursor: pointer;
+    flex: 0 0 calc(6.25% - 0.3rem);
+    margin: 0;
+    margin-bottom: 0.3rem;
+    padding: 0.7rem 0;
+    box-sizing: border-box;
 }
 
 .sb-red{
@@ -583,21 +591,4 @@ video::-webkit-media-controls-panel {
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
-}
-
-
-
-
-
-
-
-/* ERROR PAGE */
-.error-info{
-    text-align: center;
-    margin-top: 25rem;
-    font-size: 4rem;
-}
-
-.error-info button{
-    width: 50%;
 }

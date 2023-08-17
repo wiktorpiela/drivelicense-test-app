@@ -2,13 +2,13 @@
 @media only screen and (max-width: 1120px) {
 
     .home-page-btns{
-        width: 100%;
+        width: 90%;
         flex-direction: column;
     }
 
     .exam-mode,
     .learning-mode{
-        width: 80%;
+        width: 100%;
         margin-bottom: 3rem;
         height: 8rem;
     }
@@ -177,7 +177,7 @@
 
 /* RESULT PAGE */
 
-/* @media only screen and (max-width: 1530px) {
+@media only screen and (max-width: 1115px) {
     .summary-info,
     .lgl-scource-div p,
     .lgl-scource-div{
@@ -193,24 +193,16 @@
         width: 100%;
     }
 
-    .summary-boxes{
-        width: 80%;
-        color: white
-    } 
-
-    .summary-box{
-        padding: 1.5rem;
-        height: 1.5rem;
-        width: 1.5rem;
-        margin: 1.3rem;
+    .summary-boxes-btns{
+        margin-left: 0;
     }
 
     .exit-btn,
     .try-again-btn,
     .display-summary-info-btn{
         width: 20%;
-        margin-left: 7rem;
-        margin-right: 7rem;
+        /* margin-left: 7rem;
+        margin-right: 7rem; */
         margin-top: 1rem;
         font-size: 1.5rem;
         height: 4rem;
@@ -299,7 +291,22 @@
         text-align: center;
     }
 
-} */
+}
 
+@media only screen and (max-width: 849px){
+    .summary-box {
+        flex: 0 0 calc(6.25% - 0.27rem)
+    }
+}
 
+@media only screen and (max-width: 768px){
+    .summary-box {
+        flex: 0 0 calc(6.25% - 0.25rem)
+    }
+}
 
+@media only screen and (max-width: 695px){
+    .summary-box {
+        flex: 0 0 calc(6.25% - 0.23rem)
+    }
+}
