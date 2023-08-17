@@ -16,6 +16,11 @@ hr {
     max-width: 150rem;
 }
 
+.result-row{
+    margin: 0 auto;
+    max-width: 1140px;
+}
+
 .btn{
     color: #f7f7f7;
     background-color: #f0ad4e;
@@ -178,8 +183,13 @@ video::-webkit-media-controls-panel {
 .exam-header{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     font-size: 1.5rem;
+}
+
+.summary-boxes-btns .exam-header{
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .exam-page-quest-counter{
@@ -359,6 +369,13 @@ video::-webkit-media-controls-panel {
 
 
 /* RESULTS PAGE */
+.dynamic-div-question-content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    align-items: center;
+}
+
 .summary-info-popup{
     width: 40rem;
     background: #0275d8;
@@ -387,13 +404,12 @@ video::-webkit-media-controls-panel {
 .summary-info{
     text-align: center;
     width: 25%;
-    margin: 2rem auto;
     background-color: #0275d8;
     border-radius: 0.3rem;
-    padding: 1.5rem;
+    padding: 1rem;
     color: #f7f7f7;
     box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .summary-boxes-btns{
@@ -439,28 +455,26 @@ video::-webkit-media-controls-panel {
 .question-media-img-result,
 .question-media-video-result{
     display: none;
-    height: 57.6rem;
-    width: 102.4rem;
+    width: 100%;
 }
 
 .exit-btn,
 .try-again-btn{
-    width: 40%;
-    margin-left: 13.2rem;
-    margin-right: 13.2rem;
-    margin-top: 3rem;
+    width: 20rem;
+    margin-top: 1.5rem;
 }
 
 .result-left{
-    width: 70%;
+    flex: 3;
 }
 
 .result-right{
-    width: 30%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 5rem;
+    margin-left: 3rem;
+
 }
 
 
@@ -477,9 +491,12 @@ video::-webkit-media-controls-panel {
 .yn,
 .quest-score{
     justify-content: space-between;
-    width: 50%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     align-items: center;
+}
+
+.yn{
+    justify-content: space-evenly;
 }
 
 .yes,
