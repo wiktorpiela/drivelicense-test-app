@@ -7,13 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="queries.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/examPage.css">
+    <link rel="stylesheet" href="styles/queries/examPageQueries.css">
 </head>
 <body>
-    <section>
 
-        <div class="row">
+        <div class="exam-row">
 
             <div class="main-container">
     
@@ -62,9 +62,9 @@
     
                 <div class="navi-panel">
     
-                    <button onclick="openInfoPopup()" class="btn">Zakończ egzamin</button>
+                    <button onclick="openInfoPopup()" class="btn exit-exam">Zakończ egzamin</button>
     
-                    <div class="exam-header">
+                    <div class="exam-quest-type-counters">
                         <div class="exam-page-quest-counter">
                             <p class="blue-box-txt">Pytanie podstawowe</p>
                             <p class="blue-box basic-questions-count"></p>
@@ -99,7 +99,7 @@
                 <p>Czy na pewno chcesz zakończyć egzamin?</p>
                 <p>Postęp zostanie utracony.</p>
                 <hr>
-                <div class="exam-header">
+                <div class="">
                     <button class="close-exam-confirm btn">Zakończ</button>
                     <button onclick="closeInfoPopup()" class="btn">Wróć do egzaminu</button>
                 </div>
@@ -108,10 +108,7 @@
     
         </div>
 
-    </section>
-
-
-    <script src="examScript.js"></script>
+    <script src="scripts/examScript.js"></script>
 
 </body>
 </html>
