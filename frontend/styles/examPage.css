@@ -76,6 +76,14 @@ video::-webkit-media-controls-panel {
     background-image: linear-gradient(transparent, transparent) !important;
 }
 
+video::-internal-media-controls-download-button {
+    display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
 /* hide img and video by default */
 .question-media-video{
     display: none;

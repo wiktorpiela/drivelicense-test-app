@@ -325,14 +325,6 @@ window.onload = (event) => {
                 // console.log("previously correct: " + correctAnswer)
                 // console.log(correctAnswer === userAnswer)
 
-                mediaVideo.pause()
-                mediaVideo.currentTime = 0;
-                mediaImg.style.display = "flex"
-                mediaImg.src = "static/img/start.jpg"
-                mediaVideo.style.display = "none"
-                playingVideoInfo.innerHTML = ""
-                readTimeProgressBar.style.display = "flex"
-
                 //clear spec interval value
                 clearInterval(specCounter)
                 clearInterval(basicCounterReadQuest)
@@ -374,6 +366,18 @@ window.onload = (event) => {
                     question = questions[i]
                     correctAnswer = question.quest_correct_answer
                     questionScore = question.score
+
+                    mediaVideo.pause()
+                    mediaVideo.currentTime = 0;
+                    mediaImg.style.display = "flex"
+                    
+                    if(question.type === "PODSTAWOWY"){
+                        mediaImg.src = "static/img/start.jpg"
+                    }
+                    
+                    mediaVideo.style.display = "none"
+                    playingVideoInfo.innerHTML = ""
+                    readTimeProgressBar.style.display = "flex"
 
                     if (question.type === "PODSTAWOWY") {
                         basicQuestCount++;

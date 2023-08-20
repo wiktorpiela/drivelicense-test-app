@@ -79,6 +79,11 @@
     .navi-panel{
         width: 40rem;
     }
+
+    .popup-info{
+        width: 40rem;
+        padding: 0 2rem 2rem;
+    }
 }
 
 @media only screen and (max-width: 394px){
@@ -114,5 +119,15 @@
 
     .question-text{
         font-size: 1.35rem;
+    }
+
+    .popup-info{
+        width: 26rem;
+        padding: 0 1rem 1rem;
+    }
+
+    .popup-info h4{
+        font-size: 2rem;
+        margin: 1rem 0 0.5rem ;
     }
 }
