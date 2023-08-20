@@ -3,11 +3,16 @@
 .main-container{
     display: flex;
     align-items: baseline;
+    margin-top: 1rem;
 }
 
 .header-panel{
     justify-content: space-between;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.navi-panel{
+    font-size: 1.5rem;
 }
 
 .header-panel div,
@@ -24,6 +29,10 @@
     margin-right: 2rem;
 }
 
+.navi-panel .blue-box-txt{
+    margin-bottom: 1rem;
+}
+
 .primary-panel{
     flex: 3;
     margin-right: 4rem;
@@ -35,11 +44,13 @@
 
 .question-text{
     font-size: 2rem;
+    margin: 1rem 0;
 }
 
 .exit-exam,
 .next-question{
     width: 100%;
+    font-size: 1.5rem;
 }
 
 .navi-panel{
@@ -73,6 +84,7 @@ video::-webkit-media-controls-panel {
 .question-media-img,
 .question-media-video{
     width: 100%;
+    margin-top: 1.5rem;
 }
 
 /* POPUP WINDOW  ------------*/
@@ -128,7 +140,6 @@ video::-webkit-media-controls-panel {
 .js-answers-yn label{
     background-color: #0275d8;
     width: 10rem;
-    height: 3rem;
     margin: 0.5rem;
     padding: 1rem;
     text-align: center;
