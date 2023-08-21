@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer
-from .models import Question
+from .models import Question, QuestionCategory
 import random
 from rest_framework.response import Response
 from rest_framework import status
@@ -45,3 +45,20 @@ class GetExamQuestions(APIView):
         exam_questions = self.get_queryset(categoryName)
         serializer = QuestionSerializer(exam_questions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class GetAllLicenseCategories(APIView):
+
+    def get(self, format=None):
+        category_list = []
+        all_categories = QuestionCategory.objects.all().values_list("category", flat=True)
+
+        for item in all_categories:
+            item = item.split(",")
+            temp = []
+            for subitem in item:
+                if subitem not in category_list and not any(map(str.isdigit, subitem)):
+                    category_list.append(subitem)
+
+        category_list = sorted(category_list)
+        return Response({"categories": category_list}, status=status.HTTP_200_OK)
+
