@@ -84,6 +84,11 @@ video::-webkit-media-controls-enclosure {
     overflow:hidden;
 }
 
+video{
+    pointer-events: none;
+ }
+
+
 /* hide img and video by default */
 .question-media-video{
     display: none;
