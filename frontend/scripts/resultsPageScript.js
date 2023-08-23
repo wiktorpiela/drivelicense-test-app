@@ -26,6 +26,9 @@ const examTryAgain = document.querySelector(".try-again-btn")
 //popup elements ----
 const popupModal = document.getElementById("popupResults")
 
+//placeholder info 
+const placeholderInfo = document.querySelector(".placeholder-info")
+
 function displayPopupResults(){
     popupModal.classList.add("display-results-popup")
 }
@@ -49,6 +52,9 @@ function createSummaryBoxes(parentDiv, questObject, i) {
 
     //on click show question details
     box.addEventListener("click", () => {
+
+        //hide placeholder info firstly
+        placeholderInfo.style.display = "none"
 
         //clear answer class list
         A.classList.remove("sb-green")
