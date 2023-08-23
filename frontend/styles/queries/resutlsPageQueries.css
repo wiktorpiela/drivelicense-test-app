@@ -59,6 +59,15 @@
         width: 4rem;
     }
 
+    .placeholder-info{
+        width: 81rem;
+    }
+
+    .placeholder-info h1{
+        font-size: 3rem;
+        margin: 0 auto;
+    }
+
 }
 
 @media only screen and (max-width: 415px){
@@ -85,4 +94,23 @@
     .lgl-info-popup{
         width: 40rem;
     }
+
+    .placeholder-info{
+        width: 41rem;
+    }
+    
+    .placeholder-info h1{
+        font-size: 2.3rem;
+    }
+}
+
+@media only screen and (max-width: 281px){
+    .placeholder-info{
+        width: 28rem;
+    }
+    
+    .placeholder-info h1{
+        font-size: 2rem;
+    }
+
 }
