@@ -9,3 +9,4 @@ frontend/static
 timerTest/
 # *.ipynb
 data.json
+testapp/locked_media.py

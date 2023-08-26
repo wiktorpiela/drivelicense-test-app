@@ -8,6 +8,7 @@ from rest_framework import status
 from django.db.models import Q
 import operator
 from functools import reduce
+from .locked_media import locked_media_names
 
 class GetExamQuestions(APIView):
     b = "PODSTAWOWY"
@@ -27,7 +28,8 @@ class GetExamQuestions(APIView):
 
         for type, score, sampleSize in self.criteria:
 
-            q_list = [Q(type__icontains = type), Q(score__icontains = score), Q(quest_category__category__icontains = categoryName)] #questionModelForeignkeyfield__fieldnameFromrelatedModel__icontains
+            q_list = [Q(type__icontains = type), Q(score__icontains = score), Q(quest_category__category__icontains = categoryName), ~Q(media__path__in=locked_media_names)]
+            #questionModelForeignkeyfield__fieldnameFromrelatedModel__icontains
 
             currentIdxs = list(
                 Question.objects.filter(reduce(operator.and_, q_list)).values_list("pk", flat=True)
