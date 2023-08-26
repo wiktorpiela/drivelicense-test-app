@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer
-from .models import Question, QuestionCategory
+from .models import Question, QuestionCategory, QuestionMedia
 import random
 from rest_framework.response import Response
 from rest_framework import status
@@ -54,11 +54,23 @@ class GetAllLicenseCategories(APIView):
 
         for item in all_categories:
             item = item.split(",")
-            temp = []
             for subitem in item:
                 if subitem not in category_list and not any(map(str.isdigit, subitem)):
                     category_list.append(subitem)
 
         category_list = sorted(category_list)
         return Response({"categories": category_list}, status=status.HTTP_200_OK)
+    
+class TestMedia(APIView):
+
+    def get(self, request, mediaType, format=None):
+        if mediaType=="img":
+            media_names = QuestionMedia.objects.filter(path__contains=".jpg")
+        elif mediaType=="video":
+            media_names = QuestionMedia.objects.filter(Q(path__contains=".wmv") | Q(path__contains=".mp4"))
+
+        media_names = media_names.values_list("path", flat=True)
+
+        return Response({"media_names":media_names}, status=status.HTTP_200_OK)
+
 
