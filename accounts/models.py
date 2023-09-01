@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
+from uuid import uuid4
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
@@ -12,6 +13,7 @@ class UserProfile(models.Model):
     )
     # pic = models.ImageField(upload_to="drivelicense-user-images/", default="test.jpg")
     stop_notification = models.BooleanField(default=False)
+    is_email_confirmed = models.BooleanField(default=False)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -28,3 +30,8 @@ class UserProfile(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+class EmailConfirmationToken(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

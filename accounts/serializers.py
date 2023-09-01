@@ -31,5 +31,5 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         except ValidationError as e:
             raise serializers.ValidationError(e.messages)
         else:
-            user = User.objects.create_user(username=username,email=email,password=password, is_active=False) 
+            user = User.objects.create_user(username=username,email=email,password=password) 
             return user
