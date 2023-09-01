@@ -1,5 +1,5 @@
 const categoryName = sessionStorage.getItem("categoryName");
-const examUrl = `https://drive-license-exam-app.up.railway.app/exam-questions/${categoryName}`
+const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
 const skipReading = document.querySelector(".skip-reading")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
@@ -123,7 +123,7 @@ closeExamConfirm.addEventListener("click", () => {
 window.onload = (event) => {
 
     //display defualt picture at the beginning
-    mediaImg.src = mediaSrcImg + "img/start.jpg"
+    mediaImg.src = "static/" + "img/start.jpg"
 
     getQuestions(examUrl)
         .then((data) => {
@@ -187,7 +187,7 @@ window.onload = (event) => {
                 basicReadQuestTime--;
                 let progressWidth = basicReadQuestTime / 20 * 100
 
-                mediaImg.src = mediaSrcImg+"img/start.jpg"
+                mediaImg.src = "static/"+"img/start.jpg"
 
                 if (basicReadQuestTime < 0) {
 
@@ -200,7 +200,7 @@ window.onload = (event) => {
 
                     if (question.media.toLowerCase().slice(-4) === ".jpg") {
 
-                        mediaImg.src = mediaSrcImg + "img/" + question.media
+                        mediaImg.src = "static/" + "img/" + question.media
 
                         //answer interval
                         let basicAnswerTime = 15;
@@ -237,7 +237,7 @@ window.onload = (event) => {
 
                         mediaImg.style.display = "none"
                         mediaVideo.style.display = "flex"
-                        mediaVideo.src = mediaSrcVid + "video/" + question.media.replace("wmv", "mp4")
+                        mediaVideo.src = "static/" + "video/" + question.media.replace("wmv", "mp4")
                         mediaVideo.controlsList = "noplaybackrate nofullscreen nodownload";
                         mediaVideo.disablePictureInPicture = true;
                         mediaVideo.muted = true;
@@ -293,7 +293,7 @@ window.onload = (event) => {
 
                     } else if (question.media === "") {
 
-                        mediaImg.src = mediaSrcImg + "img/no_media.jpg"
+                        mediaImg.src = "static/" + "img/no_media.jpg"
                     }
                 } else {
 
@@ -378,7 +378,7 @@ window.onload = (event) => {
                     mediaImg.style.display = "flex"
 
                     if(question.type === "PODSTAWOWY"){
-                        mediaImg.src = mediaSrcImg + "img/start.jpg"
+                        mediaImg.src = "static/" + "img/start.jpg"
                     }
                     
                     mediaVideo.style.display = "none"
@@ -409,7 +409,7 @@ window.onload = (event) => {
 
                                 if (question.media.toLowerCase().slice(-4) === ".jpg") {
 
-                                    mediaImg.src = mediaSrcImg + "img/" + question.media
+                                    mediaImg.src = "static/" + "img/" + question.media
 
                                     //answer interval
                                     let basicAnswerTime = 15;
@@ -451,7 +451,7 @@ window.onload = (event) => {
                                     mediaImg.style.display = "none"
 
                                     mediaVideo.style.display = "flex"
-                                    mediaVideo.src = mediaSrcVid + "video/" + question.media.replace("wmv", "mp4")
+                                    mediaVideo.src = "static/" + "video/" + question.media.replace("wmv", "mp4")
                                     mediaVideo.controlsList = "noplaybackrate nofullscreen nodownload";
                                     mediaVideo.disablePictureInPicture = true;
                                     mediaVideo.muted = true;
@@ -522,9 +522,9 @@ window.onload = (event) => {
                         readTimeBar.style.width = "100%"
 
                         if (question.media === "") {
-                            mediaImg.src = mediaSrcImg + "img/no_media.jpg"
+                            mediaImg.src = "static/" + "img/no_media.jpg"
                         } else {
-                            mediaImg.src = mediaSrcImg + "img/" + question.media
+                            mediaImg.src = "static/" + "img/" + question.media
                         }
 
                         let specQuestTime = 50;

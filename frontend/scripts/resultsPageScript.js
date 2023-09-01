@@ -82,20 +82,20 @@ function createSummaryBoxes(parentDiv, questObject, i) {
 
             mediaImg.style.display = "block"
             mediaVideo.style.display = "none"
-            mediaImg.src = mediaSrcImg + "/img/" + questObject.media
+            mediaImg.src = "static" + "/img/" + questObject.media
 
         } else if (questObject.media.toLowerCase().slice(-4) === ".wmv") {
 
             mediaImg.style.display = "none"
             mediaVideo.style.display = "block"
-            mediaVideo.src = mediaSrcVid + "/video/" + questObject.media.replace("wmv", "mp4")
+            mediaVideo.src = "static" + "/video/" + questObject.media.replace("wmv", "mp4")
             mediaVideo.controlsList = "noplaybackrate nodownload"
 
         } else {
 
             mediaImg.style.display = "block"
             mediaVideo.style.display = "none"
-            mediaImg.src = mediaSrcImg + "/img/no_media.jpg"
+            mediaImg.src = "static" + "/img/no_media.jpg"
 
         }
 
