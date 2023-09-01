@@ -14,6 +14,10 @@ video::-webkit-media-controls-panel {
     background-image: linear-gradient(transparent, transparent) !important;
 }
 
+video{
+    pointer-events: none;
+ }
+
 /* ----- */
 .exam-header{
     display: flex;

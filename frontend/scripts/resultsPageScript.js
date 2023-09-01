@@ -10,6 +10,10 @@ const wrongCountVerbatim2 = document.querySelector(".wrong-count-verbatim2")
 const skipCountVerbatim = document.querySelector(".skip-count-verbatim")
 const skipCountVerbatim2 = document.querySelector(".skip-count-verbatim2")
 
+//media source path
+const mediaSrcImg = "https://res.cloudinary.com/dzblavrli/image/upload/drivelicense/"
+const mediaSrcVid = "https://res.cloudinary.com/dzblavrli/video/upload/drivelicense/"
+
 //question elements hoisting
 const mediaImg = document.querySelector(".question-media-img-result")
 const mediaVideo = document.querySelector(".question-media-video-result")
@@ -78,20 +82,20 @@ function createSummaryBoxes(parentDiv, questObject, i) {
 
             mediaImg.style.display = "block"
             mediaVideo.style.display = "none"
-            mediaImg.src = "static/img/" + questObject.media
+            mediaImg.src = mediaSrcImg + "/img/" + questObject.media
 
         } else if (questObject.media.toLowerCase().slice(-4) === ".wmv") {
 
             mediaImg.style.display = "none"
             mediaVideo.style.display = "block"
-            mediaVideo.src = "static/video/" + questObject.media.replace("wmv", "mp4")
+            mediaVideo.src = mediaSrcVid + "/video/" + questObject.media.replace("wmv", "mp4")
             mediaVideo.controlsList = "noplaybackrate nodownload"
 
         } else {
 
             mediaImg.style.display = "block"
             mediaVideo.style.display = "none"
-            mediaImg.src = "static/img/no_media.jpg"
+            mediaImg.src = mediaSrcImg + "/img/no_media.jpg"
 
         }
 
@@ -242,11 +246,11 @@ window.onload = (event) => {
 
 //navi buttons functionality
 backToHomePage.addEventListener("click", () => {
-    window.location.href = "homepage.html";
+    window.location.href = "./index.html";
 })
 
 examTryAgain.addEventListener("click", () => {
-    window.location.href = "examPage.html";
+    window.location.href = "./examPage.html";
 })
 
 
