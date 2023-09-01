@@ -18,6 +18,8 @@ class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
     permission_classes = [permissions.AllowAny,]
 
+
+
 class LoginUser(APIView):
     def post(self, request, format=None):
         data = request.data
