@@ -37,3 +37,28 @@ html, body {
 .btn:hover{
     background-color: #c77c11;
 }
+
+/* nav */
+nav{
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 5rem;
+    align-items: center;
+    background-color: #0275d8;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover{
+    color: #d5d5d5;
+}
+
+nav img{
+    border-radius: 1rem;
+    width: 5rem;
+}
