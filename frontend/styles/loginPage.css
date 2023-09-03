@@ -61,6 +61,17 @@
     text-decoration: none;
     font-size: 1.5rem;
     color: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+
+.register-link a:first-child{
+    margin-top: 0.5rem;
+}
+
+.register-link a:last-child{
+    padding-bottom: 0;
 }
 
 

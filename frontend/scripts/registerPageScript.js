@@ -17,7 +17,27 @@ const registerUser = async (username, email, password, url) => {
 
     response.json().then(data => {
         console.log(JSON.stringify(data));
+
+        if(response.status===201){
+            const form = document.querySelector(".register-form")
+            form.reset()
+        } else{
+            let errorResponse = Object.values(data)
+            console.log(errorResponse)
+            if(errorResponse>1){
+
+            } else{}
+
+
+            
+        }
+
+
     });
+
+
+
+
 
 }
 
@@ -31,6 +51,8 @@ registerBtn.addEventListener("click", (event) => {
     const pass_rep = document.getElementsByName("password_rep")[0].value
 
     registerUser(username, email, password, createUserUrl)
+
+
 
 })
 

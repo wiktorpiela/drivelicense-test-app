@@ -3,10 +3,15 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import UniqueValidator
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.db import IntegrityError
+from .utils import send_confrimation_email
         
 class UserRegisterSerializer(serializers.ModelSerializer):
- 
+
     email = serializers.EmailField(
+        write_only = True,
         required = True,
         validators=[UniqueValidator(
             queryset = User.objects.all(),
@@ -16,20 +21,34 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password",)
+        fields = ("id", "username", "email" ,"password",)
+        read_only_fields = ("username",)
         extra_kwargs = {
             "password": {"write_only":True},
         }
 
     def create(self, data):
-        username = data.get("username")   
         email = data.get("email")
         password = data.get("password")
-        
+
         try:
             validate_password(password)
         except ValidationError as e:
             raise serializers.ValidationError(e.messages)
         else:
-            user = User.objects.create_user(username=username,email=email,password=password) 
+
+            try:
+                user = User.objects.create_user(username=email,password=password,is_active=False)
+
+            except IntegrityError:
+                raise serializers.ValidationError("A user with that email already exists.")
+            
+            else:
+                send_confrimation_email(email_subject = "Please activate your account", 
+                                        template_path="account_activation_email.html",
+                                        user=user,
+                                        email=email)
             return user
+        
+
+        
