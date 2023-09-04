@@ -63,5 +63,26 @@
     color: black;
 }
 
+/* post-registration status */
+.register-success{
+    display: none;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 6rem;
+    background-color: #d4edda;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    
+}
+
+.register-failed{
+    display: none;
+    background-color: #f8d7da;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 6rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
 
 
