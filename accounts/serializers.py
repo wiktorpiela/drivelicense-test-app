@@ -44,7 +44,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("A user with that email already exists.")
             
             else:
-                send_confrimation_email(email_subject = "Please activate your account", 
+                send_confrimation_email(email_subject = "Aktywacja konta", 
                                         template_path="account_activation_email.html",
                                         user=user,
                                         email=email)

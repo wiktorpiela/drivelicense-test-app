@@ -1,11 +1,11 @@
 {% autoescape off %}
 
-Hi {{user.first_name}},
+Cześć,
 
-Please click below link to activate your account.
+Kliknij poniższy link, aby aktywować konto:
 {{domain}}{% url 'accounts:activateUser' uidb64=uid token=token %}
 
-Best Regards,
-Prawko Team
+Pozdrawiamy,
+Zespół Prawko
 
 {% endautoescape %}
