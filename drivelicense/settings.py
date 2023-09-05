@@ -14,10 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-#CSRF_TRUSTED_ORIGINS = ["drive-license-exam-app.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://drive-license-exam-app.up.railway.app/"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -70,7 +70,8 @@ WSGI_APPLICATION = 'drivelicense.wsgi.application'
 if DEBUG:
     CURRENT_DOMAIN = "http://127.0.0.1:8000/"
 else:
-    pass    
+    CURRENT_DOMAIN = "https://drive-license-exam-app.up.railway.app"    
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

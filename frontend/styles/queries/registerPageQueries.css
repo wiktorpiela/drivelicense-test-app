@@ -1,3 +1,42 @@
+@media only screen and (max-width: 1150px){
+    .register-success,
+    .register-failed{
+        width: 90rem;
+    }
+}
+
+@media only screen and (max-width: 910px){
+    .register-success,
+    .register-failed{
+        width: 75rem;
+    }
+}
+
+@media only screen and (max-width: 760px){
+    .register-success,
+    .register-failed{
+        width: 65rem;
+    }
+    
+    .register-success p,
+    .register-failed li{
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 660px){
+    .register-success,
+    .register-failed{
+        width: 50rem;
+    }
+    
+    .register-success p,
+    .register-failed li{
+        font-size: 1.3rem;
+    }
+}
+
+
 @media only screen and (max-width: 512px){
     nav{
         font-size: 1.5rem;
@@ -6,11 +45,34 @@
     nav img{
         width: 4rem;
     }
+
+    .register-div{
+        font-size: 2.5rem;
+    }
+
+    .form-div form input,
+    .form-div form button{
+        font-size: 1.5rem;
+    }
+
+    .register-success,
+    .register-failed{
+        width: 40rem;
+    }
 }
 
 @media only screen and (max-width: 415px){
     nav{
         justify-content: space-between;
+    }
+
+    .register-div{
+        width: 35rem;
+    }
+
+    .register-success,
+    .register-failed{
+        width: 35rem;
     }
 
 }
@@ -25,4 +87,19 @@
         font-size: 3.5rem;
     }
 
+}
+
+@media only screen and (max-width: 281px){
+    .register-div{
+        width: 26.5rem;
+    }
+
+    .register-success,
+    .register-failed{
+        width: 27rem;
+    }
+
+    .register-failed li{
+        font-size: 1rem;
+    }
 }
