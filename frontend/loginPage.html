@@ -10,13 +10,24 @@
     <link rel="icon" type="image/x-icon" href="styles/img/samochodzik.jpg">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/loginPage.css">
+    <link rel="stylesheet" href="styles/queries/loginPageQueries.css">
 </head>
 <body>
     <nav>
         <a href="./index.html"><img src="styles/img/samochodzik.jpg" alt="pic"></a>
-        <a href="./registerPage.html">Rejestracja</a>
-        <a href="./loginPage.html">Logowanie</a>
-        <a href="./">Forum</a>
+        
+        <div class="main-nav">
+            <a href="./registerPage.html">Rejestracja</a>
+            <a href="./loginPage.html">Logowanie</a>
+            <a href="./">Forum</a>
+        </div>
+
+        <div class="mobile-adj">
+            <a class="nav-burger">
+                <ion-icon name="menu-outline" class="nav-burger-icon"></ion-icon>
+            </a>
+        </div>
+
     </nav>
     <div class="row">
 
@@ -48,7 +59,7 @@
 
     </div>
 
-
+    <script src="scripts/nav.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

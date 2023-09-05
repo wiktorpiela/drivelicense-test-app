@@ -237,7 +237,7 @@ window.onload = (event) => {
 
                         mediaImg.style.display = "none"
                         mediaVideo.style.display = "flex"
-                        mediaVideo.src = "static/" + "video/" + question.media.replace("wmv", "mp4")
+                        mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                         mediaVideo.controlsList = "noplaybackrate nofullscreen nodownload";
                         mediaVideo.disablePictureInPicture = true;
                         mediaVideo.muted = true;
@@ -451,7 +451,7 @@ window.onload = (event) => {
                                     mediaImg.style.display = "none"
 
                                     mediaVideo.style.display = "flex"
-                                    mediaVideo.src = "static/" + "video/" + question.media.replace("wmv", "mp4")
+                                    mediaVideo.src = "static/video/" + question.media.replace("wmv", "mp4")
                                     mediaVideo.controlsList = "noplaybackrate nofullscreen nodownload";
                                     mediaVideo.disablePictureInPicture = true;
                                     mediaVideo.muted = true;
