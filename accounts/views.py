@@ -28,10 +28,10 @@ def activate(request, uidb64, token):
     else:
         return render(request, "activation_failed.html")
 
-class CustomGetToken(APIView):
+class GetToken(APIView):
 
     def post(self, request, format=None):
-        username = request.data["username"]
+        username = request.data["email"]
         password = request.data["password"]
 
         user = authenticate(username=username, password=password)

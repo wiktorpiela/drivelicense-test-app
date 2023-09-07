@@ -1,5 +1,5 @@
 const loginBtn = document.querySelector(".btnJS")
-const createUserUrl = "http://127.0.0.1:8000/accounts/get-token/"
+const getTokenUrl = "http://127.0.0.1:8000/accounts/get-token/"
 const postLoginFailed = document.querySelector(".register-failed");
 
 const loginUser = async (email, password, url) => {
@@ -17,6 +17,11 @@ const loginUser = async (email, password, url) => {
 
     response.json().then(data => {
         console.log(JSON.stringify(data));
+
+
+        let userToken = Object.values(data)[0];
+
+        console.log(userToken)
 
         // if (response.status === 201) {
         //     const form = document.querySelector(".register-form")
@@ -37,31 +42,25 @@ const loginUser = async (email, password, url) => {
 
         //     postRegisterFailed.style.display = "block";
 
-        }
+        // }
 
     });
 
 
 }
 
-registerBtn.addEventListener("click", (event) => {
-
+loginBtn.addEventListener("click", (event) => {
 
     // postRegisterFailed.innerHTML = "";
     // postRegisterFailed.style.display = "none"
-    // event.preventDefault()
-    // const email = document.getElementsByName("email")[0].value
-    // const password = document.getElementsByName("password_init")[0].value
-    // const pass_rep = document.getElementsByName("password_rep")[0].value
+    event.preventDefault()
+    const email = document.getElementsByName("email")[0].value
+    const password = document.getElementsByName("password_init")[0].value
 
-    // if (password === pass_rep) {
-    //     registerUser(email, password, createUserUrl)
-    // } else {
-    //     const error = document.createElement("li")
-    //     error.innerHTML = "Podane hasła róźnią się od siebie!"
-    //     postRegisterFailed.appendChild(error);
-    //     postRegisterFailed.style.display = "block"
-    // }
+
+    loginUser(email, password, getTokenUrl)
+
+
 
 
 })
