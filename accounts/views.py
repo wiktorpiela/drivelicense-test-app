@@ -3,12 +3,12 @@ from rest_framework import status, mixins, generics, permissions, filters
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from .serializers import UserRegisterSerializer
-from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.models import User
 from django.shortcuts import render
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
@@ -28,23 +28,30 @@ def activate(request, uidb64, token):
     else:
         return render(request, "activation_failed.html")
 
+class CustomGetToken(APIView):
 
-# class LoginUser(APIView):
-#     def post(self, request, format=None):
-#         data = request.data
-#         username = data.get("username", None)
-#         password = data.get("password", None)
+    def post(self, request, format=None):
+        username = request.data["username"]
+        password = request.data["password"]
 
-#         user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
-#         print(user)
+        if user is not None:
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({"token":f"{token}"})
+        
+        else:
+            #user = User.objects.get(username=username)
+            user = User.objects.filter(username=username).exists()
 
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return Response(status=status.HTTP_200_OK)
-#             else:
-#                 return Response(status=status.HTTP_404_NOT_FOUND)
-#         else:
-#             return Response(status=status.HTTP_404_NOT_FOUND)
+            if not user :
+                return Response({"email": "This user doens't exist."})
+        
+            else:
+                return Response({"password": "This password is incorrect."})
+
+
+            
+
+
 
