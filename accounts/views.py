@@ -9,6 +9,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import render
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from .utils import send_reset_password_email
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
@@ -46,9 +47,27 @@ class GetToken(APIView):
 
             if not user :
                 return Response({"email": "This user doens't exist."})
-        
             else:
                 return Response({"password": "This password is incorrect."})
+            
+class ForgotPassword(APIView):
+
+    def post(self, request, format=None):
+        email = request.data["email"]
+
+        if User.objects.filter(username=email).exists():
+            user = User.objects.get(username=email)
+            send_reset_password_email(request,
+                                      "Reset hasła",
+                                      "reset_password_email.html",
+                                      user,
+                                      email)
+            return Response(status=status.HTTP_200_OK)
+
+
+        else:
+            return Response({"email":"This user doesn't exist!"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
             

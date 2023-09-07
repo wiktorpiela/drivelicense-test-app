@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
 
 def send_confrimation_email(email_subject:str, template_path:str, user:object, email:str):
     currentSite = settings.CURRENT_DOMAIN
@@ -23,4 +24,23 @@ def send_confrimation_email(email_subject:str, template_path:str, user:object, e
                             emialSender, 
                             to=[emailReceiver])
     
+    send_email.send()
+
+def send_reset_password_email(request:object, email_subject:str, template_path:str, user:object, email:str):
+    currentSite = get_current_site(request)
+    mail_subject = email_subject
+    message = render_to_string(template_path, {
+        "user": user,
+        "domain": currentSite,
+        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+        "token": default_token_generator.make_token(user)
+    })
+
+    emailReceiver = email
+    emailSender = settings.DEFAULT_FROM_EMAIL
+    send_email= EmailMessage(mail_subject, 
+                             message, 
+                             emailSender,
+                             to=[emailReceiver])
+
     send_email.send()
