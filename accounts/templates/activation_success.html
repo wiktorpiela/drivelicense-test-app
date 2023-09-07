@@ -9,11 +9,66 @@
     <link rel="icon" type="image/x-icon" href="./frontend/styles/img/samochodzik.jpg">
     <style>
 
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            font-size: 10px;
+            font-weight: 400;
+            font-family: 'Lato';
+        }
+
+        .row {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .success{
+            text-align: center;
+            background-color: #d4edda;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin: 6rem auto;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .success h3{
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .success a{
+            text-decoration: none;
+            color: black;
+            font-size: 3rem;
+        }
+
+        .success a:hover{
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 1220px){
+
+            
+        }
+
     </style>
-    <title>Sukces</title>
+    <title>Aktywacja konta</title>
 </head>
 <body>
-    <h1>Konto zostało aktywowane</h1>
-    <h1>Możesz zamknąć kartę i wrócić na stronę</h1><a href="https://wiktorpiela.github.io/drive-license-exam-app-frontend/registerPage" target="_blank">dd</a>
+    <div class="row">
+        <div class="success">
+            <img src="/frontend/styles/img/samochodzik.jpg" alt="pic">
+            <h3>Konto zostało aktywowane !</h3>
+            <a href="https://wiktorpiela.github.io/drive-license-exam-app-frontend/" target="_blank">Kliknij wrócić na stronę główną!</a>
+        </div>
+    </div>
 </body>
 </html>

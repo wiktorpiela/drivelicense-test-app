@@ -8,11 +8,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="styles/img/samochodzik.jpg">
     <style>
-        
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            font-size: 10px;
+            font-weight: 400;
+            font-family: 'Lato';
+        }
+
+        .row {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .failed{
+            text-align: center;
+            background-color: #f8d7da;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin: 6rem auto;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .failed h3{
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .failed a{
+            text-decoration: none;
+            color: black;
+            font-size: 3rem;
+        }
+
+        .failed a:hover{
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 1220px){
+ 
+        }
+
     </style>
     <title>Niepowodzenie</title>
 </head>
 <body>
-    <h1>Aktywacja konta nie powiodła się</h1>
+    <div class="row">
+        <div class="failed">
+            <h3>Aktywacja konta nie powiodła się ! :(</h3>
+            <a href="https://wiktorpiela.github.io/drive-license-exam-app-frontend/" target="_blank">Kliknij wrócić na stronę główną!</a>
+        </div>
+    </div>
+    
 </body>
 </html>
