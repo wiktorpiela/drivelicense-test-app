@@ -63,12 +63,24 @@ class ForgotPassword(APIView):
                                       user,
                                       email)
             return Response(status=status.HTTP_200_OK)
-
-
+        
         else:
             return Response({"email":"This user doesn't exist!"}, status=status.HTTP_400_BAD_REQUEST)
 
+def reset_password_validate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
 
+    if user is not None and default_token_generator.check_token(user, token):
+        request.session["uid"] = uid
+
+        return render(request, "reset_password.html")
+    else:
+
+        return render(request, "reset_password_failed_page.html")
 
             
 
