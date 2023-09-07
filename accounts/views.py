@@ -76,11 +76,18 @@ def reset_password_validate(request, uidb64, token):
 
     if user is not None and default_token_generator.check_token(user, token):
         request.session["uid"] = uid
-
         return render(request, "reset_password.html")
     else:
-
         return render(request, "reset_password_failed_page.html")
+    
+class ResetPassword(APIView):
+    def post(self, request, format=None):
+        password = request.data["password"]
+        uid = request.session.get("uid")
+        user = User.objects.get(pk = uid)
+        user.set_password(password)
+        user.save()
+        return Response(status=status.HTTP_200_OK)
 
             
 
