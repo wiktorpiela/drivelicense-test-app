@@ -187,7 +187,7 @@ window.onload = (event) => {
                 basicReadQuestTime--;
                 let progressWidth = basicReadQuestTime / 20 * 100
 
-                mediaImg.src = "static/"+"img/start.jpg"
+                mediaImg.src = "static/" + "img/start.jpg"
 
                 if (basicReadQuestTime < 0) {
 
@@ -377,10 +377,10 @@ window.onload = (event) => {
                     mediaVideo.currentTime = 0;
                     mediaImg.style.display = "flex"
 
-                    if(question.type === "PODSTAWOWY"){
+                    if (question.type === "PODSTAWOWY") {
                         mediaImg.src = "static/" + "img/start.jpg"
                     }
-                    
+
                     mediaVideo.style.display = "none"
                     playingVideoInfo.innerHTML = ""
                     readTimeProgressBar.style.display = "flex"

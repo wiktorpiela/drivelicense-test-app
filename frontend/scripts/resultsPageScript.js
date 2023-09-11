@@ -192,6 +192,26 @@ function createSummaryBoxes(parentDiv, questObject, i) {
     parentDiv.appendChild(box)
 }
 
+const storeExamResult = async (userToken, total_score, correct_answers, wrong_answers, skip_answers, url) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${userToken}`
+        },
+        body: JSON.stringify({
+            total_score,
+            correct_answers,
+            wrong_answers,
+            skip_answers
+        })
+    });
+    response.json().then(data => {
+        console.log(JSON.stringify(data));
+    });
+}
+
 window.onload = (event) => {
 
     //get variables from exam page
@@ -242,6 +262,17 @@ window.onload = (event) => {
         examResultVerbatim2.style.color = "red"
         examResultVerbatim2.innerHTML = "NEGATYWNY"
     }
+
+
+    //if user is authenticated, send post request to save exam result in db
+    const storeExamResultUrl = "http://127.0.0.1:8000/store-exam-result/"
+    let userToken = sessionStorage.getItem("userToken");
+    console.log(userToken)
+    if (userToken !== null) {
+        storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, storeExamResultUrl)
+    }
+    console.log("request sent")
+
 }
 
 //navi buttons functionality

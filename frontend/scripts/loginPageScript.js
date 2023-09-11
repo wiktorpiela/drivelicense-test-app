@@ -18,11 +18,10 @@ const loginUser = async (email, password, url) => {
     response.json().then(data => {
         console.log(JSON.stringify(data));
 
-
         let userToken = Object.values(data)[0];
-
+        sessionStorage.setItem("userToken", userToken);
         console.log(userToken)
-
+        
         // if (response.status === 201) {
         //     const form = document.querySelector(".register-form")
         //     const postRegisterSuccess = document.querySelector(".register-success")
@@ -59,9 +58,8 @@ loginBtn.addEventListener("click", (event) => {
 
 
     loginUser(email, password, getTokenUrl)
-
-
-
+    
+    // let userScore = sessionStorage.getItem("userScore");
 
 })
 
