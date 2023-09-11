@@ -16,3 +16,9 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = ("id", "quest_txt", "abc_answers", "quest_correct_answer", 
                   "media", "score", "type", "subject", "legal_source", "safety_relation", "quest_category", "quest_txt", 
                   "quest_purpose",)
+        
+class MainResultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.MainResult
+        fields = ("id", "user", "exam_date", "total_score", "correct_answers", "wrong_answers", "skip_answers",)
+        read_only_fields = ("id", "user", "exam_date",)

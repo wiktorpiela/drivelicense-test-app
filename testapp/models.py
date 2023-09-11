@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class QuestionCategory(models.Model):
     category= models.CharField(max_length=50)
@@ -78,3 +79,11 @@ class Question(models.Model):
     quest_txt = models.ForeignKey(QuestionText, on_delete=models.DO_NOTHING, related_name="quest_txt")
     safety_relation = models.ForeignKey(QuestionSafety, on_delete=models.DO_NOTHING, related_name="safety")
     subject = models.ForeignKey(QuestionSubject, on_delete=models.DO_NOTHING, related_name="subject")
+
+class MainResult(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    exam_date = models.DateTimeField(auto_now_add=True)
+    total_score = models.CharField(max_length=2)
+    correct_answers = models.CharField(max_length=2)
+    wrong_answers = models.CharField(max_length=2)
+    skip_answers = models.CharField(max_length=2)

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.views import APIView
-from .serializers import QuestionSerializer
+from .serializers import QuestionSerializer, MainResultSerializer
 from .models import Question, QuestionCategory, QuestionMedia
 import random
 from rest_framework.response import Response
@@ -74,5 +74,17 @@ class TestMedia(APIView):
         media_names = media_names.values_list("path", flat=True)
 
         return Response({"media_names":media_names}, status=status.HTTP_200_OK)
+    
+class StoreExamResult(APIView):
+    
+    def post(self, request, format=None):
+        serializer = MainResultSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=self.request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
