@@ -87,3 +87,17 @@ class MainResult(models.Model):
     correct_answers = models.CharField(max_length=2)
     wrong_answers = models.CharField(max_length=2)
     skip_answers = models.CharField(max_length=2)
+
+class DetailResult(models.Model):
+    main_result = models.ForeignKey(MainResult, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    isCorrect = models.BooleanField(default=False)
+    userAnswer = models.CharField(max_length=1)
+
+# [
+#     {
+#         'questionId':1,
+#         isCorrect: True,
+#         userAnswer:T,
+#     }
+# ]

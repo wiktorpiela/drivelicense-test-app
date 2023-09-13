@@ -18,7 +18,7 @@ const loginUser = async (email, password, url) => {
     response.json().then(data => {
         console.log(JSON.stringify(data));
 
-        let userToken = Object.values(data)[0];
+        let userToken = data.token;
         sessionStorage.setItem("userToken", userToken);
         console.log(userToken)
         

@@ -192,7 +192,7 @@ function createSummaryBoxes(parentDiv, questObject, i) {
     parentDiv.appendChild(box)
 }
 
-const storeExamResult = async (userToken, total_score, correct_answers, wrong_answers, skip_answers, url) => {
+const storeExamResult = async (userToken, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -204,7 +204,9 @@ const storeExamResult = async (userToken, total_score, correct_answers, wrong_an
             total_score,
             correct_answers,
             wrong_answers,
-            skip_answers
+            skip_answers,
+            //----
+            detailsArray
         })
     });
     response.json().then(data => {
@@ -217,6 +219,20 @@ window.onload = (event) => {
     //get variables from exam page
     let summaryQuestions = new Map(JSON.parse(localStorage.summaryQuestions));
     let userScore = sessionStorage.getItem("userScore");
+
+    console.log(summaryQuestions)
+    let examDetailsArray = new Array();
+    summaryQuestions.forEach((data) => {
+        const examDetails = {
+            questionId: data.id,
+            isCorrect: data.isCorrect,
+            userAnswer: data.userAnswer,
+        }
+        examDetailsArray.push(examDetails)
+    })
+
+    // console.log("array:")
+    // console.log(JSON.stringify(examDetailsArray))
 
     //new variables
     let correctCount = 0;
@@ -263,15 +279,14 @@ window.onload = (event) => {
         examResultVerbatim2.innerHTML = "NEGATYWNY"
     }
 
-
     //if user is authenticated, send post request to save exam result in db
     const storeExamResultUrl = "http://127.0.0.1:8000/store-exam-result/"
     let userToken = sessionStorage.getItem("userToken");
-    console.log(userToken)
+    console.log("user token " + userToken)
     if (userToken !== null) {
-        storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, storeExamResultUrl)
+        storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
+        console.log("request sent")
     }
-    console.log("request sent")
 
 }
 
@@ -283,5 +298,3 @@ backToHomePage.addEventListener("click", () => {
 examTryAgain.addEventListener("click", () => {
     window.location.href = "./examPage.html";
 })
-
-
