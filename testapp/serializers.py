@@ -26,5 +26,5 @@ class MainResultSerializer(serializers.ModelSerializer):
 class DetailResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DetailResult
-        fields = ("id", "main_result", "question", "isCorrect", "userAnswer",)
+        fields = ("id", "main_result", "questionId", "isCorrect", "userAnswer",)
         read_only_fields = ("id", "main_result",)

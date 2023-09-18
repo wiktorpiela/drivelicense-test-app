@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer, MainResultSerializer, DetailResultSerializer
-from .models import Question, QuestionCategory, QuestionMedia
+from .models import Question, QuestionCategory, QuestionMedia, MainResult
 import random
 from rest_framework.response import Response
 from rest_framework import status
@@ -78,11 +78,18 @@ class TestMedia(APIView):
 class StoreExamResult(APIView):
     
     def post(self, request, format=None):
-        quest_details = request.data.get("detailsArray")
-        
         serializer = MainResultSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=self.request.user)
+
+            quest_details = request.data.get("detailsArray")
+            main_result = MainResult.objects.get(pk=serializer.data.get("id"))
+
+            for detail in quest_details:
+                sub_serializer = DetailResultSerializer(data=detail)
+                if sub_serializer.is_valid():
+                    sub_serializer.save(main_result=main_result)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)

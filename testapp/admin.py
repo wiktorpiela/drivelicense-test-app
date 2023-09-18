@@ -10,3 +10,6 @@ admin.site.register(models.QuestionText)
 admin.site.register(models.QuestionSafety)
 admin.site.register(models.QuestionSubject)
 admin.site.register(models.Question)
+
+admin.site.register(models.MainResult)
+
