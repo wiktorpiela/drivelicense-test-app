@@ -31,7 +31,7 @@ window.onload = (event) => {
         navUnauth.style.display = "none";
         navAuth.style.display = "flex";
     }
-
+    
     getCategoryDropdown(categoryUrl)
         .then((data) => {
 

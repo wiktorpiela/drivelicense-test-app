@@ -40,8 +40,6 @@ const registerUser = async (email, password, url) => {
         }
 
     });
-
-
 }
 
 registerBtn.addEventListener("click", (event) => {

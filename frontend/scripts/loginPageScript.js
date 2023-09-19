@@ -48,18 +48,23 @@ const loginUser = async (email, password, url) => {
 
 }
 
-loginBtn.addEventListener("click", (event) => {
+window.onload = (event) => {
 
-    // postRegisterFailed.innerHTML = "";
-    // postRegisterFailed.style.display = "none"
-    event.preventDefault()
-    const email = document.getElementsByName("email")[0].value
-    const password = document.getElementsByName("password_init")[0].value
+    let userToken = sessionStorage.getItem("userToken");
+    navUnauth = document.querySelector(".unauthJS")
+    navAuth = document.querySelector(".authJS")
+    if(userToken!==null){
+        navUnauth.style.display = "none";
+        navAuth.style.display = "flex";
+    }
+
+    loginBtn.addEventListener("click", (event) => {
+        //event.preventDefault()
+        const email = document.getElementsByName("email")[0].value
+        const password = document.getElementsByName("password_init")[0].value
+        loginUser(email, password, getTokenUrl)
+    })
+}
 
 
-    loginUser(email, password, getTokenUrl)
-    
-    // let userScore = sessionStorage.getItem("userScore");
-
-})
 
