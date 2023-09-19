@@ -23,6 +23,15 @@ confirmStartExam.disabled = true
 
 // populate dropdown category from request data on webpage load
 window.onload = (event) => {
+
+    let userToken = sessionStorage.getItem("userToken");
+    navUnauth = document.querySelector(".unauthJS")
+    navAuth = document.querySelector(".authJS")
+    if(userToken!==null){
+        navUnauth.style.display = "none";
+        navAuth.style.display = "flex";
+    }
+
     getCategoryDropdown(categoryUrl)
         .then((data) => {
 
