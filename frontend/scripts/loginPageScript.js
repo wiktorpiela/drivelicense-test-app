@@ -1,6 +1,7 @@
 const loginBtn = document.querySelector(".btnJS")
 const getTokenUrl = "http://127.0.0.1:8000/accounts/get-token/"
-const postLoginFailed = document.querySelector(".register-failed");
+const loginSuccess = document.querySelector(".login-success")
+const loginFailed = document.querySelector(".login-failed")
 
 const loginUser = async (email, password, url) => {
     const response = await fetch(url, {
@@ -22,49 +23,47 @@ const loginUser = async (email, password, url) => {
         sessionStorage.setItem("userToken", userToken);
         console.log(userToken)
         
-        // if (response.status === 201) {
-        //     const form = document.querySelector(".register-form")
-        //     const postRegisterSuccess = document.querySelector(".register-success")
-        //     postRegisterSuccess.style.display = "block";
-        //     form.reset()
-        // } else {
-        //     let errorResponse = Object.values(data);
-        //     const postRegisterFailed = document.querySelector(".register-failed");
-        //     console.log(errorResponse)
-        //     console.log(errorResponse.length)
+        if (response.status === 200) {
 
-        //     for (let i = 0; i < errorResponse.length; i++) {
-        //         const error = document.createElement("li")
-        //         error.innerHTML = errorResponse[i];
-        //         postRegisterFailed.appendChild(error);
-        //     }
-
-        //     postRegisterFailed.style.display = "block";
-
-        // }
+            loginFailed.style.display = "none";
+            loginSuccess.style.display = "block";
+            loginSuccess.innerHTML = "Zalogowano pomyślnie";
+            let sec_delay = 2;
+            const delay = setInterval(() => {
+                sec_delay--;
+                if(sec_delay===0){
+                    window.location.href = "./index.html";
+                }
+            }, 1000)
+        
+        } else {
+            loginFailed.style.display = "block";
+            loginFailed.innerHTML = data.error;
+        }
 
     });
 
 
 }
 
-window.onload = (event) => {
 
-    let userToken = sessionStorage.getItem("userToken");
-    navUnauth = document.querySelector(".unauthJS")
-    navAuth = document.querySelector(".authJS")
-    if(userToken!==null){
-        navUnauth.style.display = "none";
-        navAuth.style.display = "flex";
-    }
+loginBtn.addEventListener("click", (event) => {
 
-    loginBtn.addEventListener("click", (event) => {
-        //event.preventDefault()
-        const email = document.getElementsByName("email")[0].value
-        const password = document.getElementsByName("password_init")[0].value
-        loginUser(email, password, getTokenUrl)
-    })
-}
+    loginSuccess.innerHTML = "";
+    loginFailed.innerHTML = "";
+
+    event.preventDefault()
+    const email = document.getElementsByName("email")[0].value
+    const password = document.getElementsByName("password_init")[0].value
+    loginUser(email, password, getTokenUrl)
+})
+
+
+
+
+
+
+
 
 
 

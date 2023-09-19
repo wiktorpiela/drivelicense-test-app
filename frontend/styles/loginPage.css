@@ -16,7 +16,7 @@
     color: #829695
 }
 
-/* register div */
+/* login div */
 .login-div{
     font-size: 3.5rem;
     width: 40rem;
@@ -73,6 +73,30 @@
 .register-link a:last-child{
     padding-bottom: 0;
 }
+
+/* post-login status */
+.login-success{
+    display: none;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 6rem;
+    background-color: #d4edda;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 6rem auto;
+}
+
+.login-failed{
+    display: none;
+    background-color: #f8d7da;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 6rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 6rem auto;
+}
+
 
 
 

@@ -39,16 +39,16 @@ class GetToken(APIView):
 
         if user is not None:
             token, created = Token.objects.get_or_create(user=user)
-            return Response({"token":f"{token}"})
+            return Response({"token":f"{token}"}, status=status.HTTP_200_OK)
         
         else:
             #user = User.objects.get(username=username)
             user = User.objects.filter(username=username).exists()
 
             if not user :
-                return Response({"email": "This user doens't exist."})
+                return Response({"error": "This user doens't exist."}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                return Response({"password": "This password is incorrect."})
+                return Response({"error": "This password is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
             
 class ForgotPassword(APIView):
 
