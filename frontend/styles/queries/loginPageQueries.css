@@ -1,3 +1,34 @@
+@media only screen and (max-width: 1150px){
+    .login-success,
+    .login-failed{
+        width: 90rem;
+    }
+}
+
+@media only screen and (max-width: 910px){
+    .login-success,
+    .login-failed{
+        width: 75rem;
+    }
+}
+
+@media only screen and (max-width: 760px){
+    .login-success,
+    .login-failed{
+        width: 65rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 660px){
+    .register-success,
+    .register-failed{
+        width: 50rem;
+        font-size: 1.3rem;
+    }
+}
+
+
 @media only screen and (max-width: 512px){
     nav{
         font-size: 1.5rem;
@@ -6,11 +37,34 @@
     nav img{
         width: 4rem;
     }
+
+    .login-div{
+        font-size: 2.5rem;
+    }
+
+    .form-div form input,
+    .form-div form button{
+        font-size: 1.5rem;
+    }
+
+    .login-success,
+    .login-failed{
+        width: 40rem;
+    }
 }
 
 @media only screen and (max-width: 415px){
     nav{
         justify-content: space-between;
+    }
+
+    .login-div{
+        width: 35rem;
+    }
+
+    .login-success,
+    .login-failed{
+        width: 35rem;
     }
 
 }
@@ -25,4 +79,23 @@
         font-size: 3.5rem;
     }
 
+}
+
+@media only screen and (max-width: 281px){
+    .login-div{
+        width: 26.5rem;
+    }
+
+    .login-success,
+    .login-failed{
+        width: 27rem;
+    }
+
+    .login-failed{
+        font-size: 1rem;
+    }
+
+    .register-link a{
+        font-size: 1.4rem;
+    }
 }
