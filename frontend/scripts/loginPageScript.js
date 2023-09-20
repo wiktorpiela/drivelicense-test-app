@@ -17,11 +17,11 @@ const loginUser = async (email, password, url) => {
     });
 
     response.json().then(data => {
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
 
         let userToken = data.token;
         sessionStorage.setItem("userToken", userToken);
-        console.log(userToken)
+        //console.log(userToken)
         
         if (response.status === 200) {
 
