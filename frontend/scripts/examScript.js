@@ -3,6 +3,7 @@ const examUrl = `http://127.0.0.1:8000/exam-questions/${categoryName}`
 const nextQuestion = document.querySelector(".next-question")
 const skipReading = document.querySelector(".skip-reading")
 const closeExamConfirm = document.querySelector(".close-exam-confirm")
+const skipExamConfirm = document.querySelector(".skip-exam-confirm")
 const popupExam = document.querySelector(".popup-info")
 
 //exam answer buttons
@@ -351,6 +352,13 @@ window.onload = (event) => {
 
                 //disable next question button on next question and radio button in not selected yet
                 nextQuestion.disabled = true
+
+                //on skip exam btn click
+                skipExamConfirm.addEventListener("click", () => {
+                    sessionStorage.setItem("userScore", userScore);
+                    localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
+                    window.location.href = "./resultsPage.html";
+                })
 
                 //if last question go to results page
                 //pass variables on the next page
