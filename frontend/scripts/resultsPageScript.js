@@ -24,7 +24,7 @@ const YES = document.querySelector(".yes")
 const NO = document.querySelector(".no")
 
 //navi elements
-const backToHomePage = document.querySelector(".exit-btn")
+const saveResult = document.querySelector(".save-btn")
 const examTryAgain = document.querySelector(".try-again-btn")
 
 //popup elements ----
@@ -33,20 +33,20 @@ const popupModal = document.getElementById("popupResults")
 //placeholder info 
 const placeholderInfo = document.querySelector(".placeholder-info")
 
-function displayPopupResults(){
+function displayPopupResults() {
     popupModal.classList.add("display-results-popup")
 }
 
-function closePopupResults(){
+function closePopupResults() {
     popupModal.classList.remove("display-results-popup")
 }
 // -----
 
-function openLglPopup(){
+function openLglPopup() {
     lglPopup.classList.add("open-lgl-popup")
 }
 
-function closeLglPopup(){
+function closeLglPopup() {
     lglPopup.classList.remove("open-lgl-popup")
 }
 
@@ -216,6 +216,12 @@ const storeExamResult = async (userToken, total_score, correct_answers, wrong_an
 
 window.onload = (event) => {
 
+    //if user is authenticated enable save button
+    let userToken = sessionStorage.getItem("userToken");
+    if (userToken !== null) {
+        saveResult.disabled = false
+    }
+
     //get variables from exam page
     let summaryQuestions = new Map(JSON.parse(localStorage.summaryQuestions));
     let userScore = sessionStorage.getItem("userScore");
@@ -279,21 +285,25 @@ window.onload = (event) => {
         examResultVerbatim2.innerHTML = "NEGATYWNY"
     }
 
-    //if user is authenticated, send post request to save exam result in db
-    const storeExamResultUrl = "http://127.0.0.1:8000/store-exam-result/"
-    let userToken = sessionStorage.getItem("userToken");
-    console.log("user token " + userToken)
-    if (userToken !== null) {
-        storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
-        console.log("request sent")
-    }
+    saveResult.addEventListener("click", () => {
+
+        //if user is authenticated, send post request to save exam result in db
+        const storeExamResultUrl = "http://127.0.0.1:8000/store-exam-result/"
+        let userToken = sessionStorage.getItem("userToken");
+        //console.log("user token " + userToken)
+        if (userToken !== null) {
+            storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
+            //console.log("request sent")
+        }
+    
+    })
+
+
 
 }
 
 //navi buttons functionality
-backToHomePage.addEventListener("click", () => {
-    window.location.href = "./index.html";
-})
+
 
 examTryAgain.addEventListener("click", () => {
     window.location.href = "./examPage.html";
