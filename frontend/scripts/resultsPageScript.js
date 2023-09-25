@@ -218,14 +218,20 @@ window.onload = (event) => {
 
     //if user is authenticated enable save button
     let userToken = sessionStorage.getItem("userToken");
+    let navUnauth = document.querySelector(".unauthJS")
+    let navAuth = document.querySelector(".authJS")
     if (userToken !== null) {
         saveResult.disabled = false
+        navUnauth.style.display = "none";
+        navAuth.style.display = "flex";
     }
 
     //get variables from exam page
     let summaryQuestions = new Map(JSON.parse(localStorage.summaryQuestions));
     let userScore = sessionStorage.getItem("userScore");
+    let examDate = sessionStorage.getItem("examDate");
 
+    console.log(examDate)
     console.log(summaryQuestions)
     let examDetailsArray = new Array();
     summaryQuestions.forEach((data) => {

@@ -355,6 +355,8 @@ window.onload = (event) => {
 
                 //on skip exam btn click
                 skipExamConfirm.addEventListener("click", () => {
+                    let examDate = new Date().toJSON();
+                    sessionStorage.setItem("examDate", examDate);
                     sessionStorage.setItem("userScore", userScore);
                     localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
                     window.location.href = "./resultsPage.html";
@@ -363,6 +365,8 @@ window.onload = (event) => {
                 //if last question go to results page
                 //pass variables on the next page
                 if (i >= questCount) {
+                    let examDate = new Date().toJSON();
+                    sessionStorage.setItem("examDate", examDate);
                     sessionStorage.setItem("userScore", userScore);
                     localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
                     window.location.href = "./resultsPage.html";
