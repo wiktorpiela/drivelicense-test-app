@@ -78,6 +78,11 @@ class TestMedia(APIView):
 class StoreExamResult(APIView):
     
     def post(self, request, format=None):
+        isCreated = MainResult.objects.filter(user=self.request.user, exam_date=request.data.get("exam_date")).exists()
+
+        if isCreated:
+            return Response({"error":"Egzamin już został zapisany!"})
+        
         serializer = MainResultSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=self.request.user)
@@ -91,6 +96,7 @@ class StoreExamResult(APIView):
                     sub_serializer.save(main_result=main_result)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
