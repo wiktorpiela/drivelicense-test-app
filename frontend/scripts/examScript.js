@@ -358,6 +358,17 @@ window.onload = (event) => {
                     let examDate = new Date().toJSON();
                     sessionStorage.setItem("examDate", examDate);
                     sessionStorage.setItem("userScore", userScore);
+
+                    let diff = questCount - summaryQuestions.size
+                    if (diff !== 0) {
+                        for(let j=summaryQuestions.size; j<questCount; j++){
+                            question = questions[j];
+                            question.userAnswer = null;
+                            question.isCorrect = false;
+                            summaryQuestions.set(j+1, question)
+                        }
+                    }
+
                     localStorage.summaryQuestions = JSON.stringify(Array.from(summaryQuestions.entries()));
                     window.location.href = "./resultsPage.html";
                 })

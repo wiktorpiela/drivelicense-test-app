@@ -233,7 +233,7 @@ window.onload = (event) => {
     let examDate = sessionStorage.getItem("examDate");
 
     //console.log(examDate)
-    //console.log(summaryQuestions)
+    console.log(summaryQuestions)
     let examDetailsArray = new Array();
     summaryQuestions.forEach((data) => {
         const examDetails = {
