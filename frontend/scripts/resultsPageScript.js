@@ -192,7 +192,7 @@ function createSummaryBoxes(parentDiv, questObject, i) {
     parentDiv.appendChild(box)
 }
 
-const storeExamResult = async (userToken, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url) => {
+const storeExamResult = async (userToken, exam_date, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -201,6 +201,7 @@ const storeExamResult = async (userToken, total_score, correct_answers, wrong_an
             'Authorization': `Token ${userToken}`
         },
         body: JSON.stringify({
+            exam_date,
             total_score,
             correct_answers,
             wrong_answers,
@@ -298,7 +299,7 @@ window.onload = (event) => {
         let userToken = sessionStorage.getItem("userToken");
         //console.log("user token " + userToken)
         if (userToken !== null) {
-            storeExamResult(userToken, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
+            storeExamResult(userToken, examDate, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
             //console.log("request sent")
         }
     
