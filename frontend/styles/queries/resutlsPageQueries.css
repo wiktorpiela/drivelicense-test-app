@@ -70,6 +70,17 @@
 
 }
 
+@media only screen and (max-width: 512px){
+
+    nav{
+        font-size: 1.5rem;
+    }
+
+    nav img{
+        width: 4rem;
+    }
+}
+
 @media only screen and (max-width: 415px){
     .summary-box{
         flex: 0 0 calc(12.5% - 0.3rem);
@@ -102,6 +113,23 @@
     .placeholder-info h1{
         font-size: 2.3rem;
     }
+
+    /* navbar */
+    nav{
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .main-nav{
+        display: none;
+    }
+
+    .mobile-adj{
+        display: flex;
+        font-size: 3.5rem;
+    }
+
 }
 
 @media only screen and (max-width: 281px){
