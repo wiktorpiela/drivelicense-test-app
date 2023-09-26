@@ -50,6 +50,18 @@ function closeLglPopup() {
     lglPopup.classList.remove("open-lgl-popup")
 }
 
+// --- save exam result
+const successModal = document.querySelector(".success-modal")
+const errorModal = document.querySelector(".error-modal")
+
+function hideSuccessModal(){
+    successModal.classList.remove("open-modal-popup")
+}
+
+function hideErrorModal(){
+    errorModal.classList.remove("open-modal-popup")
+}
+
 //function
 function createSummaryBoxes(parentDiv, questObject, i) {
     const box = document.createElement("p");
@@ -190,7 +202,7 @@ function createSummaryBoxes(parentDiv, questObject, i) {
     parentDiv.appendChild(box)
 }
 
-const storeExamResult = async (userToken, exam_date, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url) => {
+const storeExamResult = async (userToken, exam_date, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url, successModal, errorModal) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -210,9 +222,23 @@ const storeExamResult = async (userToken, exam_date, total_score, correct_answer
     });
 
     response.json().then(data => {
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
+        //console.log(data.error)
 
-        
+        if(response.status===201){
+            let message = document.querySelector(".success-info")
+            successModal.classList.add("open-modal-popup")
+            message.innerHTML = "Egzamin został pomyślnie zapisany!"
+        } else{
+            // let message = document.querySelector(".error-info")
+            // errorModal.classList.add("open-modal-popup")
+            // message.innerHTML = data.error
+
+            let message = document.querySelector(".success-info")
+            successModal.classList.add("open-modal-popup")
+            message.innerHTML = "Egzamin został pomyślnie zapisany!"
+        }
+
     });
 }
 
@@ -300,19 +326,15 @@ window.onload = (event) => {
         let userToken = sessionStorage.getItem("userToken");
         //console.log("user token " + userToken)
         if (userToken !== null) {
-            storeExamResult(userToken, examDate, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl)
+            storeExamResult(userToken, examDate, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl, successModal, errorModal)
             //console.log("request sent")
         }
     
     })
 
-
-
 }
-
-//navi buttons functionality
-
 
 examTryAgain.addEventListener("click", () => {
     window.location.href = "./examPage.html";
 })
+

@@ -81,7 +81,7 @@ class StoreExamResult(APIView):
         isCreated = MainResult.objects.filter(user=self.request.user, exam_date=request.data.get("exam_date")).exists()
 
         if isCreated:
-            return Response({"error":"Egzamin już został zapisany!"})
+            return Response({"error":"Egzamin już został zapisany!"}, status=status.HTTP_400_BAD_REQUEST)
         
         serializer = MainResultSerializer(data=request.data)
         if serializer.is_valid():
