@@ -178,8 +178,6 @@ function createSummaryBoxes(parentDiv, questObject, i) {
         questionLegalSource.innerHTML = questObject.legal_source
         scoreValue.innerHTML = questObject.score
 
-
-
     })
 
     box.classList.add("summary-box")
@@ -210,8 +208,11 @@ const storeExamResult = async (userToken, exam_date, total_score, correct_answer
             detailsArray
         })
     });
+
     response.json().then(data => {
         console.log(JSON.stringify(data));
+
+        
     });
 }
 
