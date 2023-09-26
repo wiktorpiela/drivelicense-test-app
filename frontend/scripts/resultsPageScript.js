@@ -230,13 +230,9 @@ const storeExamResult = async (userToken, exam_date, total_score, correct_answer
             successModal.classList.add("open-modal-popup")
             message.innerHTML = "Egzamin został pomyślnie zapisany!"
         } else{
-            // let message = document.querySelector(".error-info")
-            // errorModal.classList.add("open-modal-popup")
-            // message.innerHTML = data.error
-
-            let message = document.querySelector(".success-info")
-            successModal.classList.add("open-modal-popup")
-            message.innerHTML = "Egzamin został pomyślnie zapisany!"
+            let message = document.querySelector(".error-info")
+            errorModal.classList.add("open-modal-popup")
+            message.innerHTML = data.error
         }
 
     });
