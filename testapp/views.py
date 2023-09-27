@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, mixins
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer, MainResultSerializer, DetailResultSerializer
 from .models import Question, QuestionCategory, QuestionMedia, MainResult
@@ -65,6 +66,8 @@ class GetAllLicenseCategories(APIView):
     
 class TestMedia(APIView):
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, mediaType, format=None):
         if mediaType=="img":
             media_names = QuestionMedia.objects.filter(path__contains=".jpg")
@@ -76,6 +79,8 @@ class TestMedia(APIView):
         return Response({"media_names":media_names}, status=status.HTTP_200_OK)
     
 class StoreExamResult(APIView):
+
+    permission_classes = [IsAuthenticated]
     
     def post(self, request, format=None):
         isCreated = MainResult.objects.filter(user=self.request.user, exam_date=request.data.get("exam_date")).exists()
@@ -99,6 +104,23 @@ class StoreExamResult(APIView):
         
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+class StoredExamResult(mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+
+    permission_classes = [IsAuthenticated]
+
+    queryset = MainResult.objects.all()
+    serializer_class = MainResultSerializer
+
+    def get_queryset(self):
+        queryset = MainResult.objects.filter(user=self.request.user)
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 

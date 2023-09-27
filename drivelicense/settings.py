@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    "django_cron",
     "rest_framework.authtoken",
     "testapp",
     "accounts",
@@ -142,12 +143,17 @@ DISABLE_COLLECTSTATIC = 0
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRON_CLASSES = [
+        "accounts.cron.CronTestView"
+]
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES":[
             "rest_framework.authentication.TokenAuthentication",
             ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE":5,
+
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    # "PAGE_SIZE":5,
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
