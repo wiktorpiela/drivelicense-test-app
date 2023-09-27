@@ -108,7 +108,6 @@ class StoreExamResult(APIView):
 class StoredExamResult(mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
 
     permission_classes = [IsAuthenticated]
-
     queryset = MainResult.objects.all()
     serializer_class = MainResultSerializer
 
@@ -123,5 +122,14 @@ class StoredExamResult(mixins.ListModelMixin, mixins.DestroyModelMixin, generics
         return self.destroy(request, *args, **kwargs)
 
 
+# class StoredExamResult(generics.ListAPIView):
+
+#     permission_classes = [IsAuthenticated]
+#     queryset = MainResult.objects.all()
+#     serializer_class = MainResultSerializer
+
+#     def get_queryset(self):
+#         queryset = MainResult.objects.filter(user=self.request.user)
+#         return queryset
 
 
