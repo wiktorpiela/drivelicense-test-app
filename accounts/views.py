@@ -65,7 +65,7 @@ class ForgotPassword(APIView):
             return Response(status=status.HTTP_200_OK)
         
         else:
-            return Response({"email":"This user doesn't exist!"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error":"Taki użytkownik nie istnieje!"}, status=status.HTTP_400_BAD_REQUEST)
 
 def reset_password_validate(request, uidb64, token):
     try:
