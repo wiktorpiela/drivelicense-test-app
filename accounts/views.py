@@ -83,8 +83,10 @@ def reset_password_validate(request, uidb64, token):
 class ResetPassword(APIView):
     def post(self, request, format=None):
         password = request.data["password"]
+        print(password)
         uid = request.session.get("uid")
         user = User.objects.get(pk = uid)
+        print(user)
         user.set_password(password)
         user.save()
         return Response(status=status.HTTP_200_OK)
