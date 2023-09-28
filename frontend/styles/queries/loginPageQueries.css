@@ -21,6 +21,12 @@
 }
 
 @media only screen and (max-width: 660px){
+    /* .register-success,
+    .register-failed{
+        width: 50rem;
+        font-size: 1.3rem;
+    } */
+
     .register-success,
     .register-failed{
         width: 50rem;

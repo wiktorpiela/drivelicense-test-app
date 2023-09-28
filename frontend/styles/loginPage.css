@@ -1,21 +1,3 @@
-/* footer */
-.footer-content{
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.5rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: #829695;
-    margin-bottom: 1rem;
-}
-
-.footer-content a{
-    text-decoration: none;
-    color: #829695
-}
-
 /* login div */
 .login-div{
     font-size: 3.5rem;
