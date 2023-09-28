@@ -10,6 +10,9 @@ from django.shortcuts import render
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from .utils import send_reset_password_email
+from .forms import ResetPasswordForm
+from django.shortcuts import render
+from django.http import HttpResponse
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
@@ -79,17 +82,26 @@ def reset_password_validate(request, uidb64, token):
         return render(request, "reset_password.html")
     else:
         return render(request, "reset_password_failed_page.html")
-    
-class ResetPassword(APIView):
-    def post(self, request, format=None):
-        password = request.data["password"]
-        print(password)
-        uid = request.session.get("uid")
-        user = User.objects.get(pk = uid)
-        print(user)
-        user.set_password(password)
-        user.save()
-        return Response(status=status.HTTP_200_OK)
+
+def reset_password(request):  
+    if request.method == "POST":
+        form = ResetPasswordForm(request.POST)
+        password = request.POST.get("password")
+
+        if form.is_valid():
+            uid = request.session.get("uid")
+            user = User.objects.get(pk = uid)
+            user.set_password(password)
+            user.save()
+            return HttpResponse("success")
+    else:
+        form = ResetPasswordForm()
+
+    context = {
+        "form":form
+    }
+
+    return render(request, "reset_password.html", context)
     
 
             
