@@ -13,6 +13,8 @@ from .utils import send_reset_password_email
 from .forms import ResetPasswordForm
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
@@ -87,16 +89,29 @@ def reset_password(request):
     if request.method == "POST":
         form = ResetPasswordForm(request.POST)
         password = request.POST.get("password")
+        confirm_password = request.POST.get("confirm_password")
 
-        if form.is_valid():
-            uid = request.session.get("uid")
-            user = User.objects.get(pk = uid)
-            user.set_password(password)
-            user.save()
-            return HttpResponse("success")
-    else:
-        form = ResetPasswordForm()
-
+        if password==confirm_password:
+            try:
+                validate_password(password)
+            except ValidationError as exceptions:
+                return render(request, "reset_password.html", {"passError":exceptions,
+                                                               "length": len(list(exceptions))})
+            else:
+                if form.is_valid():
+                    uid = request.session.get("uid")
+                    user = User.objects.get(pk = uid)
+                    user.set_password(password)
+                    user.save()
+                    #return HttpResponse("success")
+                    return render(request, "reset_password_success.html")
+                
+                else:
+                    form = ResetPasswordForm()
+        else:
+            errorMsg = "Hasła nie są identyczne!"
+            return render(request, "reset_password.html", {"errorMsg":errorMsg})
+        
     context = {
         "form":form
     }
