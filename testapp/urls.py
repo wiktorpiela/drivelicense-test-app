@@ -10,5 +10,5 @@ urlpatterns = [
     path("store-exam-result/", views.StoreExamResult.as_view(), name="examResult"),
     path("list-exam-result/", views.ListExamResult.as_view(), name="listExamResult"),
     path("delete-exam-result/<int:pk>/", views.DeleteExamResult.as_view(), name="deleteExamResult"),
-    #path("exam-result-details/<int:pk>/", views.StoredExamResultDetails.as_view(), name="storedExamResultDetails"),
+    path("exam-result-details/<int:mainId>/", views.ExamDetails.as_view(), name="examResultDetails"),
     ]

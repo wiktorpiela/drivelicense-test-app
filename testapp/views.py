@@ -2,8 +2,8 @@ from rest_framework import generics, mixins, filters
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .permissions import IsOwner
 from rest_framework.views import APIView
-from .serializers import QuestionSerializer, MainResultSerializer, DetailResultSerializer
-from .models import Question, QuestionCategory, QuestionMedia, MainResult
+from .serializers import QuestionSerializer, MainResultSerializer, DetailResultSerializer, DetailResultSerializerDisplay
+from .models import Question, QuestionCategory, QuestionMedia, MainResult, DetailResult
 import random
 from rest_framework.response import Response
 from rest_framework import status
@@ -121,3 +121,11 @@ class DeleteExamResult(generics.DestroyAPIView):
     permission_classes = [IsOwner]
     queryset = MainResult.objects.all()
     serializer_class = MainResultSerializer
+
+class ExamDetails(APIView):
+    permission_classes = [IsOwner]
+
+    def get(self, request, mainId, format=None):
+        queryset = DetailResult.objects.filter(main_result=mainId)
+        serializer = DetailResultSerializerDisplay(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

@@ -28,3 +28,11 @@ class DetailResultSerializer(serializers.ModelSerializer):
         model = models.DetailResult
         fields = ("id", "main_result", "questionId", "isCorrect", "userAnswer",)
         read_only_fields = ("id", "main_result",)
+
+class DetailResultSerializerDisplay(serializers.ModelSerializer):
+    class Meta:
+        model = models.DetailResult
+        exclude = ("main_result",)
+        depth = 2
+
+
