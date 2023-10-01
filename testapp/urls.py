@@ -8,5 +8,7 @@ urlpatterns = [
     path("categories/", views.GetAllLicenseCategories.as_view(), name="licenseCategories"),
     path("test-media/<str:mediaType>/", views.TestMedia.as_view(), name="testMedia"),
     path("store-exam-result/", views.StoreExamResult.as_view(), name="examResult"),
-    path("stored-exam-result/", views.StoredExamResult.as_view(), name="storedExamResult"),
+    path("list-exam-result/", views.ListExamResult.as_view(), name="listExamResult"),
+    path("delete-exam-result/<int:pk>/", views.DeleteExamResult.as_view(), name="deleteExamResult"),
+    #path("exam-result-details/<int:pk>/", views.StoredExamResultDetails.as_view(), name="storedExamResultDetails"),
     ]

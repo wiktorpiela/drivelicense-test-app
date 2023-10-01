@@ -1,5 +1,6 @@
-from rest_framework import generics, mixins
+from rest_framework import generics, mixins, filters
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from .permissions import IsOwner
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer, MainResultSerializer, DetailResultSerializer
 from .models import Question, QuestionCategory, QuestionMedia, MainResult
@@ -105,31 +106,18 @@ class StoreExamResult(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
-class StoredExamResult(mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
-
+class ListExamResult(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = MainResult.objects.all()
     serializer_class = MainResultSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering = ["-exam_date"]
 
     def get_queryset(self):
         queryset = MainResult.objects.filter(user=self.request.user)
         return queryset
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
     
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
-
-# class StoredExamResult(generics.ListAPIView):
-
-#     permission_classes = [IsAuthenticated]
-#     queryset = MainResult.objects.all()
-#     serializer_class = MainResultSerializer
-
-#     def get_queryset(self):
-#         queryset = MainResult.objects.filter(user=self.request.user)
-#         return queryset
-
-
+class DeleteExamResult(generics.DestroyAPIView):
+    permission_classes = [IsOwner]
+    queryset = MainResult.objects.all()
+    serializer_class = MainResultSerializer
