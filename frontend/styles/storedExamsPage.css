@@ -1,3 +1,41 @@
 .stored-exams-content-main{
     text-align: center;
+    margin-top: 3rem;
+}
+
+
+
+
+/* if exams to display */
+.exams-info{
+    font-size: 3rem;
+    margin: 3rem 0;
+}
+
+.exam-result p{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.exam-result{
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-info{
+    text-align: center;
+    background-color: #0275d8;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    color: #f7f7f7;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+/* if no exams to display */
+.no-exams-info{
+    font-size: 3rem;
+    margin-top: 20rem;
 }

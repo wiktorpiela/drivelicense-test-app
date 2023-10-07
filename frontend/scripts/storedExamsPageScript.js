@@ -20,9 +20,51 @@ const getStoredExams = async (userToken, url) => {
         console.log(data.length)
 
         if (data.length !== 0) {
+            const headerInfo = document.createElement("h1")
+            headerInfo.classList.add("exams-info")
+            headerInfo.innerHTML = `Zapisane egzaminy - ilość: ${data.length}`
+            storedExamsContent.appendChild(headerInfo)
+
+            for(let i=0; i<data.length; i++){
+                result = data[i];
+                
+                //main single result container
+                const summaryInfo = document.createElement("div");
+                summaryInfo.classList.add("summary-info");
+
+                //total score
+                const totalScoreDiv = document.createElement("div")
+                totalScoreDiv.classList.add("exam-result")
+
+                const totalScoreTxt = document.createElement("p")
+                totalScoreTxt.innerHTML = "Liczba uzyskanych punktów:"
+
+                const totalScoreInt = document.createElement("p")
+                totalScoreInt.innerHTML = `${result.total_score}/74`
+
+                totalScoreDiv.appendChild(totalScoreTxt)
+                totalScoreDiv.appendChild(totalScoreInt)
+
+                summaryInfo.appendChild(totalScoreDiv)
+
+                //exam result text
+                const examResultTextDiv = document.createElement("div")
+                examResultTextDiv.classList.add("exam-result")
+
+
+
+
+
+
+                storedExamsContent.appendChild(summaryInfo)
+            }
+
 
         } else {
-
+            const emptyData = document.createElement("h1")
+            emptyData.innerHTML = "Nie masz zapisanych egzaminów!"
+            emptyData.classList.add("no-exams-info")
+            storedExamsContent.appendChild(emptyData)
         }
 
     });
@@ -37,9 +79,9 @@ window.onload = (event) => {
     } else {
         navUnauth.style.display = "none";
         navAuth.style.display = "flex";
-    }
 
-    getStoredExams(userToken, getStoredExamsUrl)
+        getStoredExams(userToken, getStoredExamsUrl)
+    }
 }
 
 
