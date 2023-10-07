@@ -44,14 +44,41 @@ const getStoredExams = async (userToken, url) => {
 
                 totalScoreDiv.appendChild(totalScoreTxt)
                 totalScoreDiv.appendChild(totalScoreInt)
-
                 summaryInfo.appendChild(totalScoreDiv)
 
                 //exam result text
                 const examResultTextDiv = document.createElement("div")
                 examResultTextDiv.classList.add("exam-result")
 
+                const examResultTxt = document.createElement("p")
+                examResultTxt.innerHTML = "Wynik egzaminu: "
 
+                const examResultOutput = document.createElement("p")
+                if(result.total_score>=68){
+                    examResultOutput.innerHTML = "POZYTYWNY"
+                    examResultOutput.style.color = "green"
+                } else {
+                    examResultOutput.innerHTML = "NEGATYWNY"
+                    examResultOutput.style.color = "red"
+                }
+
+                examResultTextDiv.appendChild(examResultTxt)
+                examResultTextDiv.appendChild(examResultOutput)
+                summaryInfo.appendChild(examResultTextDiv)
+
+                //correct answers
+                const correctAnswersDiv = document.createElement("div")
+                correctAnswersDiv.classList.add("exam-result")
+
+                const correctAnswersTxt = document.createElement("p")
+                correctAnswersTxt.innerHTML = "Liczba poprawnych odpowiedzi: "
+
+                const correctAnswerCount = document.createElement("p")
+                correctAnswerCount.innerHTML = result.correct_answers
+
+                correctAnswersDiv.appendChild(correctAnswersTxt)
+                correctAnswersDiv.appendChild(correctAnswerCount)
+                summaryInfo.appendChild(correctAnswersDiv)
 
 
 
