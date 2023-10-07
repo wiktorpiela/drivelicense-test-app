@@ -126,6 +126,6 @@ class ExamDetails(APIView):
     permission_classes = [IsOwner]
 
     def get(self, request, mainId, format=None):
-        queryset = DetailResult.objects.filter(main_result=mainId)
+        queryset = DetailResult.objects.filter(Q(main_result=mainId) & Q(main_result__user=self.request.user))
         serializer = DetailResultSerializerDisplay(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
