@@ -3,7 +3,21 @@ const getStoredExamsUrl = "http://127.0.0.1:8000/list-exam-result/"
 let navUnauth = document.querySelector(".unauthJS")
 let navAuth = document.querySelector(".authJS")
 
+function getDateTimeFromJsonFormat(jsonDateTimeFormat){
+    let yyyy = jsonDateTimeFormat.getFullYear();
+    let mm = jsonDateTimeFormat.getMonth()+1;
+    let dd = jsonDateTimeFormat.getDate();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    let hh = jsonDateTimeFormat.getHours();
+    let minutes = jsonDateTimeFormat.getMinutes();
+    let ss = jsonDateTimeFormat.getSeconds();
 
+    outputDate = `${dd}.${mm}.${yyyy} ${hh}:${minutes}:${ss}`
+
+    return outputDate
+
+}
 
 const getStoredExams = async (userToken, url) => {
     const response = await fetch(url, {
@@ -80,8 +94,55 @@ const getStoredExams = async (userToken, url) => {
                 correctAnswersDiv.appendChild(correctAnswerCount)
                 summaryInfo.appendChild(correctAnswersDiv)
 
+                //wrong answers
+                const wrongAnswersDiv = document.createElement("div")
+                wrongAnswersDiv.classList.add("exam-result")
 
+                const wrongAnswersTxt = document.createElement("p")
+                wrongAnswersTxt.innerHTML = "Liczba błędnych odpowiedzi: "
 
+                const wrongAnswerCount = document.createElement("p")
+                wrongAnswerCount.innerHTML = result.wrong_answers
+
+                wrongAnswersDiv.appendChild(wrongAnswersTxt)
+                wrongAnswersDiv.appendChild(wrongAnswerCount)
+                summaryInfo.appendChild(wrongAnswersDiv)
+
+                //skip answers
+                const skipAnswersDiv = document.createElement("div")
+                skipAnswersDiv.classList.add("exam-result")
+
+                const skipAnswersTxt = document.createElement("p")
+                skipAnswersTxt.innerHTML = "Liczba pominiętych odpowiedzi: "
+
+                const skipAnswerCount = document.createElement("p")
+                skipAnswerCount.innerHTML = result.skip_answers
+
+                skipAnswersDiv.appendChild(skipAnswersTxt)
+                skipAnswersDiv.appendChild(skipAnswerCount)
+                summaryInfo.appendChild(skipAnswersDiv)
+
+                //exam date
+                const examDateDiv = document.createElement("div")
+                examDateDiv.classList.add("exam-result")
+
+                const examDateTxt = document.createElement("p")
+                examDateTxt.innerHTML = "Data egzaminu: "
+
+                const examDate = document.createElement("p")
+                const dateFromjson = new Date(result.exam_date)
+                // let yyyy = dateFromjson.getFullYear();
+                // let mm = dateFromjson.getMonth()+1;
+                // let dd = dateFromjson.getDate();
+                // if (dd < 10) dd = '0' + dd;
+                // if (mm < 10) mm = '0' + mm;
+                // let hh = dateFromjson.getHours();
+                // let minutes = dateFromjson.getMinutes();
+                examDate.innerHTML = getDateTimeFromJsonFormat(dateFromjson)//`${dd}.${mm}.${yyyy} ${hh}:${minutes}`;
+
+                examDateDiv.appendChild(examDateTxt)
+                examDateDiv.appendChild(examDate)
+                summaryInfo.appendChild(examDateDiv)
 
                 storedExamsContent.appendChild(summaryInfo)
             }
