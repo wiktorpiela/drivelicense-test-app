@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from uuid import uuid4
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         primary_key=True

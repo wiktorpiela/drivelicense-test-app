@@ -7,7 +7,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.db import IntegrityError
 from .utils import send_confrimation_email
-from .models import UserProfile
+# from .models import UserProfile
         
 class UserRegisterSerializer(serializers.ModelSerializer):
 
@@ -51,11 +51,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                                         email=email)
             return user
         
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = "__all__"
-        depth = 2
+# class UserProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserProfile
+#         fields = "__all__"
+#         depth = 4
         
 
         
