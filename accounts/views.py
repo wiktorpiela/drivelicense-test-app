@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status, mixins, generics, permissions, filters
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
-from .serializers import UserRegisterSerializer
+from .serializers import UserRegisterSerializer, UserProfileSerializer
 from django.conf import settings
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
@@ -15,11 +15,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from testapp.permissions import IsOwner
+from .models import UserProfile
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
     permission_classes = [permissions.AllowAny,]
 
+class UserProfileData(generics.RetrieveAPIView):
+    permission_classes = [IsOwner]
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    
 def activate(request, uidb64, token): 
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
