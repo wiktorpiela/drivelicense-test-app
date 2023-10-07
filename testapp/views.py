@@ -107,7 +107,7 @@ class StoreExamResult(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
 class ListExamResult(generics.ListAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsOwner]
     queryset = MainResult.objects.all()
     serializer_class = MainResultSerializer
     filter_backends = [filters.OrderingFilter]
