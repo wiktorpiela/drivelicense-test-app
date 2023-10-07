@@ -14,9 +14,7 @@ function getDateTimeFromJsonFormat(jsonDateTimeFormat){
     let ss = jsonDateTimeFormat.getSeconds();
 
     outputDate = `${dd}.${mm}.${yyyy} ${hh}:${minutes}:${ss}`
-
     return outputDate
-
 }
 
 const getStoredExams = async (userToken, url) => {

@@ -13,7 +13,6 @@ class UserProfile(models.Model):
     )
     # pic = models.ImageField(upload_to="drivelicense-user-images/", default="test.jpg")
     stop_notification = models.BooleanField(default=False)
-    is_email_confirmed = models.BooleanField(default=False)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -31,7 +30,4 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
-class EmailConfirmationToken(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
