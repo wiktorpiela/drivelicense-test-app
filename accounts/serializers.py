@@ -55,7 +55,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = UserProfile
 #         fields = "__all__"
-#         depth = 4
+#         depth = 2
         
 
         
