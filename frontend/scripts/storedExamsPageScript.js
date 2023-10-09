@@ -129,20 +129,26 @@ const getStoredExams = async (userToken, url) => {
 
                 const examDate = document.createElement("p")
                 const dateFromjson = new Date(result.exam_date)
-                // let yyyy = dateFromjson.getFullYear();
-                // let mm = dateFromjson.getMonth()+1;
-                // let dd = dateFromjson.getDate();
-                // if (dd < 10) dd = '0' + dd;
-                // if (mm < 10) mm = '0' + mm;
-                // let hh = dateFromjson.getHours();
-                // let minutes = dateFromjson.getMinutes();
-                examDate.innerHTML = getDateTimeFromJsonFormat(dateFromjson)//`${dd}.${mm}.${yyyy} ${hh}:${minutes}`;
+                examDate.innerHTML = getDateTimeFromJsonFormat(dateFromjson)
 
                 examDateDiv.appendChild(examDateTxt)
                 examDateDiv.appendChild(examDate)
                 summaryInfo.appendChild(examDateDiv)
 
+                //action buttons
+                const btnsDiv = document.createElement("div")
+                const deleteBtn = document.createElement("button")
+                deleteBtn.classList.add("btn")
+                deleteBtn.innerHTML = "Usuń"
+                const showDetailsBtn = document.createElement("button")
+                showDetailsBtn.classList.add("btn")
+                showDetailsBtn.innerHTML = "Szczegóły"
+
+                btnsDiv.appendChild(deleteBtn)
+                btnsDiv.appendChild(showDetailsBtn)
+
                 storedExamsContent.appendChild(summaryInfo)
+                storedExamsContent.appendChild(btnsDiv)
             }
 
 
