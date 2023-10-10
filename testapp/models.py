@@ -83,6 +83,7 @@ class Question(models.Model):
 class MainResult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam_date = models.DateTimeField(auto_now_add=False)
+    exam_category = models.CharField(max_length=2, blank=True)
     total_score = models.CharField(max_length=2)
     correct_answers = models.CharField(max_length=2)
     wrong_answers = models.CharField(max_length=2)
