@@ -137,11 +137,14 @@ const getStoredExams = async (userToken, url) => {
 
                 //action buttons
                 const btnsDiv = document.createElement("div")
+                btnsDiv.classList.add("action-buttons")
                 const deleteBtn = document.createElement("button")
                 deleteBtn.classList.add("btn")
+                deleteBtn.classList.add("action-button")
                 deleteBtn.innerHTML = "Usuń"
                 const showDetailsBtn = document.createElement("button")
                 showDetailsBtn.classList.add("btn")
+                showDetailsBtn.classList.add("action-button")
                 showDetailsBtn.innerHTML = "Szczegóły"
 
                 btnsDiv.appendChild(deleteBtn)
