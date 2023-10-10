@@ -83,11 +83,14 @@ class Question(models.Model):
 class MainResult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam_date = models.DateTimeField(auto_now_add=False)
-    exam_category = models.CharField(max_length=2, blank=True)
+    exam_category = models.CharField(max_length=2)
     total_score = models.CharField(max_length=2)
     correct_answers = models.CharField(max_length=2)
     wrong_answers = models.CharField(max_length=2)
     skip_answers = models.CharField(max_length=2)
+
+    def __str__(self) -> str:
+        return f"{self.user}, {self.exam_date}, {self.exam_category}"
 
 class DetailResult(models.Model):
     main_result = models.ForeignKey(MainResult, on_delete=models.CASCADE)

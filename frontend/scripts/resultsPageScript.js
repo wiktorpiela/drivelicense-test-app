@@ -202,7 +202,7 @@ function createSummaryBoxes(parentDiv, questObject, i) {
     parentDiv.appendChild(box)
 }
 
-const storeExamResult = async (userToken, exam_date, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url, successModal, errorModal) => {
+const storeExamResult = async (userToken, exam_date, exam_category, total_score, correct_answers, wrong_answers, skip_answers, detailsArray, url, successModal, errorModal) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -212,6 +212,7 @@ const storeExamResult = async (userToken, exam_date, total_score, correct_answer
         },
         body: JSON.stringify({
             exam_date,
+            exam_category,
             total_score,
             correct_answers,
             wrong_answers,
@@ -254,6 +255,7 @@ window.onload = (event) => {
     let summaryQuestions = new Map(JSON.parse(localStorage.summaryQuestions));
     let userScore = sessionStorage.getItem("userScore");
     let examDate = sessionStorage.getItem("examDate");
+    let categoryName = sessionStorage.getItem("categoryName");
 
     //console.log(examDate)
     console.log(summaryQuestions)
@@ -322,7 +324,7 @@ window.onload = (event) => {
         let userToken = sessionStorage.getItem("userToken");
         //console.log("user token " + userToken)
         if (userToken !== null) {
-            storeExamResult(userToken, examDate, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl, successModal, errorModal)
+            storeExamResult(userToken, examDate, categoryName, userScore, correctCount, wrongCount, skipCount, examDetailsArray, storeExamResultUrl, successModal, errorModal)
             //console.log("request sent")
         }
     
