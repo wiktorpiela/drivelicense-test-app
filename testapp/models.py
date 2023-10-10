@@ -96,7 +96,7 @@ class DetailResult(models.Model):
     main_result = models.ForeignKey(MainResult, on_delete=models.CASCADE)
     questionId = models.ForeignKey(Question, on_delete=models.CASCADE)
     isCorrect = models.BooleanField(default=False)
-    userAnswer = models.CharField(max_length=1)
+    userAnswer = models.CharField(max_length=1, null=True)
 
 # [
 #     {
