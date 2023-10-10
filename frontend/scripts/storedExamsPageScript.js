@@ -45,18 +45,18 @@ const getStoredExams = async (userToken, url) => {
                 summaryInfo.classList.add("summary-info");
 
                 //total score
-                const totalScoreDiv = document.createElement("div")
-                totalScoreDiv.classList.add("exam-result")
+                // const totalScoreDiv = document.createElement("div")
+                // totalScoreDiv.classList.add("exam-result")
 
-                const totalScoreTxt = document.createElement("p")
-                totalScoreTxt.innerHTML = "Liczba uzyskanych punktów:"
+                // const totalScoreTxt = document.createElement("p")
+                // totalScoreTxt.innerHTML = "Liczba uzyskanych punktów:"
 
-                const totalScoreInt = document.createElement("p")
-                totalScoreInt.innerHTML = `${result.total_score}/74`
+                // const totalScoreInt = document.createElement("p")
+                // totalScoreInt.innerHTML = `${result.total_score}/74`
 
-                totalScoreDiv.appendChild(totalScoreTxt)
-                totalScoreDiv.appendChild(totalScoreInt)
-                summaryInfo.appendChild(totalScoreDiv)
+                // totalScoreDiv.appendChild(totalScoreTxt)
+                // totalScoreDiv.appendChild(totalScoreInt)
+                // summaryInfo.appendChild(totalScoreDiv)
 
                 //exam result text
                 const examResultTextDiv = document.createElement("div")
@@ -79,46 +79,46 @@ const getStoredExams = async (userToken, url) => {
                 summaryInfo.appendChild(examResultTextDiv)
 
                 //correct answers
-                const correctAnswersDiv = document.createElement("div")
-                correctAnswersDiv.classList.add("exam-result")
+                // const correctAnswersDiv = document.createElement("div")
+                // correctAnswersDiv.classList.add("exam-result")
 
-                const correctAnswersTxt = document.createElement("p")
-                correctAnswersTxt.innerHTML = "Liczba poprawnych odpowiedzi: "
+                // const correctAnswersTxt = document.createElement("p")
+                // correctAnswersTxt.innerHTML = "Liczba poprawnych odpowiedzi: "
 
-                const correctAnswerCount = document.createElement("p")
-                correctAnswerCount.innerHTML = result.correct_answers
+                // const correctAnswerCount = document.createElement("p")
+                // correctAnswerCount.innerHTML = result.correct_answers
 
-                correctAnswersDiv.appendChild(correctAnswersTxt)
-                correctAnswersDiv.appendChild(correctAnswerCount)
-                summaryInfo.appendChild(correctAnswersDiv)
+                // correctAnswersDiv.appendChild(correctAnswersTxt)
+                // correctAnswersDiv.appendChild(correctAnswerCount)
+                // summaryInfo.appendChild(correctAnswersDiv)
 
                 //wrong answers
-                const wrongAnswersDiv = document.createElement("div")
-                wrongAnswersDiv.classList.add("exam-result")
+                // const wrongAnswersDiv = document.createElement("div")
+                // wrongAnswersDiv.classList.add("exam-result")
 
-                const wrongAnswersTxt = document.createElement("p")
-                wrongAnswersTxt.innerHTML = "Liczba błędnych odpowiedzi: "
+                // const wrongAnswersTxt = document.createElement("p")
+                // wrongAnswersTxt.innerHTML = "Liczba błędnych odpowiedzi: "
 
-                const wrongAnswerCount = document.createElement("p")
-                wrongAnswerCount.innerHTML = result.wrong_answers
+                // const wrongAnswerCount = document.createElement("p")
+                // wrongAnswerCount.innerHTML = result.wrong_answers
 
-                wrongAnswersDiv.appendChild(wrongAnswersTxt)
-                wrongAnswersDiv.appendChild(wrongAnswerCount)
-                summaryInfo.appendChild(wrongAnswersDiv)
+                // wrongAnswersDiv.appendChild(wrongAnswersTxt)
+                // wrongAnswersDiv.appendChild(wrongAnswerCount)
+                // summaryInfo.appendChild(wrongAnswersDiv)
 
                 //skip answers
-                const skipAnswersDiv = document.createElement("div")
-                skipAnswersDiv.classList.add("exam-result")
+                // const skipAnswersDiv = document.createElement("div")
+                // skipAnswersDiv.classList.add("exam-result")
 
-                const skipAnswersTxt = document.createElement("p")
-                skipAnswersTxt.innerHTML = "Liczba pominiętych odpowiedzi: "
+                // const skipAnswersTxt = document.createElement("p")
+                // skipAnswersTxt.innerHTML = "Liczba pominiętych odpowiedzi: "
 
-                const skipAnswerCount = document.createElement("p")
-                skipAnswerCount.innerHTML = result.skip_answers
+                // const skipAnswerCount = document.createElement("p")
+                // skipAnswerCount.innerHTML = result.skip_answers
 
-                skipAnswersDiv.appendChild(skipAnswersTxt)
-                skipAnswersDiv.appendChild(skipAnswerCount)
-                summaryInfo.appendChild(skipAnswersDiv)
+                // skipAnswersDiv.appendChild(skipAnswersTxt)
+                // skipAnswersDiv.appendChild(skipAnswerCount)
+                // summaryInfo.appendChild(skipAnswersDiv)
 
                 //exam date
                 const examDateDiv = document.createElement("div")

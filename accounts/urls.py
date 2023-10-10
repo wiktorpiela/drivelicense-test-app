@@ -6,7 +6,7 @@ app_name = "accounts"
 
 urlpatterns = [
     path("register-user/", views.RegisterUser.as_view(), name="registerUser"),
-    #path("get-account-data/<int:pk>/", views.UserProfileData.as_view(), name="getAccountData"),
+    path("get-account-data/", views.UserProfileData.as_view(), name="getAccountData"),
     path("activate-user/<uidb64>/<token>/", views.activate, name="activateUser"),
     path('get-token/', views.GetToken.as_view(), name="getToken"),
     path('forgot-password/', views.ForgotPassword.as_view(), name="forgotPassword"),

@@ -7,10 +7,10 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.db import IntegrityError
 from .utils import send_confrimation_email
-# from .models import UserProfile
+from .models import UserProfile
         
 class UserRegisterSerializer(serializers.ModelSerializer):
-
+    
     email = serializers.EmailField(
         write_only = True,
         required = True,
@@ -22,7 +22,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ("id", "username", "email" ,"password",)
+        fields = ("id", "username", "email" ,"password", "userprofile",)
         read_only_fields = ("username",)
         extra_kwargs = {
             "password": {"write_only":True},
@@ -51,11 +51,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                                         email=email)
             return user
         
-# class UserProfileSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserProfile
-#         fields = "__all__"
-#         depth = 2
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = "__all__"
+        depth = 2
         
 
         
