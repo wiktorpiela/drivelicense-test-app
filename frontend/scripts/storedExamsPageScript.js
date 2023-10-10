@@ -44,19 +44,19 @@ const getStoredExams = async (userToken, url) => {
                 const summaryInfo = document.createElement("div");
                 summaryInfo.classList.add("summary-info");
 
-                //total score
-                // const totalScoreDiv = document.createElement("div")
-                // totalScoreDiv.classList.add("exam-result")
+                //exam category
+                const ExamCatDiv = document.createElement("div")
+                ExamCatDiv.classList.add("exam-result")
 
-                // const totalScoreTxt = document.createElement("p")
-                // totalScoreTxt.innerHTML = "Liczba uzyskanych punktów:"
+                const ExamCatTxt = document.createElement("p")
+                ExamCatTxt.innerHTML = "Kategoria: "
 
-                // const totalScoreInt = document.createElement("p")
-                // totalScoreInt.innerHTML = `${result.total_score}/74`
+                const ExamCat = document.createElement("p")
+                ExamCat.innerHTML = result.exam_category
 
-                // totalScoreDiv.appendChild(totalScoreTxt)
-                // totalScoreDiv.appendChild(totalScoreInt)
-                // summaryInfo.appendChild(totalScoreDiv)
+                ExamCatDiv.appendChild(ExamCatTxt)
+                ExamCatDiv.appendChild(ExamCat)
+                summaryInfo.appendChild(ExamCatDiv)
 
                 //exam result text
                 const examResultTextDiv = document.createElement("div")
