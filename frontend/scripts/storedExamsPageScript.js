@@ -29,7 +29,7 @@ const getStoredExams = async (userToken, url) => {
 
     response.json().then(data => {
 
-        console.log(data.length)
+        // console.log(data.length)
 
         if (data.length !== 0) {
             const headerInfo = document.createElement("h1")
@@ -39,7 +39,8 @@ const getStoredExams = async (userToken, url) => {
 
             for(let i=0; i<data.length; i++){
                 result = data[i];
-                
+                const result_id = result.id
+
                 //main single result container
                 const summaryInfo = document.createElement("div");
                 summaryInfo.classList.add("summary-info");
@@ -78,48 +79,6 @@ const getStoredExams = async (userToken, url) => {
                 examResultTextDiv.appendChild(examResultOutput)
                 summaryInfo.appendChild(examResultTextDiv)
 
-                //correct answers
-                // const correctAnswersDiv = document.createElement("div")
-                // correctAnswersDiv.classList.add("exam-result")
-
-                // const correctAnswersTxt = document.createElement("p")
-                // correctAnswersTxt.innerHTML = "Liczba poprawnych odpowiedzi: "
-
-                // const correctAnswerCount = document.createElement("p")
-                // correctAnswerCount.innerHTML = result.correct_answers
-
-                // correctAnswersDiv.appendChild(correctAnswersTxt)
-                // correctAnswersDiv.appendChild(correctAnswerCount)
-                // summaryInfo.appendChild(correctAnswersDiv)
-
-                //wrong answers
-                // const wrongAnswersDiv = document.createElement("div")
-                // wrongAnswersDiv.classList.add("exam-result")
-
-                // const wrongAnswersTxt = document.createElement("p")
-                // wrongAnswersTxt.innerHTML = "Liczba błędnych odpowiedzi: "
-
-                // const wrongAnswerCount = document.createElement("p")
-                // wrongAnswerCount.innerHTML = result.wrong_answers
-
-                // wrongAnswersDiv.appendChild(wrongAnswersTxt)
-                // wrongAnswersDiv.appendChild(wrongAnswerCount)
-                // summaryInfo.appendChild(wrongAnswersDiv)
-
-                //skip answers
-                // const skipAnswersDiv = document.createElement("div")
-                // skipAnswersDiv.classList.add("exam-result")
-
-                // const skipAnswersTxt = document.createElement("p")
-                // skipAnswersTxt.innerHTML = "Liczba pominiętych odpowiedzi: "
-
-                // const skipAnswerCount = document.createElement("p")
-                // skipAnswerCount.innerHTML = result.skip_answers
-
-                // skipAnswersDiv.appendChild(skipAnswersTxt)
-                // skipAnswersDiv.appendChild(skipAnswerCount)
-                // summaryInfo.appendChild(skipAnswersDiv)
-
                 //exam date
                 const examDateDiv = document.createElement("div")
                 examDateDiv.classList.add("exam-result")
@@ -135,13 +94,37 @@ const getStoredExams = async (userToken, url) => {
                 examDateDiv.appendChild(examDate)
                 summaryInfo.appendChild(examDateDiv)
 
+                //exam date
+                const ex_id = document.createElement("p")
+                ex_id.innerHTML = result.id
+
                 //action buttons
                 const btnsDiv = document.createElement("div")
                 btnsDiv.classList.add("action-buttons")
-                const deleteBtn = document.createElement("button")
+
+                let deleteBtn = document.createElement("button")
                 deleteBtn.classList.add("btn")
                 deleteBtn.classList.add("action-button")
                 deleteBtn.innerHTML = "Usuń"
+
+                deleteBtn.addEventListener("click", ()=>{
+
+                    deleteUrl = `http://127.0.0.1:8000/delete-exam-result/${result_id}`
+
+                    const deleteStoredExams = async (userToken, url) => {
+                        const response = await fetch(url, {
+                            method: 'DELETE',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                'Authorization': `Token ${userToken}`
+                            }
+                        });
+                    }
+
+                    deleteStoredExams(userToken, deleteUrl)
+                })
+
                 const showDetailsBtn = document.createElement("button")
                 showDetailsBtn.classList.add("btn")
                 showDetailsBtn.classList.add("action-button")
@@ -152,8 +135,8 @@ const getStoredExams = async (userToken, url) => {
 
                 storedExamsContent.appendChild(summaryInfo)
                 storedExamsContent.appendChild(btnsDiv)
+                storedExamsContent.appendChild(ex_id)
             }
-
 
         } else {
             const emptyData = document.createElement("h1")
