@@ -11,6 +11,7 @@ from django.db.models import Q
 import operator
 from functools import reduce
 from .locked_media import locked_media_names
+from .paginators import ExamResultPaginator
 
 class GetExamQuestions(APIView):
     b = "PODSTAWOWY"
@@ -106,17 +107,16 @@ class StoreExamResult(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
-class ListExamResult(generics.ListAPIView):
+class ListExamResult(APIView):
     permission_classes = [IsOwner]
-    queryset = MainResult.objects.all()
-    serializer_class = MainResultSerializer
-    filter_backends = [filters.OrderingFilter]
-    ordering = ["-exam_date"]
+    paginator_class = ExamResultPaginator()
 
-    def get_queryset(self):
-        queryset = MainResult.objects.filter(user=self.request.user)
-        return queryset
-    
+    def get(self, request, format=None):
+        queryset = MainResult.objects.filter(user=self.request.user).order_by("-exam_date")
+        pages = self.paginator_class.paginate_queryset(queryset, request)
+        serializer = MainResultSerializer(pages, many=True)
+        return self.paginator_class.get_paginated_response(serializer.data)
+
 class DeleteExamResult(generics.DestroyAPIView):
     permission_classes = [IsOwner]
     queryset = MainResult.objects.all()

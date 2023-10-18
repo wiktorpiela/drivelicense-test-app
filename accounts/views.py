@@ -77,7 +77,7 @@ class ForgotPassword(APIView):
                                       "reset_password_email.html",
                                       user,
                                       email)
-            return Response(status=status.HTTP_200_OK)
+            return Response({"message":"Wysłano link do zmiany hasła!"}, status=status.HTTP_200_OK)
         
         else:
             return Response({"error":"Taki użytkownik nie istnieje!"}, status=status.HTTP_400_BAD_REQUEST)

@@ -15,12 +15,14 @@ const forgotPassRequest = async (email, url) => {
         })
     })
 
+    console.log(response)
+
     response.json().then(data => {
 
         if (response.status === 200) {
             respFailed.style.display = "none";
             respSuccess.style.display = "block";
-            respSuccess.innerHTML = "Wysłano link do zmiany hasła!"
+            respSuccess.innerHTML = data.message
         } else {
             respSuccess.style.display = "none";
             respFailed.style.display = "block";
