@@ -1,15 +1,39 @@
-let navBurger = document.getElementsByClassName('nav-burger')[0];
-let navBurgerIcon = document.getElementsByName('menu-outline')[0];
-let mainNav = document.getElementsByClassName('main-nav')[0];
+let navBurgers = Array.prototype.slice.call(document.getElementsByClassName('nav-burger'));
+let navBurgerIcons = document.getElementsByName('menu-outline');
+let mainNavs = document.getElementsByClassName('main-nav');
 
-navBurger.addEventListener('click', function () {
-    if (window.getComputedStyle(mainNav, null).display === "none") {
-        mainNav.style.display = "flex";
-        mainNav.style.flexDirection = "column";
-        mainNav.style.marginLeft = "5rem";
-        navBurgerIcon.setAttribute("name", "close-outline")
-    } else {
-        mainNav.style.display = "none"
-        navBurgerIcon.setAttribute("name", "menu-outline")
-    }
-})
+for (let i = 0; i < navBurgers.length; i++) {
+
+    let mainNav = mainNavs[i];
+    let navBurgerIcon = navBurgerIcons[i];
+
+    navBurgers[i].addEventListener('click', function () {
+        if (window.getComputedStyle(mainNav, null).display === "none") {
+            mainNav.style.display = "flex";
+            mainNav.style.flexDirection = "column";
+            mainNav.style.marginLeft = "5rem";
+            navBurgerIcon.setAttribute("name", "close-outline")
+        } else {
+            mainNav.style.display = "none"
+            navBurgerIcon.setAttribute("name", "menu-outline")
+        }
+    })
+
+
+}
+// navBurgers.forEach((navBurger) => {
+
+//     console.log(navBurger)
+//     navBurger.addEventListener('click', function () {
+//         if (window.getComputedStyle(mainNav, null).display === "none") {
+//             mainNav.style.display = "flex";
+//             mainNav.style.flexDirection = "column";
+//             mainNav.style.marginLeft = "5rem";
+//             navBurgerIcon.setAttribute("name", "close-outline")
+//         } else {
+//             mainNav.style.display = "none"
+//             navBurgerIcon.setAttribute("name", "menu-outline")
+//         }
+//     })
+
+// })
